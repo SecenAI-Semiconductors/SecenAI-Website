@@ -178,8 +178,26 @@ html.light .bg-gray-200 {
 .text-gradient-neon {
   background: linear-gradient(135deg, #CCFF00 0%, #88ee00 50%, #CCFF00 100%);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: transparent !important;
   background-clip: text;
+  color: transparent !important;
+}
+
+/* Emerald gradient text (Careers, etc.) */
+.text-gradient-emerald {
+  background: linear-gradient(135deg, #CCFF00 0%, #88ee00 50%, #CCFF00 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text;
+  color: transparent !important;
+}
+
+html.light .text-gradient-emerald {
+  background: linear-gradient(135deg, #059669 0%, #10b981 50%, #059669 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text;
+  color: transparent !important;
 }
 
 /* Glassmorphism card */

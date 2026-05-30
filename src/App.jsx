@@ -6,6 +6,7 @@ import Navbar from './components/Navbar'
 import ParticleGrid from './components/ParticleGrid'
 import Home from './pages/Home'
 import Contact from './pages/Contact'
+import Careers from './pages/Careers'
 import Footer from './sections/Footer'
 
 function App() {
@@ -55,6 +56,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/careers" element={<Careers />} />
           </Routes>
         </main>
 
