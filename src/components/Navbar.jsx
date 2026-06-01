@@ -9,6 +9,7 @@ const navLinks = [
   { label: "About", href: "/#about" }, // Changed to include root path base
   { label: "Products", href: "/#products" }, // Changed to include root path base
   { label: "Solutions", href: "/#solutions" }, // Changed to include root path base
+  { label: "Careers", href: "/careers", isRoute: true },
   { label: "Contact", href: "/contact", isRoute: true },
 ];
 
