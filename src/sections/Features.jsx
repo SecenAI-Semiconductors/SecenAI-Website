@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Cpu, ShieldCheck, BrainCircuit, Server } from 'lucide-react';
+import { useTheme } from '../context/ThemeContext';
 
 const features = [
   {
@@ -65,6 +66,8 @@ const cardVariants = {
 
 export default function Features() {
   const sectionRef = useRef(null);
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
 
   const isInView = useInView(sectionRef, {
     once: true,
@@ -74,7 +77,9 @@ export default function Features() {
   return (
     <section
       ref={sectionRef}
-      className="relative bg-dark-950 py-16 md:py-20"
+      className={`relative py-16 md:py-20 ${
+        isDark ? 'bg-dark-950' : 'bg-[#f9fafb]'
+      }`}
     >
       {/* Section Header */}
       <motion.div
@@ -87,12 +92,14 @@ export default function Features() {
           className="font-[Outfit] text-4xl font-bold md:text-5xl"
           variants={headingVariants}
         >
-          <span className="text-white">Platform</span>{' '}
-          <span className="text-gradient-neon">Capabilities</span>
+          <span className={isDark ? 'text-white' : 'text-[#1e1b4b]'}>Platform</span>{' '}
+          <span className={isDark ? 'text-gradient-neon' : 'text-gradient-emerald'}>Capabilities</span>
         </motion.h2>
 
         <motion.p
-          className="mx-auto mt-4 max-w-2xl text-base text-white/40"
+          className={`mx-auto mt-4 max-w-2xl text-base ${
+            isDark ? 'text-white/40' : 'text-gray-500'
+          }`}
           variants={headingVariants}
         >
           Advanced AI, drone intelligence, IoT integration, and real-time
@@ -113,7 +120,11 @@ export default function Features() {
           return (
             <motion.div
               key={feature.title}
-              className="glass-card group rounded-2xl p-8 text-center"
+              className={`group rounded-2xl p-8 text-center ${
+                isDark
+                  ? 'glass-card'
+                  : 'bg-white border border-gray-200 shadow-sm hover:shadow-lg hover:border-emerald-200'
+              }`}
               variants={cardVariants}
               whileHover={{ y: -6 }}
               transition={{
@@ -123,17 +134,25 @@ export default function Features() {
               }}
             >
               {/* Icon Container */}
-              <div className="mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-neon/10 transition-all duration-300 group-hover:scale-110 group-hover:bg-neon/20">
-                <Icon className="h-6 w-6 text-neon" />
+              <div className={`mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-xl transition-all duration-300 group-hover:scale-110 ${
+                isDark
+                  ? 'bg-neon/10 group-hover:bg-neon/20'
+                  : 'bg-emerald-50 group-hover:bg-emerald-100'
+              }`}>
+                <Icon className={`h-6 w-6 ${isDark ? 'text-neon' : 'text-emerald-600'}`} />
               </div>
 
               {/* Title */}
-              <h3 className="font-[Outfit] text-lg font-semibold text-white">
+              <h3 className={`font-[Outfit] text-lg font-semibold ${
+                isDark ? 'text-white' : 'text-[#1e1b4b]'
+              }`}>
                 {feature.title}
               </h3>
 
               {/* Description */}
-              <p className="mt-3 text-sm leading-relaxed text-white/40">
+              <p className={`mt-3 text-sm leading-relaxed ${
+                isDark ? 'text-white/40' : 'text-gray-500'
+              }`}>
                 {feature.description}
               </p>
             </motion.div>

@@ -1,6 +1,8 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Sprout, Factory, Building2, Route } from 'lucide-react';
+import { useTheme } from '../context/ThemeContext';
+
 const categories = [
   {
     title: 'Smart Agriculture',
@@ -58,6 +60,9 @@ const headingVariants = {
 
 export default function DroneCategories() {
   const sectionRef = useRef(null);
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
+
   const isInView = useInView(sectionRef, {
     once: true,
     margin: '-80px',
@@ -66,7 +71,9 @@ export default function DroneCategories() {
   return (
     <section
       ref={sectionRef}
-      className="relative bg-dark-950 pt-20 pb-16 md:pt-24 md:pb-20"
+      className={`relative pt-20 pb-16 md:pt-24 md:pb-20 ${
+        isDark ? 'bg-dark-950' : 'bg-[#f9fafb]'
+      }`}
     >
       {/* Header */}
       <motion.div
@@ -79,12 +86,14 @@ export default function DroneCategories() {
           className="font-[Outfit] text-4xl font-bold md:text-6xl"
           variants={headingVariants}
         >
-          <span className="text-white">Industry</span>{' '}
-          <span className="text-gradient-neon">Solutions</span>
+          <span className={isDark ? 'text-white' : 'text-[#1e1b4b]'}>Industry</span>{' '}
+          <span className={isDark ? 'text-gradient-neon' : 'text-gradient-emerald'}>Solutions</span>
         </motion.h2>
 
         <motion.p
-          className="mx-auto mt-6 max-w-4xl text-center text-lg leading-relaxed text-white/50"
+          className={`mx-auto mt-6 max-w-4xl text-center text-lg leading-relaxed ${
+            isDark ? 'text-white/50' : 'text-gray-500'
+          }`}
           variants={headingVariants}
         >
           Empowering agriculture, infrastructure, and smart city operations
@@ -94,7 +103,9 @@ export default function DroneCategories() {
         </motion.p>
 
         <motion.div
-          className="mx-auto mt-8 h-0.5 w-24 rounded-full bg-neon"
+          className={`mx-auto mt-8 h-0.5 w-24 rounded-full ${
+            isDark ? 'bg-neon' : 'bg-emerald-500'
+          }`}
           variants={headingVariants}
         />
       </motion.div>
@@ -123,8 +134,11 @@ export default function DroneCategories() {
           return (
             <motion.div
               key={category.title}
-              // UPDATED: Replaced flex-grow and max-w with exact calculated widths
-              className="glass-card group w-full md:w-[calc(50%_-_1rem)] lg:w-[calc(33.333%_-_1.333rem)] overflow-hidden rounded-2xl"
+              className={`group w-full md:w-[calc(50%_-_1rem)] lg:w-[calc(33.333%_-_1.333rem)] overflow-hidden rounded-2xl ${
+                isDark
+                  ? 'glass-card'
+                  : 'bg-white border border-gray-200 shadow-sm hover:shadow-lg hover:border-emerald-200'
+              }`}
               variants={cardVariants}
               whileHover={{ y: -8 }}
               transition={{
@@ -144,21 +158,29 @@ export default function DroneCategories() {
 
               {/* Content */}
               <div className="p-8">
-                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-neon/10">
-                  <Icon className="h-5 w-5 text-neon" />
+                <div className={`mb-4 flex h-12 w-12 items-center justify-center rounded-full ${
+                  isDark ? 'bg-neon/10' : 'bg-emerald-50'
+                }`}>
+                  <Icon className={`h-5 w-5 ${isDark ? 'text-neon' : 'text-emerald-600'}`} />
                 </div>
 
-                <h3 className="font-[Outfit] text-xl font-semibold text-white">
+                <h3 className={`font-[Outfit] text-xl font-semibold ${
+                  isDark ? 'text-white' : 'text-[#1e1b4b]'
+                }`}>
                   {category.title}
                 </h3>
 
-                <p className="mt-3 text-sm leading-relaxed text-white/50">
+                <p className={`mt-3 text-sm leading-relaxed ${
+                  isDark ? 'text-white/50' : 'text-gray-500'
+                }`}>
                   {category.description}
                 </p>
 
                 <a
                   href="#"
-                  className="mt-6 inline-block text-sm font-medium text-neon transition-all hover:tracking-wider"
+                  className={`mt-6 inline-block text-sm font-medium transition-all hover:tracking-wider ${
+                    isDark ? 'text-neon' : 'text-emerald-600'
+                  }`}
                 >
                   Explore Solution →
                 </a>
