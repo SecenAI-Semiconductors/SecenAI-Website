@@ -1,9 +1,12 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { ArrowRight, MonitorSmartphone } from 'lucide-react';
+import { useTheme } from '../context/ThemeContext';
 
 export default function CTABanner() {
   const sectionRef = useRef(null);
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
 
   const isInView = useInView(sectionRef, {
     once: true,
@@ -13,13 +16,26 @@ export default function CTABanner() {
   return (
     <section
       ref={sectionRef}
-      className="relative overflow-hidden bg-gradient-to-br from-dark-800 via-dark-900 to-dark-950 py-16 md:py-20"
+      className={`relative overflow-hidden py-16 md:py-20 ${
+        isDark
+          ? 'bg-gradient-to-br from-dark-800 via-dark-900 to-dark-950'
+          : 'bg-gradient-to-br from-gray-50 via-white to-gray-100'
+      }`}
     >
-      {/* Neon Glow Orb */}
-      <div className="pointer-events-none absolute left-1/2 top-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-neon/8 blur-[150px]" />
+      {/* Glow Orb */}
+      {isDark && (
+        <div className="pointer-events-none absolute left-1/2 top-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-neon/8 blur-[150px]" />
+      )}
+      {!isDark && (
+        <div className="pointer-events-none absolute left-1/2 top-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[150px]"
+          style={{ background: 'radial-gradient(circle, rgba(16,185,129,0.08), transparent 60%)' }}
+        />
+      )}
 
       {/* Grid Background Overlay */}
-      <div className="grid-bg pointer-events-none absolute inset-0 opacity-40" />
+      <div className={`grid-bg pointer-events-none absolute inset-0 ${
+        isDark ? 'opacity-40' : 'opacity-15'
+      }`} />
 
       {/* Content */}
       <motion.div
@@ -36,21 +52,29 @@ export default function CTABanner() {
         }}
       >
         {/* Badge */}
-        <span className="mb-8 inline-block rounded-full border border-neon/30 bg-neon/5 px-4 py-1.5 text-xs font-medium tracking-[0.2em] text-neon">
+        <span className={`mb-8 inline-block rounded-full border px-4 py-1.5 text-xs font-medium tracking-[0.2em] ${
+          isDark
+            ? 'border-neon/30 bg-neon/5 text-neon'
+            : 'border-emerald-200 bg-emerald-50 text-emerald-700'
+        }`}>
           AI-POWERED DRONE INTELLIGENCE
         </span>
 
         {/* Heading */}
-        <h2 className="mb-6 font-[Outfit] text-4xl font-bold leading-tight text-white md:text-6xl">
+        <h2 className={`mb-6 font-[Outfit] text-4xl font-bold leading-tight md:text-6xl ${
+          isDark ? 'text-white' : 'text-[#1e1b4b]'
+        }`}>
           Ready to Unlock
           <br />
-          <span className="text-gradient-neon">
+          <span className={isDark ? 'text-gradient-neon' : 'text-gradient-emerald'}>
             AI-Driven Insights?
           </span>
         </h2>
 
         {/* Subtitle */}
-        <p className="mx-auto mb-10 max-w-2xl text-lg leading-relaxed text-white/40">
+        <p className={`mx-auto mb-10 max-w-2xl text-lg leading-relaxed ${
+          isDark ? 'text-white/40' : 'text-gray-500'
+        }`}>
           Transform aerial imagery, telemetry, and IoT sensor data into
           actionable insights for agriculture, infrastructure inspection,
           logistics, environmental monitoring, and smart city operations.
@@ -60,7 +84,11 @@ export default function CTABanner() {
         <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
           <motion.a
             href="#contact"
-            className="inline-flex cursor-pointer items-center gap-2 rounded-full bg-neon px-8 py-4 font-semibold text-dark-950 transition-all hover:shadow-xl hover:shadow-neon/30"
+            className={`inline-flex cursor-pointer items-center gap-2 rounded-full px-8 py-4 font-semibold transition-all ${
+              isDark
+                ? 'bg-neon text-dark-950 hover:shadow-xl hover:shadow-neon/30'
+                : 'bg-emerald-600 text-white hover:bg-emerald-700 hover:shadow-xl hover:shadow-emerald-600/30'
+            }`}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.97 }}
           >
@@ -70,7 +98,11 @@ export default function CTABanner() {
 
           <motion.a
             href="#platform"
-            className="inline-flex cursor-pointer items-center gap-2 rounded-full border border-white/20 px-8 py-4 text-white transition-all hover:border-white/40 hover:bg-white/5"
+            className={`inline-flex cursor-pointer items-center gap-2 rounded-full border px-8 py-4 transition-all ${
+              isDark
+                ? 'border-white/20 text-white hover:border-white/40 hover:bg-white/5'
+                : 'border-gray-300 text-gray-700 hover:border-gray-400 hover:bg-gray-100'
+            }`}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.97 }}
           >

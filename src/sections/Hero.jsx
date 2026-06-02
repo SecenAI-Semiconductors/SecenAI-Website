@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Play, ChevronDown } from "lucide-react";
+import { useTheme } from "../context/ThemeContext";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -27,6 +28,8 @@ const fadeSlideUp = {
 
 export default function Hero() {
   const sectionRef = useRef(null);
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -54,18 +57,33 @@ export default function Hero() {
         />
       </motion.div>
 
-      {/* Dark Overlay */}
+      {/* Overlay */}
       <motion.div
-        className="absolute inset-0 z-[1] bg-gradient-to-b from-dark-950/80 via-dark-950/60 to-dark-950"
+        className={`absolute inset-0 z-[1] ${
+          isDark
+            ? "bg-gradient-to-b from-dark-950/80 via-dark-950/60 to-dark-950"
+            : "bg-gradient-to-b from-white/85 via-white/70 to-white/95"
+        }`}
         style={{ opacity: overlayOpacity }}
       />
 
       {/* Grid Overlay */}
-      <div className="absolute inset-0 z-[2] grid-bg opacity-40" />
+      <div className={`absolute inset-0 z-[2] grid-bg ${isDark ? 'opacity-40' : 'opacity-20'}`} />
 
-      {/* Glow Effects */}
-      <div className="absolute top-1/4 -right-20 z-[3] h-96 w-96 rounded-full bg-neon/10 blur-[120px] animate-float pointer-events-none" />
-      <div className="absolute bottom-1/3 -left-10 z-[3] h-64 w-64 rounded-full bg-neon/5 blur-[100px] animate-float-delayed pointer-events-none" />
+      {/* Glow Effects — dark mode only */}
+      {isDark && (
+        <>
+          <div className="absolute top-1/4 -right-20 z-[3] h-96 w-96 rounded-full bg-neon/10 blur-[120px] animate-float pointer-events-none" />
+          <div className="absolute bottom-1/3 -left-10 z-[3] h-64 w-64 rounded-full bg-neon/5 blur-[100px] animate-float-delayed pointer-events-none" />
+        </>
+      )}
+
+      {/* Light mode subtle accent orb */}
+      {!isDark && (
+        <div className="absolute top-1/4 right-10 z-[3] h-96 w-96 rounded-full blur-[140px] pointer-events-none"
+          style={{ background: 'radial-gradient(circle, rgba(16,185,129,0.12), transparent 60%)' }}
+        />
+      )}
 
       {/* Hero Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
@@ -77,7 +95,11 @@ export default function Hero() {
         >
           {/* Badge */}
           <motion.div variants={fadeSlideUp}>
-            <span className="mb-8 inline-block rounded-full border border-white/10 bg-white/5 px-4 py-1.5 mt-20 text-xs tracking-[0.2em] text-white/60 backdrop-blur-sm">
+            <span className={`mb-8 inline-block rounded-full border px-4 py-1.5 mt-20 text-xs tracking-[0.2em] backdrop-blur-sm ${
+              isDark
+                ? "border-white/10 bg-white/5 text-white/60"
+                : "border-gray-300 bg-white/60 text-gray-500"
+            }`}>
               AI-POWERED DRONE INTELLIGENCE
             </span>
           </motion.div>
@@ -87,10 +109,10 @@ export default function Hero() {
             variants={fadeSlideUp}
             className="mb-6 font-[Outfit] text-5xl font-bold leading-tight md:text-7xl lg:text-8xl"
           >
-            <span className="block text-white">
+            <span className={isDark ? "text-white" : "text-[#1e1b4b]"}>
               AI-Powered Drone
             </span>
-            <span className="block text-gradient-neon">
+            <span className={`block ${isDark ? "text-gradient-neon" : "text-gradient-emerald"}`}>
               Intelligence Platform
             </span>
           </motion.h1>
@@ -98,7 +120,9 @@ export default function Hero() {
           {/* Description */}
           <motion.p
             variants={fadeSlideUp}
-            className="mb-12 max-w-4xl text-lg leading-relaxed text-white/60 md:text-xl"
+            className={`mb-12 max-w-4xl text-lg leading-relaxed md:text-xl ${
+              isDark ? "text-white/60" : "text-gray-500"
+            }`}
           >
             Real-time drone monitoring, AI analytics, IoT integration,
             crop disease detection, infrastructure inspection, aerial
@@ -113,7 +137,11 @@ export default function Hero() {
           >
             <a
               href="#solutions"
-              className="group inline-flex items-center gap-2 rounded-full bg-neon px-8 py-4 text-base font-semibold text-dark-950 transition-all duration-300 hover:shadow-xl hover:shadow-neon/30"
+              className={`group inline-flex items-center gap-2 rounded-full px-8 py-4 text-base font-semibold transition-all duration-300 ${
+                isDark
+                  ? "bg-neon text-dark-950 hover:shadow-xl hover:shadow-neon/30"
+                  : "bg-emerald-600 text-white hover:bg-emerald-700 hover:shadow-xl hover:shadow-emerald-600/30"
+              }`}
             >
               Explore Solutions
 
@@ -134,12 +162,22 @@ export default function Hero() {
 
             <a
               href="#demo"
-              className="group inline-flex items-center gap-3 rounded-full border border-white/20 px-8 py-4 text-base text-white transition-all duration-300 hover:bg-white/5"
+              className={`group inline-flex items-center gap-3 rounded-full border px-8 py-4 text-base transition-all duration-300 ${
+                isDark
+                  ? "border-white/20 text-white hover:bg-white/5"
+                  : "border-gray-300 text-gray-700 hover:bg-gray-100 hover:border-gray-400"
+              }`}
             >
-              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/10 transition-colors group-hover:bg-neon/20">
+              <span className={`flex h-8 w-8 items-center justify-center rounded-full transition-colors ${
+                isDark
+                  ? "bg-white/10 group-hover:bg-neon/20"
+                  : "bg-emerald-50 group-hover:bg-emerald-100"
+              }`}>
                 <Play
                   size={14}
-                  className="ml-0.5 transition-colors group-hover:text-neon"
+                  className={`ml-0.5 transition-colors ${
+                    isDark ? "group-hover:text-neon" : "text-emerald-600"
+                  }`}
                 />
               </span>
 
@@ -159,7 +197,9 @@ export default function Hero() {
         }}
         className="absolute bottom-10 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2"
       >
-        <span className="text-xs uppercase tracking-[0.2em] text-white/30">
+        <span className={`text-xs uppercase tracking-[0.2em] ${
+          isDark ? "text-white/30" : "text-gray-400"
+        }`}>
           Scroll to explore
         </span>
 
@@ -173,7 +213,7 @@ export default function Hero() {
         >
           <ChevronDown
             size={20}
-            className="text-white/30"
+            className={isDark ? "text-white/30" : "text-gray-400"}
           />
         </motion.div>
       </motion.div>

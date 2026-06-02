@@ -1,5 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState, useEffect, useCallback } from "react";
+import { useTheme } from "../context/ThemeContext";
 
 function AnimatedCounter({ target, suffix = "", decimals = 0, duration = 2000 }) {
   const [count, setCount] = useState(0);
@@ -57,12 +58,18 @@ const statsData = [
 
 export default function Stats() {
   const sectionRef = useRef(null);
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
   const isInView = useInView(sectionRef, { once: true, margin: "-80px" });
 
   return (
     <section
       ref={sectionRef}
-      className="relative bg-dark-950 py-10 border-y border-white/5"
+      className={`relative py-10 border-y ${
+        isDark
+          ? 'bg-dark-950 border-white/5'
+          : 'bg-[#f9fafb] border-gray-200'
+      }`}
     >
       <motion.div
         initial={{ opacity: 0, y: 30 }}
@@ -76,13 +83,21 @@ export default function Stats() {
               key={stat.label}
               className={`text-center py-6 md:py-8 ${
                 index < statsData.length - 1
-                  ? "md:border-r md:border-white/5"
+                  ? isDark
+                    ? "md:border-r md:border-white/5"
+                    : "md:border-r md:border-gray-200"
                   : ""
               } ${
-                index < 2 ? "border-b border-white/5 md:border-b-0" : ""
+                index < 2
+                  ? isDark
+                    ? "border-b border-white/5 md:border-b-0"
+                    : "border-b border-gray-200 md:border-b-0"
+                  : ""
               }`}
             >
-              <div className="font-[Outfit] text-4xl md:text-5xl font-bold text-neon">
+              <div className={`font-[Outfit] text-4xl md:text-5xl font-bold ${
+                isDark ? 'text-neon' : 'text-emerald-600'
+              }`}>
                 <AnimatedCounter
                   target={stat.target}
                   suffix={stat.suffix}
@@ -90,7 +105,9 @@ export default function Stats() {
                   duration={2000}
                 />
               </div>
-              <p className="text-white/40 text-sm mt-2">{stat.label}</p>
+              <p className={`text-sm mt-2 ${
+                isDark ? 'text-white/40' : 'text-gray-500'
+              }`}>{stat.label}</p>
             </div>
           ))}
         </div>
