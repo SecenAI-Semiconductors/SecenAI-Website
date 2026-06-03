@@ -7,7 +7,7 @@ import { useTheme } from "../context/ThemeContext";
 const navLinks = [
   { label: "Home", href: "/#home" }, // Changed to include root path base
   { label: "About", href: "/#about" }, // Changed to include root path base
-  { label: "Products", href: "/#products" }, // Changed to include root path base
+  { label: "Products", href: "/products", isRoute: true },
   { label: "Careers", href: "/careers", isRoute: true },
   { label: "Contact", href: "/contact", isRoute: true },
 ];
