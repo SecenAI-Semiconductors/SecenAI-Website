@@ -1,6 +1,6 @@
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { BrainCircuit, Cpu, Server, ShieldCheck, ChevronDown, Zap } from 'lucide-react';
+import { BrainCircuit, Cpu, Server, ShieldCheck } from 'lucide-react';
 
 /* ═══════════════════════════════════════════
    TECH DATA
@@ -12,48 +12,24 @@ const techCapabilities = [
     title: 'AI-Powered Analytics',
     description:
       'Leverage computer vision and deep learning models to detect crop diseases, structural defects, objects, and environmental changes from aerial imagery. Supports custom model training for specialized detection tasks.',
-    details: [
-      'TensorFlow & PyTorch model serving',
-      'Custom model training pipeline',
-      'Edge inference on drone hardware',
-      'Real-time object detection & classification',
-    ],
   },
   {
     icon: Cpu,
     title: 'Real-Time Monitoring',
     description:
       'Track live telemetry, flight paths, video streams, mission status, and drone health metrics through a centralized monitoring dashboard with sub-second latency.',
-    details: [
-      'WebSocket live data streaming',
-      'Multi-drone concurrent tracking',
-      'Automated anomaly alerts',
-      'Historical flight replay & analysis',
-    ],
   },
   {
     icon: Server,
     title: 'IoT Sensor Integration',
     description:
       'Combine drone intelligence with ground-based IoT sensor networks. Soil moisture, temperature, humidity, pH, and environmental data feeds merge into a unified analytics platform.',
-    details: [
-      'MQTT & LoRaWAN protocol support',
-      'Mesh sensor network management',
-      'Automated data correlation engine',
-      'Custom sensor onboarding wizard',
-    ],
   },
   {
     icon: ShieldCheck,
     title: 'Enterprise Platform',
     description:
       'Generate automated reports, interactive maps, alerts, and analytics for agriculture, infrastructure, logistics, and smart city operations with role-based access control.',
-    details: [
-      'SOC 2 Type II compliance',
-      'SSO & RBAC access management',
-      'Custom dashboard builder',
-      'API-first architecture for integrations',
-    ],
   },
 ];
 
@@ -91,7 +67,7 @@ const cardVariants = {
 export default function PlatformTechStack({ isDark }) {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, margin: '-80px' });
-  const [expandedIdx, setExpandedIdx] = useState(null);
+
 
   return (
     <section
@@ -135,30 +111,26 @@ export default function PlatformTechStack({ isDark }) {
           animate={isInView ? 'visible' : 'hidden'}
           variants={stagger}
         >
-          {techCapabilities.map((tech, i) => {
+          {techCapabilities.map((tech) => {
             const Icon = tech.icon;
-            const isExpanded = expandedIdx === i;
 
             return (
               <motion.div
                 key={tech.title}
                 variants={cardVariants}
-                className={`group rounded-2xl p-8 cursor-pointer transition-all duration-400 ${
-                  isDark
+                className={`group rounded-2xl p-8 transition-all duration-400 ${isDark
                     ? 'glass-card'
                     : 'bg-white border border-gray-200 shadow-sm hover:shadow-lg hover:border-emerald-200'
-                }`}
-                onClick={() => setExpandedIdx(isExpanded ? null : i)}
+                  }`}
                 whileHover={{ y: -4 }}
               >
                 {/* Icon + Title */}
-                <div className="flex items-start gap-4 mb-4">
+                <div className="flex items-start gap-4">
                   <div
-                    className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl transition-all duration-300 group-hover:scale-110 ${
-                      isDark
+                    className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl transition-all duration-300 group-hover:scale-110 ${isDark
                         ? 'bg-neon/10 group-hover:bg-neon/20'
                         : 'bg-emerald-50 group-hover:bg-emerald-100'
-                    }`}
+                      }`}
                   >
                     <Icon className={`h-6 w-6 ${isDark ? 'text-neon' : 'text-emerald-600'}`} />
                   </div>
@@ -171,39 +143,6 @@ export default function PlatformTechStack({ isDark }) {
                       {tech.description}
                     </p>
                   </div>
-                </div>
-
-                {/* Expandable Details */}
-                <motion.div
-                  initial={false}
-                  animate={{
-                    height: isExpanded ? 'auto' : 0,
-                    opacity: isExpanded ? 1 : 0,
-                  }}
-                  transition={{ duration: 0.3, ease: 'easeInOut' }}
-                  className="overflow-hidden"
-                >
-                  <div className={`mt-4 pt-4 border-t space-y-2 ${isDark ? 'border-white/5' : 'border-gray-100'}`}>
-                    {tech.details.map((detail) => (
-                      <div key={detail} className="flex items-center gap-2">
-                        <Zap className={`h-3 w-3 shrink-0 ${isDark ? 'text-neon/60' : 'text-emerald-400'}`} />
-                        <span className={`text-xs ${isDark ? 'text-white/50' : 'text-gray-500'}`}>{detail}</span>
-                      </div>
-                    ))}
-                  </div>
-                </motion.div>
-
-                {/* Expand Indicator */}
-                <div className="mt-4 flex items-center gap-1">
-                  <span className={`text-xs font-medium ${isDark ? 'text-neon/60' : 'text-emerald-500'}`}>
-                    {isExpanded ? 'Show less' : 'Show details'}
-                  </span>
-                  <motion.div
-                    animate={{ rotate: isExpanded ? 180 : 0 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <ChevronDown className={`h-3 w-3 ${isDark ? 'text-neon/60' : 'text-emerald-500'}`} />
-                  </motion.div>
                 </div>
               </motion.div>
             );

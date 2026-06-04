@@ -27,7 +27,7 @@ export default function ProductsHero({ isDark }) {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-[80vh] overflow-hidden flex items-center justify-center"
+      className="relative min-h-[80vh] overflow-hidden flex flex-col"
     >
       {/* Parallax Background */}
       <motion.div className="absolute inset-0 z-0" style={{ y: bgY }}>
@@ -65,7 +65,7 @@ export default function ProductsHero({ isDark }) {
       )}
 
       {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full flex-1 flex items-center justify-center">
         <motion.div
           variants={stagger}
           initial="hidden"
@@ -139,7 +139,7 @@ export default function ProductsHero({ isDark }) {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.5, duration: 0.8 }}
-        className="absolute bottom-10 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2"
+        className="relative z-10 flex flex-col items-center gap-2 pb-8 pt-6 shrink-0"
       >
         <span className={`text-xs uppercase tracking-[0.2em] ${isDark ? 'text-white/30' : 'text-gray-400'}`}>
           Scroll to explore

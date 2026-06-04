@@ -20,12 +20,9 @@ const solutions = [
     description:
       'Transform agricultural operations with AI-driven crop monitoring, disease detection, and yield optimization. Combine drone imagery with IoT soil sensor data for comprehensive farm intelligence.',
     capabilities: [
-      { icon: Eye, text: 'NDVI vegetation index mapping & crop health scoring' },
+      { icon: Eye, text: 'Aerial crop monitoring & health assessment' },
       { icon: BrainCircuit, text: 'AI-powered disease & pest detection from aerial imagery' },
-      { icon: Droplets, text: 'Precision variable-rate spraying & seeding automation' },
-      { icon: Wifi, text: 'IoT soil moisture, pH, temperature sensor integration' },
-      { icon: BarChart3, text: 'Yield prediction models & harvest planning analytics' },
-      { icon: Thermometer, text: 'Thermal stress detection & irrigation optimization' },
+      { icon: BarChart3, text: 'Field mapping & yield analytics' },
     ],
     stats: [
       { value: '23%', label: 'Avg. Yield Increase' },
@@ -41,12 +38,9 @@ const solutions = [
     description:
       'Automate inspection of buildings, bridges, power lines, roads, and solar farms. AI-powered defect detection analyzes high-resolution aerial imagery to identify structural issues before they become critical.',
     capabilities: [
-      { icon: Camera, text: 'High-resolution 4K aerial imagery with zoom capabilities' },
-      { icon: Crosshair, text: 'AI defect detection — cracks, corrosion, deformation' },
-      { icon: Thermometer, text: 'Thermal imaging for electrical & insulation faults' },
-      { icon: Layers, text: '3D photogrammetric modeling & digital twin creation' },
-      { icon: Shield, text: 'Automated compliance report generation' },
-      { icon: BarChart3, text: 'Historical damage progression tracking & prediction' },
+      { icon: Camera, text: 'High-resolution aerial imagery & inspection' },
+      { icon: Crosshair, text: 'AI-powered defect detection & analysis' },
+      { icon: Shield, text: 'Automated inspection report generation' },
     ],
     stats: [
       { value: '80%', label: 'Inspection Time Saved' },
@@ -111,11 +105,10 @@ function SolutionPanel({ solution, isDark, index }) {
       initial={{ opacity: 0, y: 50 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-      className={`rounded-3xl overflow-hidden ${
-        isDark
-          ? 'bg-dark-800/50 border border-white/5'
-          : 'bg-white border border-gray-200 shadow-lg'
-      }`}
+      className={`rounded-3xl overflow-hidden ${isDark
+        ? 'bg-dark-800/50 border border-white/5'
+        : 'bg-white border border-gray-200 shadow-lg'
+        }`}
     >
       <div className={`flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'}`}>
         {/* Image */}
@@ -126,11 +119,10 @@ function SolutionPanel({ solution, isDark, index }) {
             className="w-full h-full object-cover"
           />
           <div
-            className={`absolute inset-0 ${
-              isDark
-                ? 'bg-gradient-to-r from-dark-800/80 via-dark-800/40 to-transparent'
-                : 'bg-gradient-to-r from-white/50 via-transparent to-transparent'
-            }`}
+            className={`absolute inset-0 ${isDark
+              ? 'bg-gradient-to-r from-dark-800/80 via-dark-800/40 to-transparent'
+              : 'bg-gradient-to-r from-white/50 via-transparent to-transparent'
+              }`}
           />
 
           {/* Stats overlay */}
@@ -152,9 +144,8 @@ function SolutionPanel({ solution, isDark, index }) {
         <div className="lg:w-3/5 p-8 lg:p-10">
           <div className="flex items-center gap-3 mb-4">
             <div
-              className={`flex h-10 w-10 items-center justify-center rounded-xl ${
-                isDark ? 'bg-neon/10' : 'bg-emerald-50'
-              }`}
+              className={`flex h-10 w-10 items-center justify-center rounded-xl ${isDark ? 'bg-neon/10' : 'bg-emerald-50'
+                }`}
             >
               <Icon className={`h-5 w-5 ${isDark ? 'text-neon' : 'text-emerald-600'}`} />
             </div>
@@ -178,11 +169,10 @@ function SolutionPanel({ solution, isDark, index }) {
               return (
                 <div
                   key={cap.text}
-                  className={`flex items-start gap-3 rounded-xl p-3 transition-colors ${
-                    isDark
-                      ? 'bg-white/[0.02] hover:bg-white/[0.05]'
-                      : 'bg-gray-50 hover:bg-gray-100'
-                  }`}
+                  className={`flex items-start gap-3 rounded-xl p-3 transition-colors ${isDark
+                    ? 'bg-white/[0.02] hover:bg-white/[0.05]'
+                    : 'bg-gray-50 hover:bg-gray-100'
+                    }`}
                 >
                   <CapIcon className={`h-4 w-4 mt-0.5 shrink-0 ${isDark ? 'text-neon/70' : 'text-emerald-500'}`} />
                   <span className={`text-xs leading-relaxed ${isDark ? 'text-white/60' : 'text-gray-600'}`}>

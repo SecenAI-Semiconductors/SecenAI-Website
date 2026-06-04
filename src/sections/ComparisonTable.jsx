@@ -9,7 +9,7 @@ const comparisonSpecs = [
   { label: 'Configuration', key: 'config' },
   { label: 'Payload Capacity', key: 'payload' },
   { label: 'Flight Endurance', key: 'endurance' },
-  { label: 'Max Range', key: 'range' },
+
   { label: 'Battery', key: 'battery' },
   { label: 'Camera System', key: 'camera' },
   { label: 'Obstacle Avoidance', key: 'obstacle' },
@@ -22,8 +22,8 @@ const comparisonData = {
   'SecenAI Quadcopter': {
     config: '4-Rotor',
     payload: '4.5 kg',
-    endurance: '90 min',
-    range: '35 km',
+    endurance: '30-35 min',
+
     battery: '10,000 mAh',
     camera: 'Modular payload bay — swappable sensors',
     obstacle: '360° LiDAR',
@@ -34,8 +34,8 @@ const comparisonData = {
   'SecenAI Hexacopter': {
     config: '6-Rotor',
     payload: '12 kg',
-    endurance: '120 min',
-    range: '50 km',
+    endurance: '20-25 min',
+
     battery: '16,000 mAh',
     camera: 'Dual-gimbal — supports heavy sensors & LiDAR',
     obstacle: '360° LiDAR + downward sonar',
@@ -118,29 +118,26 @@ export default function ComparisonTable({ isDark }) {
           className="overflow-x-auto"
         >
           <div
-            className={`rounded-2xl overflow-hidden ${
-              isDark
+            className={`rounded-2xl overflow-hidden ${isDark
                 ? 'border border-white/5'
                 : 'border border-gray-200 shadow-lg'
-            }`}
+              }`}
           >
             <table className="w-full min-w-[500px]">
               {/* Table Head */}
               <thead>
                 <tr className={isDark ? 'bg-dark-800' : 'bg-gray-50'}>
                   <th
-                    className={`text-left py-5 px-6 text-xs font-semibold tracking-wider uppercase ${
-                      isDark ? 'text-white/30' : 'text-gray-400'
-                    }`}
+                    className={`text-left py-5 px-6 text-xs font-semibold tracking-wider uppercase ${isDark ? 'text-white/30' : 'text-gray-400'
+                      }`}
                   >
                     Specification
                   </th>
                   {modelNames.map((name) => (
                     <th
                       key={name}
-                      className={`text-center py-5 px-6 font-[Outfit] text-sm font-semibold ${
-                        isDark ? 'text-white' : 'text-[#1e1b4b]'
-                      }`}
+                      className={`text-center py-5 px-6 font-[Outfit] text-sm font-semibold ${isDark ? 'text-white' : 'text-[#1e1b4b]'
+                        }`}
                     >
                       {name}
                     </th>
@@ -153,25 +150,22 @@ export default function ComparisonTable({ isDark }) {
                 {comparisonSpecs.map((spec, rowIdx) => (
                   <tr
                     key={spec.key}
-                    className={`transition-colors ${
-                      isDark
+                    className={`transition-colors ${isDark
                         ? `${rowIdx % 2 === 0 ? 'bg-dark-950/50' : 'bg-dark-900/50'} hover:bg-white/[0.02]`
                         : `${rowIdx % 2 === 0 ? 'bg-white' : 'bg-gray-50/50'} hover:bg-emerald-50/30`
-                    }`}
+                      }`}
                   >
                     <td
-                      className={`py-4 px-6 text-sm font-medium ${
-                        isDark ? 'text-white/60' : 'text-gray-600'
-                      }`}
+                      className={`py-4 px-6 text-sm font-medium ${isDark ? 'text-white/60' : 'text-gray-600'
+                        }`}
                     >
                       {spec.label}
                     </td>
                     {modelNames.map((name) => (
                       <td
                         key={name}
-                        className={`py-4 px-6 text-center text-sm ${
-                          isDark ? 'text-white/50' : 'text-gray-500'
-                        }`}
+                        className={`py-4 px-6 text-center text-sm ${isDark ? 'text-white/50' : 'text-gray-500'
+                          }`}
                       >
                         {comparisonData[name][spec.key]}
                       </td>
