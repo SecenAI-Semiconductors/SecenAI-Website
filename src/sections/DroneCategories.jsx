@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Sprout, Factory, Building2, Route } from 'lucide-react';
-import { Link } from 'react-router-dom';
+
 import { useTheme } from '../context/ThemeContext';
 
 const categories = [
@@ -177,14 +177,14 @@ export default function DroneCategories() {
                   {category.description}
                 </p>
 
-                <Link
-                  to="/products#industry-solutions"
+                <a
+                  href="/products#industry-solutions"
                   className={`mt-6 inline-block text-sm font-medium transition-all hover:tracking-wider ${
                     isDark ? 'text-neon' : 'text-emerald-600'
                   }`}
                 >
                   Explore Solution →
-                </Link>
+                </a>
               </div>
             </motion.div>
           );

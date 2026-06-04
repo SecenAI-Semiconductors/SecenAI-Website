@@ -1,7 +1,6 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Play, ChevronDown } from "lucide-react";
-import { Link } from "react-router-dom";
 import { useTheme } from "../context/ThemeContext";
 
 const containerVariants = {
@@ -136,8 +135,8 @@ export default function Hero() {
             variants={fadeSlideUp}
             className="flex flex-col items-center gap-4 sm:flex-row"
           >
-            <Link
-              to="/products#industry-solutions"
+            <a
+              href="/products#industry-solutions"
               className={`group inline-flex items-center gap-2 rounded-full px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base font-semibold transition-all duration-300 ${
                 isDark
                   ? "bg-neon text-dark-950 hover:shadow-xl hover:shadow-neon/30"
@@ -159,7 +158,7 @@ export default function Hero() {
                   d="M13 7l5 5m0 0l-5 5m5-5H6"
                 />
               </svg>
-            </Link>
+            </a>
 
             <a
               href="#demo"
@@ -187,36 +186,7 @@ export default function Hero() {
           </motion.div>
         </motion.div>
 
-        {/* Scroll Indicator — in flow, not absolute */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{
-            delay: 1.5,
-            duration: 0.8,
-          }}
-          className="mt-8 sm:mt-12 pb-6 flex flex-col items-center gap-2 shrink-0"
-        >
-          <span className={`text-xs uppercase tracking-[0.2em] ${
-            isDark ? "text-white/30" : "text-gray-400"
-          }`}>
-            Scroll to explore
-          </span>
 
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          >
-            <ChevronDown
-              size={20}
-              className={isDark ? "text-white/30" : "text-gray-400"}
-            />
-          </motion.div>
-        </motion.div>
       </div>
     </section>
   );

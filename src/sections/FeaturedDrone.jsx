@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Package, Clock, Navigation, Battery, ArrowRight } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
-import { Link } from 'react-router-dom';
+
 
 const products = [
   {
@@ -155,8 +155,8 @@ function ProductCard({ product, isDark, index }) {
           {product.description}
         </p>
 
-        <Link
-          to="/products"
+        <a
+          href="/products"
           className={`inline-flex items-center gap-2 text-sm font-semibold transition-all duration-300 group/link ${
             isDark
               ? 'text-neon hover:text-neon-dim'
@@ -165,7 +165,7 @@ function ProductCard({ product, isDark, index }) {
         >
           View Details
           <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover/link:translate-x-1" />
-        </Link>
+        </a>
       </div>
     </motion.div>
   );
@@ -254,8 +254,8 @@ export default function FeaturedDrone() {
           variants={fadeUp}
           custom={0.8}
         >
-          <Link
-            to="/products"
+          <a
+            href="/products"
             className={`inline-flex items-center gap-2 rounded-full px-8 py-4 font-semibold transition-all duration-300 ${
               isDark
                 ? 'bg-neon text-dark-950 hover:shadow-[0_0_30px_rgba(204,255,0,0.3)]'
@@ -264,7 +264,7 @@ export default function FeaturedDrone() {
           >
             Explore Full Product Lineup
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-          </Link>
+          </a>
         </motion.div>
       </div>
     </section>

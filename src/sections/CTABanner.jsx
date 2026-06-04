@@ -97,7 +97,7 @@ export default function CTABanner() {
           </motion.a>
 
           <motion.a
-            href="#platform"
+            href="/about"
             className={`inline-flex cursor-pointer items-center gap-2 rounded-full border px-8 py-4 transition-all ${
               isDark
                 ? 'border-white/20 text-white hover:border-white/40 hover:bg-white/5'

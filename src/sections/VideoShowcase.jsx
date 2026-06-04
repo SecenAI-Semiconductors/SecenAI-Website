@@ -10,9 +10,8 @@ export default function VideoShowcase() {
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
 
   return (
-    <section id="demo" className={`relative py-16 md:py-20 overflow-hidden ${
-      isDark ? 'bg-dark-900' : 'bg-[#f5f5f7]'
-    }`}>
+    <section id="demo" className={`relative py-16 md:py-20 overflow-hidden ${isDark ? 'bg-dark-900' : 'bg-[#f5f5f7]'
+      }`}>
       {/* Subtle grid background */}
       <div className={`absolute inset-0 grid-bg ${isDark ? 'opacity-30' : 'opacity-15'}`} />
 
@@ -22,9 +21,8 @@ export default function VideoShowcase() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className={`text-xs tracking-[0.3em] text-center mb-6 font-semibold ${
-            isDark ? 'text-neon' : 'text-emerald-600'
-          }`}
+          className={`text-xs tracking-[0.3em] text-center mb-6 font-semibold ${isDark ? 'text-neon' : 'text-emerald-600'
+            }`}
         >
           SEE IT IN ACTION
         </motion.p>
@@ -46,9 +44,8 @@ export default function VideoShowcase() {
           initial={{ opacity: 0, y: 40, scale: 0.97 }}
           animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-          className={`max-w-5xl mx-auto aspect-video rounded-2xl overflow-hidden relative group cursor-pointer ${
-            !isDark ? 'shadow-xl' : ''
-          }`}
+          className={`max-w-5xl mx-auto aspect-video rounded-2xl overflow-hidden relative group cursor-pointer ${!isDark ? 'shadow-xl' : ''
+            }`}
         >
           {/* Background Thumbnail */}
           <img
@@ -58,41 +55,34 @@ export default function VideoShowcase() {
           />
 
           {/* Dark Overlay */}
-          <div className={`absolute inset-0 transition-colors duration-500 ${
-            isDark
+          <div className={`absolute inset-0 transition-colors duration-500 ${isDark
               ? 'bg-dark-950/40 group-hover:bg-dark-950/50'
               : 'bg-black/25 group-hover:bg-black/35'
-          }`} />
+            }`} />
 
           {/* Centered Play Button */}
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="relative flex items-center justify-center">
               {/* Pulse Rings */}
-              <span className={`absolute w-24 h-24 rounded-full border pulse-ring ${
-                isDark ? 'border-neon/30' : 'border-emerald-400/40'
-              }`} style={{ animationDelay: "0s" }} />
-              <span className={`absolute w-24 h-24 rounded-full border pulse-ring ${
-                isDark ? 'border-neon/20' : 'border-emerald-400/30'
-              }`} style={{ animationDelay: "0.8s" }} />
-              <span className={`absolute w-24 h-24 rounded-full border pulse-ring ${
-                isDark ? 'border-neon/10' : 'border-emerald-400/20'
-              }`} style={{ animationDelay: "1.6s" }} />
+              <span className={`absolute w-24 h-24 rounded-full border pulse-ring ${isDark ? 'border-neon/30' : 'border-emerald-400/40'
+                }`} style={{ animationDelay: "0s" }} />
+              <span className={`absolute w-24 h-24 rounded-full border pulse-ring ${isDark ? 'border-neon/20' : 'border-emerald-400/30'
+                }`} style={{ animationDelay: "0.8s" }} />
+              <span className={`absolute w-24 h-24 rounded-full border pulse-ring ${isDark ? 'border-neon/10' : 'border-emerald-400/20'
+                }`} style={{ animationDelay: "1.6s" }} />
 
               {/* Outer Ring */}
-              <div className={`w-24 h-24 rounded-full border-2 flex items-center justify-center transition-transform duration-300 group-hover:scale-110 ${
-                isDark ? 'border-neon/50' : 'border-emerald-400/60'
-              }`}>
+              <div className={`w-24 h-24 rounded-full border-2 flex items-center justify-center transition-transform duration-300 group-hover:scale-110 ${isDark ? 'border-neon/50' : 'border-emerald-400/60'
+                }`}>
                 {/* Inner Circle */}
-                <div className={`w-16 h-16 rounded-full flex items-center justify-center shadow-lg ${
-                  isDark
+                <div className={`w-16 h-16 rounded-full flex items-center justify-center shadow-lg ${isDark
                     ? 'bg-neon shadow-neon/30'
                     : 'bg-emerald-600 shadow-emerald-600/30'
-                }`}>
-                  <Play className={`w-7 h-7 ml-1 ${
-                    isDark
+                  }`}>
+                  <Play className={`w-7 h-7 ml-1 ${isDark
                       ? 'text-dark-950 fill-dark-950'
                       : 'text-white fill-white'
-                  }`} />
+                    }`} />
                 </div>
               </div>
             </div>
@@ -104,11 +94,10 @@ export default function VideoShowcase() {
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.6, delay: 0.5 }}
-          className={`text-sm text-center mt-6 ${
-            isDark ? 'text-white/30' : 'text-gray-400'
-          }`}
+          className={`text-sm text-center mt-6 ${isDark ? 'text-white/30' : 'text-gray-400'
+            }`}
         >
-          AeroVault Phantom X1 — Autonomous Mission Demo
+          Autonomous Mission Demo
         </motion.p>
       </div>
     </section>
