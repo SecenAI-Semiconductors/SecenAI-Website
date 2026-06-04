@@ -5,25 +5,25 @@ import { useTheme } from "../context/ThemeContext";
 
 const testimonials = [
   {
-    name: "Sarah Chen",
-    initials: "SC",
-    company: "AgriTech Solutions",
+    name: "Rajesh Patel",
+    initials: "RP",
+    company: "Pilot Partner — Precision Farming",
     review:
-      "AeroVault transformed our crop monitoring operations. The Phantom X1 covers 500 acres in a single flight with incredibly detailed multispectral data. Our yield increased by 23% in the first season.",
+      "We were among the first farms to test SecenAI's Quadcopter for crop scouting. Even in the early prototype stage, the multispectral data quality impressed us. The team is incredibly responsive and the technology has real potential to change how small farms operate.",
   },
   {
-    name: "Marcus Rodriguez",
-    initials: "MR",
-    company: "Sentinel Defence Corp",
+    name: "Ananya Sharma",
+    initials: "AS",
+    company: "Beta Tester — Infrastructure",
     review:
-      "The reliability and encrypted communication systems are best-in-class. We deployed AeroVault drones across 12 border monitoring stations with zero downtime in 18 months of continuous operation.",
+      "I got a hands-on demo of SecenAI's Hexacopter during their beta program. The AI-based defect detection is genuinely innovative — it flagged surface cracks on a test structure that our team had overlooked. Excited to see where this goes as they scale.",
   },
   {
-    name: "Dr. Emily Watson",
-    initials: "EW",
-    company: "GeoMap Industries",
+    name: "Dr. Vikram Rao",
+    initials: "VR",
+    company: "Industry Advisor — Smart Cities",
     review:
-      "Precision mapping has never been this efficient. The AI-powered flight planning reduced our survey time by 60% while improving data accuracy. The enterprise fleet management is exceptional.",
+      "As an advisor, I've watched SecenAI evolve from an idea to a working platform. Their custom flight controller and real-time analytics dashboard are impressive for a team this early. This is a startup worth keeping an eye on.",
   },
 ];
 
@@ -132,7 +132,7 @@ export default function Testimonials() {
             isDark ? 'text-neon' : 'text-emerald-600'
           }`}
         >
-          CLIENT TESTIMONIALS
+          EARLY FEEDBACK
         </motion.p>
 
         {/* Heading */}
@@ -142,8 +142,8 @@ export default function Testimonials() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="font-[Outfit] text-4xl md:text-5xl font-bold text-center mb-12"
         >
-          <span className={isDark ? 'text-white' : 'text-[#1e1b4b]'}>Trusted by</span>
-          <span className={isDark ? ' text-gradient-neon' : ' text-gradient-emerald'}> Industry Leaders</span>
+          <span className={isDark ? 'text-white' : 'text-[#1e1b4b]'}>What People Are</span>
+          <span className={isDark ? ' text-gradient-neon' : ' text-gradient-emerald'}> Saying</span>
         </motion.h2>
 
         {/* Testimonial Cards Grid */}

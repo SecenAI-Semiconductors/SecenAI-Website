@@ -1,8 +1,9 @@
-import { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { useRef, useState, useEffect, useCallback } from 'react';
+import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { Package, Clock, Navigation, Battery, ArrowRight } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 
+const SLIDE_INTERVAL = 7000; // 7 seconds per slide
 
 const products = [
   {
@@ -46,136 +47,83 @@ const fadeUp = {
   }),
 };
 
-const statVariant = {
-  hidden: { opacity: 0, scale: 0.8 },
-  visible: (delay = 0) => ({
+const slideVariants = {
+  enter: (direction) => ({
+    x: direction > 0 ? 300 : -300,
+    opacity: 0,
+    scale: 0.95,
+  }),
+  center: {
+    x: 0,
     opacity: 1,
     scale: 1,
-    transition: { duration: 0.6, delay, ease: 'easeOut' },
+    transition: {
+      duration: 0.6,
+      ease: [0.25, 0.46, 0.45, 0.94],
+    },
+  },
+  exit: (direction) => ({
+    x: direction > 0 ? -300 : 300,
+    opacity: 0,
+    scale: 0.95,
+    transition: {
+      duration: 0.5,
+      ease: [0.25, 0.46, 0.45, 0.94],
+    },
   }),
 };
-
-function ProductCard({ product, isDark, index }) {
-  const cardRef = useRef(null);
-  const isInView = useInView(cardRef, { once: true, margin: '-60px' });
-
-  return (
-    <motion.div
-      ref={cardRef}
-      className={`relative group rounded-2xl overflow-hidden ${
-        isDark
-          ? 'bg-dark-800 border border-white/5'
-          : 'bg-white border border-gray-200 shadow-lg'
-      }`}
-      initial="hidden"
-      animate={isInView ? 'visible' : 'hidden'}
-      variants={fadeUp}
-      custom={index * 0.2}
-    >
-      {/* Image */}
-      <div className="relative overflow-hidden h-[260px] sm:h-[300px]">
-        <img
-          src={product.image}
-          alt={product.name}
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-        />
-        {/* Overlay gradient */}
-        <div
-          className={`absolute inset-0 ${
-            isDark
-              ? 'bg-gradient-to-t from-dark-800 via-dark-800/30 to-transparent'
-              : 'bg-gradient-to-t from-white via-white/20 to-transparent'
-          }`}
-        />
-
-        {/* Badge */}
-        <span
-          className={`absolute top-4 left-4 rounded-full px-3 py-1 text-[10px] font-bold tracking-[0.15em] ${
-            isDark
-              ? 'bg-neon/20 text-neon border border-neon/30 backdrop-blur-sm'
-              : 'bg-emerald-100 text-emerald-700 border border-emerald-200'
-          }`}
-        >
-          {product.badge}
-        </span>
-
-        {/* Floating Specs */}
-        <div className="absolute bottom-3 left-3 right-3 flex flex-wrap gap-1.5">
-          {product.specs.map((spec, i) => {
-            const Icon = spec.icon;
-            return (
-              <motion.div
-                key={spec.label}
-                className={`flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 backdrop-blur-md ${
-                  isDark
-                    ? 'bg-dark-950/70 border border-white/10'
-                    : 'bg-white/80 border border-gray-200 shadow-sm'
-                }`}
-                variants={statVariant}
-                custom={0.3 + i * 0.1}
-              >
-                <Icon className={`h-3 w-3 ${isDark ? 'text-neon' : 'text-emerald-600'}`} />
-                <div>
-                  <p className={`text-[8px] uppercase tracking-wider leading-none ${isDark ? 'text-white/40' : 'text-gray-400'}`}>
-                    {spec.label}
-                  </p>
-                  <p className={`text-[11px] font-semibold leading-tight ${isDark ? 'text-white' : 'text-gray-900'}`}>
-                    {spec.value}
-                  </p>
-                </div>
-              </motion.div>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* Content */}
-      <div className="p-5 sm:p-6">
-        <p
-          className={`text-[10px] font-medium tracking-[0.2em] mb-1.5 ${
-            isDark ? 'text-neon' : 'text-emerald-600'
-          }`}
-        >
-          {product.tagline.toUpperCase()}
-        </p>
-
-        <h3
-          className={`font-[Outfit] text-xl sm:text-2xl font-bold mb-2 ${
-            isDark ? 'text-white' : 'text-[#1e1b4b]'
-          }`}
-        >
-          {product.name}
-        </h3>
-
-        <p
-          className={`text-sm leading-relaxed mb-5 ${
-            isDark ? 'text-white/45' : 'text-gray-500'
-          }`}
-        >
-          {product.description}
-        </p>
-
-        <a
-          href="/products"
-          className={`inline-flex items-center gap-2 text-sm font-semibold transition-all duration-300 group/link ${
-            isDark
-              ? 'text-neon hover:text-neon-dim'
-              : 'text-emerald-600 hover:text-emerald-700'
-          }`}
-        >
-          View Details
-          <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover/link:translate-x-1" />
-        </a>
-      </div>
-    </motion.div>
-  );
-}
 
 export default function FeaturedDrone() {
   const sectionRef = useRef(null);
   const { theme } = useTheme();
   const isDark = theme === 'dark';
   const isInView = useInView(sectionRef, { once: true, margin: '-80px' });
+
+  const [[activeIndex, direction], setActiveIndex] = useState([0, 1]);
+  const [progress, setProgress] = useState(0);
+
+  const goToSlide = useCallback((index) => {
+    setActiveIndex(([prev]) => [index, index > prev ? 1 : -1]);
+    setProgress(0);
+  }, []);
+
+  const nextSlide = useCallback(() => {
+    setActiveIndex(([prev]) => [(prev + 1) % products.length, 1]);
+    setProgress(0);
+  }, []);
+
+  // Auto-advance timer
+  useEffect(() => {
+    if (!isInView) return;
+
+    const interval = setInterval(() => {
+      nextSlide();
+    }, SLIDE_INTERVAL);
+
+    return () => clearInterval(interval);
+  }, [isInView, nextSlide]);
+
+  // Progress bar animation
+  useEffect(() => {
+    if (!isInView) return;
+
+    setProgress(0);
+    const startTime = Date.now();
+
+    const frame = () => {
+      const elapsed = Date.now() - startTime;
+      const pct = Math.min(elapsed / SLIDE_INTERVAL, 1);
+      setProgress(pct);
+      if (pct < 1) {
+        rafId = requestAnimationFrame(frame);
+      }
+    };
+
+    let rafId = requestAnimationFrame(frame);
+    return () => cancelAnimationFrame(rafId);
+  }, [activeIndex, isInView]);
+
+  const product = products[activeIndex];
 
   return (
     <section
@@ -234,17 +182,165 @@ export default function FeaturedDrone() {
           </motion.p>
         </div>
 
-        {/* Product Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-          {products.map((product, index) => (
-            <ProductCard
-              key={product.id}
-              product={product}
-              isDark={isDark}
-              index={index}
-            />
-          ))}
-        </div>
+        {/* Slideshow */}
+        <motion.div
+          initial="hidden"
+          animate={isInView ? 'visible' : 'hidden'}
+          variants={fadeUp}
+          custom={0.4}
+        >
+          <div className="relative mx-auto max-w-3xl">
+            {/* Slide Container */}
+            <div className="relative overflow-hidden">
+              <AnimatePresence mode="wait" custom={direction}>
+                <motion.div
+                  key={product.id}
+                  custom={direction}
+                  variants={slideVariants}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  className={`relative group rounded-2xl overflow-hidden ${
+                    isDark
+                      ? 'bg-dark-800 border border-white/5'
+                      : 'bg-white border border-gray-200 shadow-lg'
+                  }`}
+                >
+                  {/* Image */}
+                  <div className="relative overflow-hidden h-[300px] sm:h-[380px]">
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    {/* Overlay gradient */}
+                    <div
+                      className={`absolute inset-0 ${
+                        isDark
+                          ? 'bg-gradient-to-t from-dark-800 via-dark-800/30 to-transparent'
+                          : 'bg-gradient-to-t from-white via-white/20 to-transparent'
+                      }`}
+                    />
+
+                    {/* Badge */}
+                    <span
+                      className={`absolute top-4 left-4 rounded-full px-3 py-1 text-[10px] font-bold tracking-[0.15em] ${
+                        isDark
+                          ? 'bg-neon/20 text-neon border border-neon/30 backdrop-blur-sm'
+                          : 'bg-emerald-100 text-emerald-700 border border-emerald-200'
+                      }`}
+                    >
+                      {product.badge}
+                    </span>
+
+                    {/* Floating Specs */}
+                    <div className="absolute bottom-3 left-3 right-3 flex flex-wrap gap-1.5">
+                      {product.specs.map((spec) => {
+                        const Icon = spec.icon;
+                        return (
+                          <div
+                            key={spec.label}
+                            className={`flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 backdrop-blur-md ${
+                              isDark
+                                ? 'bg-dark-950/70 border border-white/10'
+                                : 'bg-white/80 border border-gray-200 shadow-sm'
+                            }`}
+                          >
+                            <Icon className={`h-3 w-3 ${isDark ? 'text-neon' : 'text-emerald-600'}`} />
+                            <div>
+                              <p className={`text-[8px] uppercase tracking-wider leading-none ${isDark ? 'text-white/40' : 'text-gray-400'}`}>
+                                {spec.label}
+                              </p>
+                              <p className={`text-[11px] font-semibold leading-tight ${isDark ? 'text-white' : 'text-gray-900'}`}>
+                                {spec.value}
+                              </p>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  {/* Content */}
+                  <div className="p-5 sm:p-6">
+                    <p
+                      className={`text-[10px] font-medium tracking-[0.2em] mb-1.5 ${
+                        isDark ? 'text-neon' : 'text-emerald-600'
+                      }`}
+                    >
+                      {product.tagline.toUpperCase()}
+                    </p>
+
+                    <h3
+                      className={`font-[Outfit] text-xl sm:text-2xl font-bold mb-2 ${
+                        isDark ? 'text-white' : 'text-[#1e1b4b]'
+                      }`}
+                    >
+                      {product.name}
+                    </h3>
+
+                    <p
+                      className={`text-sm leading-relaxed mb-5 ${
+                        isDark ? 'text-white/45' : 'text-gray-500'
+                      }`}
+                    >
+                      {product.description}
+                    </p>
+
+                    <a
+                      href="/products"
+                      className={`inline-flex items-center gap-2 text-sm font-semibold transition-all duration-300 group/link ${
+                        isDark
+                          ? 'text-neon hover:text-neon-dim'
+                          : 'text-emerald-600 hover:text-emerald-700'
+                      }`}
+                    >
+                      View Details
+                      <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover/link:translate-x-1" />
+                    </a>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
+            {/* Slide Indicators */}
+            <div className="mt-8 flex items-center justify-center gap-3">
+              {products.map((p, i) => (
+                <button
+                  key={p.id}
+                  onClick={() => goToSlide(i)}
+                  className="relative flex items-center justify-center"
+                  aria-label={`View ${p.name}`}
+                >
+                  {/* Background dot */}
+                  <span
+                    className={`block h-2.5 w-2.5 rounded-full transition-all duration-300 ${
+                      i === activeIndex
+                        ? isDark
+                          ? 'bg-neon scale-125'
+                          : 'bg-emerald-600 scale-125'
+                        : isDark
+                          ? 'bg-white/20 hover:bg-white/40'
+                          : 'bg-gray-300 hover:bg-gray-400'
+                    }`}
+                  />
+                </button>
+              ))}
+            </div>
+
+            {/* Progress Bar */}
+            <div className={`mt-4 mx-auto max-w-xs h-0.5 rounded-full overflow-hidden ${
+              isDark ? 'bg-white/10' : 'bg-gray-200'
+            }`}>
+              <div
+                className={`h-full rounded-full transition-none ${
+                  isDark ? 'bg-neon' : 'bg-emerald-500'
+                }`}
+                style={{ width: `${progress * 100}%` }}
+              />
+            </div>
+          </div>
+        </motion.div>
 
         {/* CTA — View Full Lineup */}
         <motion.div
