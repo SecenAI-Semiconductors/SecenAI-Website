@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Sprout, Factory, Building2, Route } from 'lucide-react';
+
 import { useTheme } from '../context/ThemeContext';
 
 const categories = [
@@ -177,7 +178,7 @@ export default function DroneCategories() {
                 </p>
 
                 <a
-                  href="#"
+                  href="/products#industry-solutions"
                   className={`mt-6 inline-block text-sm font-medium transition-all hover:tracking-wider ${
                     isDark ? 'text-neon' : 'text-emerald-600'
                   }`}

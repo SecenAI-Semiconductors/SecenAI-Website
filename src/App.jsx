@@ -31,10 +31,12 @@ function App() {
     return () => document.removeEventListener('click', handleClick)
   }, [])
 
-  // Scroll to top on route change
+  // Scroll to top on route change (skip when hash is present)
   useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [location.pathname])
+    if (!location.hash) {
+      window.scrollTo(0, 0)
+    }
+  }, [location.pathname, location.hash])
 
   const isDark = theme === 'dark'
 

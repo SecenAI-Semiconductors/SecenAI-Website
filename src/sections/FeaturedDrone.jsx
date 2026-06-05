@@ -1,36 +1,40 @@
-import { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
-import { Package, Clock, Navigation, Battery } from 'lucide-react';
+import { useRef, useState, useEffect, useCallback } from 'react';
+import { motion, useInView, AnimatePresence } from 'framer-motion';
+import { Package, Clock, Navigation, Battery, ArrowRight } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 
-const stats = [
+const SLIDE_INTERVAL = 7000; // 7 seconds per slide
+
+const products = [
   {
-    label: 'Payload',
-    value: '5.2 kg',
-    icon: Package,
-    position: 'top-0 left-0 md:-top-4 md:-left-4',
-    delay: 0.3,
+    id: 'quadcopter-q1',
+    name: 'SecenAI Quadcopter',
+    tagline: 'Versatile 4-Rotor Platform',
+    description:
+      'A highly agile 4-rotor autonomous drone built for precision agriculture, infrastructure inspection, surveillance, and emergency response.',
+    image: 'https://images.unsplash.com/photo-1507582020474-9a35b7d455d9?w=900&q=80',
+    badge: 'QUADCOPTER',
+    specs: [
+      { label: 'Payload', value: '4.5 kg', icon: Package },
+      { label: 'Endurance', value: '30-35 min', icon: Clock },
+      { label: 'Range', value: '20 km', icon: Navigation },
+      { label: 'Battery', value: '10,000 mAh', icon: Battery },
+    ],
   },
   {
-    label: 'Endurance',
-    value: '120 min',
-    icon: Clock,
-    position: 'top-0 right-0 md:-top-4 md:-right-4',
-    delay: 0.45,
-  },
-  {
-    label: 'Flight Range',
-    value: '45 km',
-    icon: Navigation,
-    position: 'bottom-0 left-0 md:-bottom-4 md:-left-4',
-    delay: 0.6,
-  },
-  {
-    label: 'Battery',
-    value: '12,000 mAh',
-    icon: Battery,
-    position: 'bottom-0 right-0 md:-bottom-4 md:-right-4',
-    delay: 0.75,
+    id: 'hexacopter-h1',
+    name: 'SecenAI Hexacopter',
+    tagline: 'Heavy-Lift 6-Rotor Platform',
+    description:
+      'A robust 6-rotor heavy-lift drone engineered for demanding missions requiring superior payload capacity and rock-solid stability.',
+    image: 'https://images.unsplash.com/photo-1527977966376-1c8408f9f108?w=900&q=80',
+    badge: 'HEXACOPTER',
+    specs: [
+      { label: 'Payload', value: '12 kg', icon: Package },
+      { label: 'Endurance', value: '20-25 min', icon: Clock },
+      { label: 'Range', value: '30 km', icon: Navigation },
+      { label: 'Battery', value: '16,000 mAh', icon: Battery },
+    ],
   },
 ];
 
@@ -43,12 +47,29 @@ const fadeUp = {
   }),
 };
 
-const statVariant = {
-  hidden: { opacity: 0, scale: 0.8 },
-  visible: (delay = 0) => ({
+const slideVariants = {
+  enter: (direction) => ({
+    x: direction > 0 ? 300 : -300,
+    opacity: 0,
+    scale: 0.95,
+  }),
+  center: {
+    x: 0,
     opacity: 1,
     scale: 1,
-    transition: { duration: 0.6, delay, ease: 'easeOut' },
+    transition: {
+      duration: 0.6,
+      ease: [0.25, 0.46, 0.45, 0.94],
+    },
+  },
+  exit: (direction) => ({
+    x: direction > 0 ? -300 : 300,
+    opacity: 0,
+    scale: 0.95,
+    transition: {
+      duration: 0.5,
+      ease: [0.25, 0.46, 0.45, 0.94],
+    },
   }),
 };
 
@@ -58,10 +79,56 @@ export default function FeaturedDrone() {
   const isDark = theme === 'dark';
   const isInView = useInView(sectionRef, { once: true, margin: '-80px' });
 
+  const [[activeIndex, direction], setActiveIndex] = useState([0, 1]);
+  const [progress, setProgress] = useState(0);
+
+  const goToSlide = useCallback((index) => {
+    setActiveIndex(([prev]) => [index, index > prev ? 1 : -1]);
+    setProgress(0);
+  }, []);
+
+  const nextSlide = useCallback(() => {
+    setActiveIndex(([prev]) => [(prev + 1) % products.length, 1]);
+    setProgress(0);
+  }, []);
+
+  // Auto-advance timer
+  useEffect(() => {
+    if (!isInView) return;
+
+    const interval = setInterval(() => {
+      nextSlide();
+    }, SLIDE_INTERVAL);
+
+    return () => clearInterval(interval);
+  }, [isInView, nextSlide]);
+
+  // Progress bar animation
+  useEffect(() => {
+    if (!isInView) return;
+
+    setProgress(0);
+    const startTime = Date.now();
+
+    const frame = () => {
+      const elapsed = Date.now() - startTime;
+      const pct = Math.min(elapsed / SLIDE_INTERVAL, 1);
+      setProgress(pct);
+      if (pct < 1) {
+        rafId = requestAnimationFrame(frame);
+      }
+    };
+
+    let rafId = requestAnimationFrame(frame);
+    return () => cancelAnimationFrame(rafId);
+  }, [activeIndex, isInView]);
+
+  const product = products[activeIndex];
+
   return (
     <section
       ref={sectionRef}
-      className={`relative overflow-hidden py-16 md:py-20 ${
+      className={`relative overflow-hidden py-16 md:py-24 ${
         isDark ? 'bg-dark-900' : 'bg-[#f5f5f7]'
       }`}
     >
@@ -74,7 +141,7 @@ export default function FeaturedDrone() {
       )}
 
       <div className="relative z-10 mx-auto max-w-6xl px-6">
-        {/* Top Content */}
+        {/* Section Header */}
         <div className="mb-12 text-center">
           <motion.span
             className={`mb-4 inline-block text-xs font-medium tracking-[0.3em] ${
@@ -85,22 +152,24 @@ export default function FeaturedDrone() {
             variants={fadeUp}
             custom={0}
           >
-            FEATURED PRODUCT
+            OUR PRODUCTS
           </motion.span>
 
           <motion.h2
-            className="font-[Outfit] text-4xl font-bold md:text-5xl"
+            className="font-[Outfit] text-3xl font-bold sm:text-4xl md:text-5xl"
             initial="hidden"
             animate={isInView ? 'visible' : 'hidden'}
             variants={fadeUp}
             custom={0.1}
           >
-            <span className={isDark ? 'text-white' : 'text-[#1e1b4b]'}>AeroVault</span>{' '}
-            <span className={isDark ? 'text-gradient-neon' : 'text-gradient-emerald'}>Phantom X1</span>
+            <span className={isDark ? 'text-white' : 'text-[#1e1b4b]'}>Drone </span>
+            <span className={isDark ? 'text-gradient-neon' : 'text-gradient-emerald'}>
+              Product Lineup
+            </span>
           </motion.h2>
 
           <motion.p
-            className={`mx-auto mt-4 max-w-xl text-base ${
+            className={`mx-auto mt-4 max-w-xl text-sm sm:text-base ${
               isDark ? 'text-white/40' : 'text-gray-500'
             }`}
             initial="hidden"
@@ -108,107 +177,190 @@ export default function FeaturedDrone() {
             variants={fadeUp}
             custom={0.2}
           >
-            Our flagship autonomous drone platform engineered for
-            mission-critical operations with unmatched endurance and payload
-            capacity.
+            Two purpose-built autonomous platforms — a precision Quadcopter
+            for agile operations and a heavy-lift Hexacopter for demanding missions.
           </motion.p>
         </div>
 
-        {/* Drone Image with Stats */}
+        {/* Slideshow */}
         <motion.div
-          className="relative mx-auto max-w-2xl"
-          initial="hidden"
-          animate={isInView ? 'visible' : 'hidden'}
-        >
-          {/* Animated Glowing Ring */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className={`h-[85%] w-[85%] animate-[spin_20s_linear_infinite] rounded-full border ${
-              isDark
-                ? 'border-neon/20 shadow-[0_0_30px_rgba(204,255,0,0.1),inset_0_0_30px_rgba(204,255,0,0.05)]'
-                : 'border-emerald-200 shadow-[0_0_30px_rgba(16,185,129,0.08)]'
-            }`}>
-              <div className={`absolute -top-1 left-1/2 h-2 w-2 -translate-x-1/2 rounded-full ${
-                isDark
-                  ? 'bg-neon shadow-[0_0_10px_rgba(204,255,0,0.8)]'
-                  : 'bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.6)]'
-              }`} />
-            </div>
-          </div>
-
-          {/* Drone Image */}
-          <motion.div
-            className="relative z-10"
-            variants={fadeUp}
-            custom={0.25}
-          >
-            <img
-              src="https://images.unsplash.com/photo-1507582020474-9a35b7d455d9?w=1200&q=80"
-              alt="AeroVault Phantom X1 Drone"
-              className="animate-float mx-auto w-full rounded-3xl object-contain"
-            />
-          </motion.div>
-
-          {/* Floating Stat Indicators */}
-          {stats.map((stat) => {
-            const Icon = stat.icon;
-
-            return (
-              <motion.div
-                key={stat.label}
-                className={`absolute z-20 rounded-xl p-4 ${stat.position} ${
-                  isDark
-                    ? 'glass-card'
-                    : 'bg-white border border-gray-200 shadow-md'
-                }`}
-                variants={statVariant}
-                custom={stat.delay}
-              >
-                <div className="flex items-center gap-3">
-                  {/* Icon */}
-                  <div className={`flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg ${
-                    isDark ? 'bg-neon/10' : 'bg-emerald-50'
-                  }`}>
-                    <Icon className={`h-4 w-4 ${isDark ? 'text-neon' : 'text-emerald-600'}`} />
-                  </div>
-                  <div>
-                    <p className={`text-[11px] font-medium uppercase tracking-wider ${
-                      isDark ? 'text-white/40' : 'text-gray-400'
-                    }`}>
-                      {stat.label}
-                    </p>
-                    <p className={`font-[Outfit] text-lg font-semibold ${
-                      isDark ? 'text-white' : 'text-[#1e1b4b]'
-                    }`}>
-                      {stat.value}
-                    </p>
-                  </div>
-                </div>
-                {/* Accent Dot */}
-                <div className={`absolute -right-1 -top-1 h-2 w-2 rounded-full ${
-                  isDark
-                    ? 'bg-neon shadow-[0_0_8px_rgba(204,255,0,0.6)]'
-                    : 'bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.4)]'
-                }`} />
-              </motion.div>
-            );
-          })}
-        </motion.div>
-
-        {/* CTA Button */}
-        <motion.div
-          className="mt-16 text-center"
           initial="hidden"
           animate={isInView ? 'visible' : 'hidden'}
           variants={fadeUp}
-          custom={0.9}
+          custom={0.4}
         >
-          <button className={`rounded-full px-8 py-4 font-semibold transition-all duration-300 ${
-            isDark
-              ? 'bg-neon text-dark-950 hover:shadow-[0_0_30px_rgba(204,255,0,0.3)]'
-              : 'bg-emerald-600 text-white hover:bg-emerald-700 hover:shadow-[0_0_30px_rgba(16,185,129,0.3)]'
-          }`}>
-            Explore Phantom X1
-          </button>
+          <div className="relative mx-auto max-w-3xl">
+            {/* Slide Container */}
+            <div className="relative overflow-hidden">
+              <AnimatePresence mode="wait" custom={direction}>
+                <motion.div
+                  key={product.id}
+                  custom={direction}
+                  variants={slideVariants}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  className={`relative group rounded-2xl overflow-hidden ${
+                    isDark
+                      ? 'bg-dark-800 border border-white/5'
+                      : 'bg-white border border-gray-200 shadow-lg'
+                  }`}
+                >
+                  {/* Image */}
+                  <div className="relative overflow-hidden h-[300px] sm:h-[380px]">
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    {/* Overlay gradient */}
+                    <div
+                      className={`absolute inset-0 ${
+                        isDark
+                          ? 'bg-gradient-to-t from-dark-800 via-dark-800/30 to-transparent'
+                          : 'bg-gradient-to-t from-white via-white/20 to-transparent'
+                      }`}
+                    />
+
+                    {/* Badge */}
+                    <span
+                      className={`absolute top-4 left-4 rounded-full px-3 py-1 text-[10px] font-bold tracking-[0.15em] ${
+                        isDark
+                          ? 'bg-neon/20 text-neon border border-neon/30 backdrop-blur-sm'
+                          : 'bg-emerald-100 text-emerald-700 border border-emerald-200'
+                      }`}
+                    >
+                      {product.badge}
+                    </span>
+
+                    {/* Floating Specs */}
+                    <div className="absolute bottom-3 left-3 right-3 flex flex-wrap gap-1.5">
+                      {product.specs.map((spec) => {
+                        const Icon = spec.icon;
+                        return (
+                          <div
+                            key={spec.label}
+                            className={`flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 backdrop-blur-md ${
+                              isDark
+                                ? 'bg-dark-950/70 border border-white/10'
+                                : 'bg-white/80 border border-gray-200 shadow-sm'
+                            }`}
+                          >
+                            <Icon className={`h-3 w-3 ${isDark ? 'text-neon' : 'text-emerald-600'}`} />
+                            <div>
+                              <p className={`text-[8px] uppercase tracking-wider leading-none ${isDark ? 'text-white/40' : 'text-gray-400'}`}>
+                                {spec.label}
+                              </p>
+                              <p className={`text-[11px] font-semibold leading-tight ${isDark ? 'text-white' : 'text-gray-900'}`}>
+                                {spec.value}
+                              </p>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  {/* Content */}
+                  <div className="p-5 sm:p-6">
+                    <p
+                      className={`text-[10px] font-medium tracking-[0.2em] mb-1.5 ${
+                        isDark ? 'text-neon' : 'text-emerald-600'
+                      }`}
+                    >
+                      {product.tagline.toUpperCase()}
+                    </p>
+
+                    <h3
+                      className={`font-[Outfit] text-xl sm:text-2xl font-bold mb-2 ${
+                        isDark ? 'text-white' : 'text-[#1e1b4b]'
+                      }`}
+                    >
+                      {product.name}
+                    </h3>
+
+                    <p
+                      className={`text-sm leading-relaxed mb-5 ${
+                        isDark ? 'text-white/45' : 'text-gray-500'
+                      }`}
+                    >
+                      {product.description}
+                    </p>
+
+                    <a
+                      href="/products"
+                      className={`inline-flex items-center gap-2 text-sm font-semibold transition-all duration-300 group/link ${
+                        isDark
+                          ? 'text-neon hover:text-neon-dim'
+                          : 'text-emerald-600 hover:text-emerald-700'
+                      }`}
+                    >
+                      View Details
+                      <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover/link:translate-x-1" />
+                    </a>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
+            {/* Slide Indicators */}
+            <div className="mt-8 flex items-center justify-center gap-3">
+              {products.map((p, i) => (
+                <button
+                  key={p.id}
+                  onClick={() => goToSlide(i)}
+                  className="relative flex items-center justify-center"
+                  aria-label={`View ${p.name}`}
+                >
+                  {/* Background dot */}
+                  <span
+                    className={`block h-2.5 w-2.5 rounded-full transition-all duration-300 ${
+                      i === activeIndex
+                        ? isDark
+                          ? 'bg-neon scale-125'
+                          : 'bg-emerald-600 scale-125'
+                        : isDark
+                          ? 'bg-white/20 hover:bg-white/40'
+                          : 'bg-gray-300 hover:bg-gray-400'
+                    }`}
+                  />
+                </button>
+              ))}
+            </div>
+
+            {/* Progress Bar */}
+            <div className={`mt-4 mx-auto max-w-xs h-0.5 rounded-full overflow-hidden ${
+              isDark ? 'bg-white/10' : 'bg-gray-200'
+            }`}>
+              <div
+                className={`h-full rounded-full transition-none ${
+                  isDark ? 'bg-neon' : 'bg-emerald-500'
+                }`}
+                style={{ width: `${progress * 100}%` }}
+              />
+            </div>
+          </div>
+        </motion.div>
+
+        {/* CTA — View Full Lineup */}
+        <motion.div
+          className="mt-12 text-center"
+          initial="hidden"
+          animate={isInView ? 'visible' : 'hidden'}
+          variants={fadeUp}
+          custom={0.8}
+        >
+          <a
+            href="/products"
+            className={`inline-flex items-center gap-2 rounded-full px-8 py-4 font-semibold transition-all duration-300 ${
+              isDark
+                ? 'bg-neon text-dark-950 hover:shadow-[0_0_30px_rgba(204,255,0,0.3)]'
+                : 'bg-emerald-600 text-white hover:bg-emerald-700 hover:shadow-[0_0_30px_rgba(16,185,129,0.3)]'
+            }`}
+          >
+            Explore Full Product Lineup
+            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+          </a>
         </motion.div>
       </div>
     </section>

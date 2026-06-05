@@ -199,6 +199,7 @@ export default function SolutionsDeepDive({ isDark }) {
   return (
     <section
       ref={sectionRef}
+      id="industry-solutions"
       className={`relative py-20 md:py-28 overflow-hidden ${isDark ? 'bg-dark-900' : 'bg-[#f5f5f7]'}`}
     >
       <div className={`absolute inset-0 grid-bg ${isDark ? 'opacity-30' : 'opacity-15'}`} />

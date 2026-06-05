@@ -134,23 +134,7 @@ export default function ProductsHero({ isDark }) {
         </motion.div>
       </div>
 
-      {/* Scroll Indicator */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1.5, duration: 0.8 }}
-        className="relative z-10 flex flex-col items-center gap-2 pb-8 pt-6 shrink-0"
-      >
-        <span className={`text-xs uppercase tracking-[0.2em] ${isDark ? 'text-white/30' : 'text-gray-400'}`}>
-          Scroll to explore
-        </span>
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-        >
-          <ChevronDown size={20} className={isDark ? 'text-white/30' : 'text-gray-400'} />
-        </motion.div>
-      </motion.div>
+
     </section>
   );
 }

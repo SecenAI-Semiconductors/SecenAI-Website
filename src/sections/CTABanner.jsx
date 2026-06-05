@@ -83,7 +83,7 @@ export default function CTABanner() {
         {/* CTA Buttons */}
         <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
           <motion.a
-            href="#contact"
+            href="/contact"
             className={`inline-flex cursor-pointer items-center gap-2 rounded-full px-8 py-4 font-semibold transition-all ${
               isDark
                 ? 'bg-neon text-dark-950 hover:shadow-xl hover:shadow-neon/30'
@@ -97,7 +97,7 @@ export default function CTABanner() {
           </motion.a>
 
           <motion.a
-            href="#platform"
+            href="/about"
             className={`inline-flex cursor-pointer items-center gap-2 rounded-full border px-8 py-4 transition-all ${
               isDark
                 ? 'border-white/20 text-white hover:border-white/40 hover:bg-white/5'

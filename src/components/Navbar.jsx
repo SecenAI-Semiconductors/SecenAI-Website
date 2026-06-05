@@ -180,18 +180,12 @@ export default function Navbar() {
             </button>
 
             {/* CTA Button */}
-            <a
-              href="/#quote"
-              onClick={(e) => {
-                if (location.pathname !== "/") {
-                  e.preventDefault();
-                  navigate("/#quote");
-                }
-              }}
+            <Link
+              to="/contact"
               className={`font-semibold px-6 py-2.5 rounded-full text-sm hover:shadow-lg transition-all duration-300 inline-block ${isDark ? 'bg-neon text-dark-950 hover:shadow-neon/20' : 'bg-emerald-600 text-white hover:bg-emerald-700 hover:shadow-emerald-600/20'}`}
             >
               Get Quote
-            </a>
+            </Link>
           </div>
 
           {/* Mobile Actions Button Controls */}
@@ -306,23 +300,20 @@ export default function Navbar() {
                   );
                 })}
 
-                <motion.a
-                  href="/#quote"
-                  onClick={(e) => {
-                    setMobileOpen(false);
-                    if (location.pathname !== "/") {
-                      e.preventDefault();
-                      navigate("/#quote");
-                    }
-                  }}
+                <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 20 }}
                   transition={{ delay: 0.4, duration: 0.4 }}
-                  className={`mt-8 font-semibold px-8 py-4 rounded-full text-center text-base hover:shadow-lg transition-all duration-300 ${isDark ? 'bg-neon text-dark-950 hover:shadow-neon/20' : 'bg-emerald-600 text-white hover:bg-emerald-700 hover:shadow-emerald-600/20'}`}
                 >
-                  Get Quote
-                </motion.a>
+                  <Link
+                    to="/contact"
+                    onClick={() => setMobileOpen(false)}
+                    className={`mt-8 font-semibold px-8 py-4 rounded-full text-center text-base hover:shadow-lg transition-all duration-300 block ${isDark ? 'bg-neon text-dark-950 hover:shadow-neon/20' : 'bg-emerald-600 text-white hover:bg-emerald-700 hover:shadow-emerald-600/20'}`}
+                  >
+                    Get Quote
+                  </Link>
+                </motion.div>
               </div>
 
               <div className="px-10 pb-10">
