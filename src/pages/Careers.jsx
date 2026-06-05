@@ -37,7 +37,7 @@ export default function Careers() {
       <section
         style={{
           position: 'relative',
-          paddingTop: '180px',
+          paddingTop: '110px',
           paddingBottom: '40px',
           paddingLeft: 'clamp(24px, 5vw, 96px)',
           paddingRight: 'clamp(24px, 5vw, 96px)',

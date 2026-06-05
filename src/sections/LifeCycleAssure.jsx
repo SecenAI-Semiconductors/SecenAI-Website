@@ -376,7 +376,7 @@ if (isNearVertical && dy < 0) {
   };
 
   return (
-    <div className="relative mx-auto" style={{ maxWidth: 750 }}>
+    <div className="relative mx-auto" style={{ maxWidth: 650 }}>
       <div className="relative w-full" style={{ paddingBottom: '100%' }}>
         <div className="absolute inset-0 overflow-visible">
           {/* SVG rings and connection lines */}
@@ -662,7 +662,7 @@ export default function LifeCycleAssure() {
       <section
         id="lifecycle"
         ref={sectionRef}
-        className={`relative py-20 md:py-28 overflow-x-clip ${
+        className={`relative pt-10 pb-4 md:pt-14 md:pb-6 overflow-x-clip ${
           isDark ? 'bg-dark-950' : 'bg-[#f9fafb]'
         }`}
       >
@@ -683,7 +683,7 @@ export default function LifeCycleAssure() {
         <div className="relative z-10 mx-auto max-w-7xl px-6">
           {/* Section header */}
           <motion.div
-            className="mb-10 md:mb-16 text-center"
+            className="mb-6 md:mb-10 text-center"
             initial="hidden"
             animate={isInView ? 'visible' : 'hidden'}
             variants={stagger}
@@ -757,7 +757,7 @@ export default function LifeCycleAssure() {
           {/* Bottom tagline */}
           {isInView && (
             <motion.p
-              className={`text-center mt-10 text-sm ${
+              className={`text-center mt-4 text-sm ${
                 isDark ? 'text-white/30' : 'text-gray-400'
               }`}
               initial={{ opacity: 0 }}
