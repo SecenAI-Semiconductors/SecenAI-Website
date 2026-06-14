@@ -31,7 +31,7 @@ const ContactForm = () => {
 
         <div style={{ marginBottom: '25px' }}>
           <label style={{ display: 'block', marginBottom: '10px', fontWeight: '500', color: isDark ? '#e5e5e5' : '#374151' }}>Email</label>
-          <input type="email" style={{
+          <input type="email" required style={{
             width: '100%', padding: '12px',
             background: isDark ? '#111' : '#f9fafb',
             border: `1px solid ${isDark ? '#333' : '#d1d5db'}`,
@@ -39,6 +39,31 @@ const ContactForm = () => {
             color: isDark ? '#fff' : '#1f2937',
             outline: 'none',
           }} />
+        </div>
+
+        <div style={{ marginBottom: '25px' }}>
+          <label style={{ display: 'block', marginBottom: '10px', fontWeight: '500', color: isDark ? '#e5e5e5' : '#374151' }}>Inquiry Type</label>
+          <select required defaultValue="" style={{
+            width: '100%', padding: '12px',
+            background: isDark ? '#111' : '#f9fafb',
+            border: `1px solid ${isDark ? '#333' : '#d1d5db'}`,
+            borderRadius: '8px',
+            color: isDark ? '#fff' : '#1f2937',
+            outline: 'none',
+            appearance: 'none',
+            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='${isDark ? '%23666' : '%236b7280'}' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E")`,
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'right 12px center',
+            cursor: 'pointer',
+          }}>
+            <option value="" disabled style={{ color: '#999' }}>Select an inquiry type</option>
+            <option value="product-demo">Product Demo Request</option>
+            <option value="technical-support">Technical Support</option>
+            <option value="pricing">Pricing &amp; Licensing</option>
+            <option value="custom-integration">Custom Integration</option>
+            <option value="Recruitment">Recruitment</option>
+            <option value="general">Others</option>
+          </select>
         </div>
 
         <div style={{ marginBottom: '25px' }}>
@@ -77,4 +102,4 @@ const ContactForm = () => {
   );
 };
 
-export default ContactForm;
+export default ContactForm;

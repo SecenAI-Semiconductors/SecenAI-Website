@@ -2,6 +2,7 @@ import { useRef, useState, useEffect, useCallback } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { Package, Clock, Navigation, Battery, ArrowRight } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
+import quadcopterImg from '../assets/quadcopter-prototype.png';
 
 const SLIDE_INTERVAL = 7000; // 7 seconds per slide
 
@@ -12,7 +13,7 @@ const products = [
     tagline: 'Versatile 4-Rotor Platform',
     description:
       'A highly agile 4-rotor autonomous drone built for precision agriculture, infrastructure inspection, surveillance, and emergency response.',
-    image: 'https://images.unsplash.com/photo-1507582020474-9a35b7d455d9?w=900&q=80',
+    image: quadcopterImg,
     badge: 'QUADCOPTER',
     specs: [
       { label: 'Payload', value: '4.5 kg', icon: Package },
@@ -128,9 +129,8 @@ export default function FeaturedDrone() {
   return (
     <section
       ref={sectionRef}
-      className={`relative overflow-hidden py-16 md:py-24 ${
-        isDark ? 'bg-dark-900' : 'bg-[#f5f5f7]'
-      }`}
+      className={`relative overflow-hidden py-16 md:py-24 ${isDark ? 'bg-dark-900' : 'bg-[#f5f5f7]'
+        }`}
     >
       {/* Grid Background Overlay */}
       <div className="grid-bg absolute inset-0" />
@@ -144,9 +144,8 @@ export default function FeaturedDrone() {
         {/* Section Header */}
         <div className="mb-12 text-center">
           <motion.span
-            className={`mb-4 inline-block text-xs font-medium tracking-[0.3em] ${
-              isDark ? 'text-neon' : 'text-emerald-600'
-            }`}
+            className={`mb-4 inline-block text-xs font-medium tracking-[0.3em] ${isDark ? 'text-neon' : 'text-emerald-600'
+              }`}
             initial="hidden"
             animate={isInView ? 'visible' : 'hidden'}
             variants={fadeUp}
@@ -169,9 +168,8 @@ export default function FeaturedDrone() {
           </motion.h2>
 
           <motion.p
-            className={`mx-auto mt-4 max-w-xl text-sm sm:text-base ${
-              isDark ? 'text-white/40' : 'text-gray-500'
-            }`}
+            className={`mx-auto mt-4 max-w-xl text-sm sm:text-base ${isDark ? 'text-white/40' : 'text-gray-500'
+              }`}
             initial="hidden"
             animate={isInView ? 'visible' : 'hidden'}
             variants={fadeUp}
@@ -200,35 +198,34 @@ export default function FeaturedDrone() {
                   initial="enter"
                   animate="center"
                   exit="exit"
-                  className={`relative group rounded-2xl overflow-hidden ${
-                    isDark
+                  className={`relative group rounded-2xl overflow-hidden ${isDark
                       ? 'bg-dark-800 border border-white/5'
                       : 'bg-white border border-gray-200 shadow-lg'
-                  }`}
+                    }`}
                 >
                   {/* Image */}
                   <div className="relative overflow-hidden h-[300px] sm:h-[380px]">
                     <img
                       src={product.image}
                       alt={product.name}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      className={`w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.5] ${
+                        product.id === 'quadcopter-q1' ? 'scale-[1.4]' : ''
+                      }`}
                     />
                     {/* Overlay gradient */}
                     <div
-                      className={`absolute inset-0 ${
-                        isDark
+                      className={`absolute inset-0 ${isDark
                           ? 'bg-gradient-to-t from-dark-800 via-dark-800/30 to-transparent'
                           : 'bg-gradient-to-t from-white via-white/20 to-transparent'
-                      }`}
+                        }`}
                     />
 
                     {/* Badge */}
                     <span
-                      className={`absolute top-4 left-4 rounded-full px-3 py-1 text-[10px] font-bold tracking-[0.15em] ${
-                        isDark
+                      className={`absolute top-4 left-4 rounded-full px-3 py-1 text-[10px] font-bold tracking-[0.15em] ${isDark
                           ? 'bg-neon/20 text-neon border border-neon/30 backdrop-blur-sm'
                           : 'bg-emerald-100 text-emerald-700 border border-emerald-200'
-                      }`}
+                        }`}
                     >
                       {product.badge}
                     </span>
@@ -240,11 +237,10 @@ export default function FeaturedDrone() {
                         return (
                           <div
                             key={spec.label}
-                            className={`flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 backdrop-blur-md ${
-                              isDark
+                            className={`flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 backdrop-blur-md ${isDark
                                 ? 'bg-dark-950/70 border border-white/10'
                                 : 'bg-white/80 border border-gray-200 shadow-sm'
-                            }`}
+                              }`}
                           >
                             <Icon className={`h-3 w-3 ${isDark ? 'text-neon' : 'text-emerald-600'}`} />
                             <div>
@@ -264,36 +260,32 @@ export default function FeaturedDrone() {
                   {/* Content */}
                   <div className="p-5 sm:p-6">
                     <p
-                      className={`text-[10px] font-medium tracking-[0.2em] mb-1.5 ${
-                        isDark ? 'text-neon' : 'text-emerald-600'
-                      }`}
+                      className={`text-[10px] font-medium tracking-[0.2em] mb-1.5 ${isDark ? 'text-neon' : 'text-emerald-600'
+                        }`}
                     >
                       {product.tagline.toUpperCase()}
                     </p>
 
                     <h3
-                      className={`font-[Outfit] text-xl sm:text-2xl font-bold mb-2 ${
-                        isDark ? 'text-white' : 'text-[#1e1b4b]'
-                      }`}
+                      className={`font-[Outfit] text-xl sm:text-2xl font-bold mb-2 ${isDark ? 'text-white' : 'text-[#1e1b4b]'
+                        }`}
                     >
                       {product.name}
                     </h3>
 
                     <p
-                      className={`text-sm leading-relaxed mb-5 ${
-                        isDark ? 'text-white/45' : 'text-gray-500'
-                      }`}
+                      className={`text-sm leading-relaxed mb-5 ${isDark ? 'text-white/45' : 'text-gray-500'
+                        }`}
                     >
                       {product.description}
                     </p>
 
                     <a
                       href="/products"
-                      className={`inline-flex items-center gap-2 text-sm font-semibold transition-all duration-300 group/link ${
-                        isDark
+                      className={`inline-flex items-center gap-2 text-sm font-semibold transition-all duration-300 group/link ${isDark
                           ? 'text-neon hover:text-neon-dim'
                           : 'text-emerald-600 hover:text-emerald-700'
-                      }`}
+                        }`}
                     >
                       View Details
                       <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover/link:translate-x-1" />
@@ -314,28 +306,25 @@ export default function FeaturedDrone() {
                 >
                   {/* Background dot */}
                   <span
-                    className={`block h-2.5 w-2.5 rounded-full transition-all duration-300 ${
-                      i === activeIndex
+                    className={`block h-2.5 w-2.5 rounded-full transition-all duration-300 ${i === activeIndex
                         ? isDark
                           ? 'bg-neon scale-125'
                           : 'bg-emerald-600 scale-125'
                         : isDark
                           ? 'bg-white/20 hover:bg-white/40'
                           : 'bg-gray-300 hover:bg-gray-400'
-                    }`}
+                      }`}
                   />
                 </button>
               ))}
             </div>
 
             {/* Progress Bar */}
-            <div className={`mt-4 mx-auto max-w-xs h-0.5 rounded-full overflow-hidden ${
-              isDark ? 'bg-white/10' : 'bg-gray-200'
-            }`}>
+            <div className={`mt-4 mx-auto max-w-xs h-0.5 rounded-full overflow-hidden ${isDark ? 'bg-white/10' : 'bg-gray-200'
+              }`}>
               <div
-                className={`h-full rounded-full transition-none ${
-                  isDark ? 'bg-neon' : 'bg-emerald-500'
-                }`}
+                className={`h-full rounded-full transition-none ${isDark ? 'bg-neon' : 'bg-emerald-500'
+                  }`}
                 style={{ width: `${progress * 100}%` }}
               />
             </div>
@@ -352,11 +341,10 @@ export default function FeaturedDrone() {
         >
           <a
             href="/products"
-            className={`inline-flex items-center gap-2 rounded-full px-8 py-4 font-semibold transition-all duration-300 ${
-              isDark
+            className={`inline-flex items-center gap-2 rounded-full px-8 py-4 font-semibold transition-all duration-300 ${isDark
                 ? 'bg-neon text-dark-950 hover:shadow-[0_0_30px_rgba(204,255,0,0.3)]'
                 : 'bg-emerald-600 text-white hover:bg-emerald-700 hover:shadow-[0_0_30px_rgba(16,185,129,0.3)]'
-            }`}
+              }`}
           >
             Explore Full Product Lineup
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />

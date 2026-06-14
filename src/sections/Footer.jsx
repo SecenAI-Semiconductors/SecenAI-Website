@@ -3,24 +3,25 @@ import {
   Twitter,
   Linkedin,
   Youtube,
+  Instagram,
   Mail,
   Phone,
   MapPin,
 } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
 
 const platformLinks = [
-  'Drone Telemetry',
-  'AI Analytics',
-  'IoT Monitoring',
-  'Mission Planning',
+  { name: 'Drone Telemetry', path: '/products#product-lineup' },
+  { name: 'AI Analytics', path: '/products#product-lineup' },
+  { name: 'IoT Monitoring', path: '/products#product-lineup' },
+  { name: 'Mission Planning', path: '/products#product-lineup' },
 ];
 
 const solutionLinks = [
-  'Smart Agriculture',
-  'Infrastructure Inspection',
-  'Smart Cities',
-  'Logistics & Delivery',
+  { name: 'Smart Agriculture', path: '/products#industry-solutions' },
+  { name: 'Infrastructure Inspection', path: '/products#industry-solutions' },
+  { name: 'Flight Controller', path: '/products#industry-solutions' },
 ];
 
 const socialIcons = [
@@ -28,6 +29,7 @@ const socialIcons = [
   { Icon: Twitter, href: '#', label: 'Twitter' },
   { Icon: Linkedin, href: '#', label: 'LinkedIn' },
   { Icon: Youtube, href: '#', label: 'YouTube' },
+  { Icon: Instagram, href: '#', label: 'Instagram' },
 ];
 
 const contactInfo = [
@@ -39,6 +41,25 @@ const contactInfo = [
 export default function Footer() {
   const { theme } = useTheme();
   const isDark = theme === 'dark';
+  const location = useLocation();
+
+  const handleFooterLinkClick = (path) => {
+    const [pathname, hash] = path.split('#');
+    // If already on the same page, manually scroll to the section or top
+    if (location.pathname === pathname) {
+      if (hash) {
+        const el = document.getElementById(hash);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+          return;
+        }
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      // Navigating to a different page — scroll to top so the new page starts from top
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    }
+  };
 
   return (
     <footer
@@ -108,16 +129,17 @@ export default function Footer() {
 
             <ul className="space-y-3">
               {platformLinks.map((link) => (
-                <li key={link}>
-                  <a
-                    href="#"
+                <li key={link.name}>
+                  <Link
+                    to={link.path}
+                    onClick={() => handleFooterLinkClick(link.path)}
                     className={`text-sm transition-colors ${isDark
                       ? 'text-white/30 hover:text-neon'
                       : 'text-gray-500 hover:text-emerald-600'
                       }`}
                   >
-                    {link}
-                  </a>
+                    {link.name}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -134,16 +156,17 @@ export default function Footer() {
 
             <ul className="space-y-3">
               {solutionLinks.map((link) => (
-                <li key={link}>
-                  <a
-                    href="#"
+                <li key={link.name}>
+                  <Link
+                    to={link.path}
+                    onClick={() => handleFooterLinkClick(link.path)}
                     className={`text-sm transition-colors ${isDark
                       ? 'text-white/30 hover:text-neon'
                       : 'text-gray-500 hover:text-emerald-600'
                       }`}
                   >
-                    {link}
-                  </a>
+                    {link.name}
+                  </Link>
                 </li>
               ))}
             </ul>

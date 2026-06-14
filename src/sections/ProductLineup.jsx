@@ -4,6 +4,7 @@ import {
   Package, Clock, Navigation, Battery,
   ArrowRight, CheckCircle2,
 } from 'lucide-react';
+import quadcopterImg from '../assets/quadcopter-prototype.png';
 
 /* ═══════════════════════════════════════════
    PRODUCT DATA — 2 versatile drone platforms
@@ -16,7 +17,7 @@ const products = [
     tagline: 'Versatile 4-Rotor Platform',
     description:
       'A highly agile and precise 4-rotor autonomous drone built for versatility. From precision agriculture and infrastructure inspection to surveillance, surveying, and emergency response — the Quadcopter adapts to any mission profile with rapid deployment and exceptional maneuverability.',
-    image: 'https://images.unsplash.com/photo-1507582020474-9a35b7d455d9?w=900&q=80',
+    image: quadcopterImg,
     badge: 'QUADCOPTER',
     specs: [
       { label: 'Payload', value: '4.5 kg', icon: Package },
@@ -104,7 +105,9 @@ function ProductCard({ product, isDark, index }) {
           <img
             src={product.image}
             alt={product.name}
-            className="w-full h-[350px] lg:h-[420px] object-cover transition-transform duration-700 group-hover:scale-105"
+            className={`w-full h-[350px] lg:h-[420px] object-cover transition-transform duration-700 group-hover:scale-[1.7] ${
+              product.id === 'quadcopter-q1' ? 'scale-[1.6]' : ''
+            }`}
           />
           {/* Overlay gradient */}
           <div
