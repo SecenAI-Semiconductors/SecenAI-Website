@@ -59,11 +59,11 @@ const leaders = [
   },
   {
     name: 'Prof. Siva Shankar Y',
-    role: 'Founder',
-    qualifications: '',
-    linkedin: 'https://www.linkedin.com/in/y-siva-shankar-75a48b29/',
+    role: 'Co Founder',
+    qualifications: 'Director - Admissions SRM University AP',
+    linkedin: 'https://www.linkedin.com/in/sivayellampalli/',
     avatar: sivasankarImg,
-    accent: '#08fabd',
+    accent: '#20b1ff',
     initials: 'YS',
   },
   {
@@ -78,7 +78,7 @@ const leaders = [
   {
     name: 'K Bhaskar',
     role: 'HR Director',
-    qualifications: 'Professor SRM AP',
+    qualifications: 'Professor SRM University AP',
     linkedin: 'https://www.linkedin.com/in/bhaskar-k-064b26313',
     avatar: BhaskarImg,
     accent: '#c2410c',
