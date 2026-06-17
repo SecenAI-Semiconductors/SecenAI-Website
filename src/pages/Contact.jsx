@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useTheme } from '../context/ThemeContext';
 import ContactForm from '../components/ContactForm';
@@ -7,25 +6,6 @@ import ContactForm from '../components/ContactForm';
 export default function Contact() {
   const { theme } = useTheme();
   const isDark = theme === 'dark';
-
-  // const [formData, setFormData] = useState({
-  //   name: '',
-  //   email: '',
-  //   message: '',
-  // });
-  //just new comment
-  // const [submitted, setSubmitted] = useState(false);
-
-  // const handleChange = (e) => {
-  //   setFormData({ ...formData, [e.target.name]: e.target.value });
-  // };
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   setSubmitted(true);
-  //   setTimeout(() => setSubmitted(false), 4000);
-  //   setFormData({ name: '', email: '', message: '' });
-  // };
 
   return (
     <div

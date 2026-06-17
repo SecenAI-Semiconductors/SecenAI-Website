@@ -6,12 +6,15 @@ import { Linkedin, ExternalLink } from 'lucide-react';
 
 import DakshishImg from '../assets/Dakshish.jpg';
 import KishoreImg from '../assets/Kishore.jpg';
+import JoseImg from '../assets/Jose.jpeg';
+import BhaskarImg from '../assets/Bhaskar.jpeg';
 import PrateekImg from '../assets/Prateek.jpg';
 import ShivaImg from '../assets/Shiva.jpg';
 import SumanthImg from '../assets/Sumanth.jpg';
 import VinodImg from '../assets/Vinod.jpg';
-import Akhil from '../assets/Akhil.jpg';  
-import FounderImg from '../assets/about.jpg'; // Dr. Ramesh Vaddi
+import Akhil from '../assets/Akhil.jpg';
+import RameshImg from '../assets/Ramesh.jpg';
+import sivasankarImg from '../assets/sivasankar.jpg';
 /* ═══════════════════════════════════════════
    ANIMATION VARIANTS
    ═══════════════════════════════════════════ */
@@ -50,17 +53,45 @@ const leaders = [
     role: 'Founder',
     qualifications: 'Professor EECE & Director Core Engineering GITAM University Hyderabad',
     linkedin: 'https://www.linkedin.com/in/dr-ramesh-vaddi-b0052620',
-    avatar: FounderImg,
+    avatar: RameshImg,
     accent: '#2563eb',
     initials: 'RV',
-  },  {
+  },
+  {
+    name: 'Prof. Siva Shankar Y',
+    role: 'Co Founder',
+    qualifications: 'Director - Admissions SRM University AP',
+    linkedin: 'https://www.linkedin.com/in/sivayellampalli/',
+    avatar: sivasankarImg,
+    accent: '#20b1ff',
+    initials: 'YS',
+  },
+  {
     name: 'Dr. Vinod Kumar Ancha',
-    role: 'Chief Research Officer',
+    role: 'Co Founder',
     qualifications: 'Assistant Professor (CS & AI)',
     linkedin: 'https://www.linkedin.com/in/dr-vinod-kumar-ancha-22dec2025',
     avatar: VinodImg,
     accent: '#10b981',
     initials: 'VA',
+  },
+  {
+    name: 'K Bhaskar',
+    role: 'HR Director',
+    qualifications: 'Professor SRM University AP',
+    linkedin: 'https://www.linkedin.com/in/bhaskar-k-064b26313',
+    avatar: BhaskarImg,
+    accent: '#c2410c',
+    initials: 'KB',
+  },
+  {
+    name: 'Jose Pramod Kommini',
+    role: 'Consultant',
+    qualifications: 'M.tech Embedded Systems & IoT Engineer',
+    linkedin: 'https://www.linkedin.com/in/jose-pramod-kommini-24b499157',
+    avatar: JoseImg,
+    accent: '#23ff65',
+    initials: 'JPK',
   },
   {
     name: 'Sabba Dakshish',
@@ -107,7 +138,7 @@ const leaders = [
     accent: '#f59e0b',
     initials: 'AY',
   },
-    {
+  {
     name: 'N Sai Kishore',
     role: 'Development Intern',
     qualifications: 'B.Tech in CSD',
@@ -362,9 +393,8 @@ export default function Leadership() {
     <section
       id="leadership"
       ref={sectionRef}
-      className={`relative py-14 md:py-20 overflow-hidden ${
-        isDark ? 'bg-dark-900' : 'bg-white'
-      }`}
+      className={`relative py-14 md:py-20 overflow-hidden ${isDark ? 'bg-dark-900' : 'bg-white'
+        }`}
     >
       {/* Background effects */}
       {isDark && (
@@ -383,9 +413,8 @@ export default function Leadership() {
           variants={stagger}
         >
           <motion.span
-            className={`inline-block text-xs font-bold tracking-[0.25em] uppercase mb-4 ${
-              isDark ? 'text-neon/70' : 'text-emerald-600'
-            }`}
+            className={`inline-block text-xs font-bold tracking-[0.25em] uppercase mb-4 ${isDark ? 'text-neon/70' : 'text-emerald-600'
+              }`}
             variants={fadeUp}
           >
             Our Team
@@ -408,9 +437,8 @@ export default function Leadership() {
           </motion.h2>
 
           <motion.p
-            className={`mx-auto mt-6 max-w-3xl text-lg leading-relaxed ${
-              isDark ? 'text-white/50' : 'text-gray-500'
-            }`}
+            className={`mx-auto mt-6 max-w-3xl text-lg leading-relaxed ${isDark ? 'text-white/50' : 'text-gray-500'
+              }`}
             variants={fadeUp}
           >
             Guided by a team of visionary leaders, researchers, and engineers
@@ -418,9 +446,8 @@ export default function Leadership() {
           </motion.p>
 
           <motion.div
-            className={`mx-auto mt-8 h-0.5 w-24 rounded-full ${
-              isDark ? 'bg-neon' : 'bg-emerald-500'
-            }`}
+            className={`mx-auto mt-8 h-0.5 w-24 rounded-full ${isDark ? 'bg-neon' : 'bg-emerald-500'
+              }`}
             variants={fadeUp}
           />
         </motion.div>
