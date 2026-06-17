@@ -13,7 +13,7 @@ import ShivaImg from '../assets/Shiva.jpg';
 import SumanthImg from '../assets/Sumanth.jpg';
 import VinodImg from '../assets/Vinod.jpg';
 import Akhil from '../assets/Akhil.jpg';
-import RameshImg from '../assets/Ramesh.jpg';
+import RameshImg from '../assets/ramesh.jpg';
 import sivasankarImg from '../assets/sivasankar.jpg';
 /* ═══════════════════════════════════════════
    ANIMATION VARIANTS
