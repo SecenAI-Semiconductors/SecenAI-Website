@@ -161,7 +161,7 @@ const ContactForm = () => {
   };
 
   // ─── Render ─────────────────────────────────────────────────────
-  return (
+return (
     <div style={{
       padding: '40px',
       backgroundColor: isDark ? '#0a0a0a' : '#ffffff',
@@ -247,27 +247,44 @@ const ContactForm = () => {
         {/* ── Inquiry Type ─────────────────────────────────────── */}
         <div style={{ marginBottom: '25px' }}>
           <label style={labelStyle}>Inquiry Type</label>
-          <select
-            name="inquiryType"
-            value={formData.inquiryType}
-            onChange={handleChange}
-            style={{
-              ...(errors.inquiryType ? inputErrorStyle : inputStyle),
-              appearance: 'none',
-              backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='${isDark ? '%23666' : '%236b7280'}' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E")`,
-              backgroundRepeat: 'no-repeat',
-              backgroundPosition: 'right 12px center',
-              cursor: 'pointer',
-            }}
-          >
-            <option value="" disabled style={{ color: '#999' }}>Select an inquiry type</option>
-            <option value="product-demo">Product Demo Request</option>
-            <option value="technical-support">Technical Support</option>
-            <option value="pricing">Pricing &amp; Licensing</option>
-            <option value="custom-integration">Custom Integration</option>
-            <option value="Recruitment">Recruitment</option>
-            <option value="general">Others</option>
-          </select>
+          <div style={{ position: 'relative' }}>
+            <select
+              name="inquiryType"
+              className="custom-select"
+              value={formData.inquiryType}
+              onChange={handleChange}
+              style={{
+                ...(errors.inquiryType ? inputErrorStyle : inputStyle),
+                appearance: 'none',
+                WebkitAppearance: 'none',
+                MozAppearance: 'none',
+                cursor: 'pointer',
+                paddingRight: '36px',
+              }}
+            >
+              <option value="" disabled style={{ color: '#999' }}>Select an inquiry type</option>
+              <option value="product-demo">Product Demo Request</option>
+              <option value="technical-support">Technical Support</option>
+              <option value="pricing">Pricing &amp; Licensing</option>
+              <option value="custom-integration">Custom Integration</option>
+              <option value="Recruitment">Recruitment</option>
+              <option value="general">Others</option>
+            </select>
+            <span
+              style={{
+                position: 'absolute',
+                right: '12px',
+                top: '50%',
+                transform: 'translateY(-50%)',
+                pointerEvents: 'none',
+                color: isDark ? '#666' : '#6b7280',
+                fontSize: '14px',
+                lineHeight: 1,
+              }}
+            >
+              ▾
+            </span>
+          </div>
           {errors.inquiryType && <p style={errorTextStyle}>⚠ {errors.inquiryType}</p>}
         </div>
 

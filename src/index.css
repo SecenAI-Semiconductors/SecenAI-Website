@@ -17,6 +17,9 @@
   --font-heading: 'Outfit', sans-serif;
   --font-body: 'Inter', sans-serif;
 }
+select.custom-select {
+  background-image: none !important;
+}
 
 /* Base styles — Tailwind v4 preflight handles *, margin, padding, box-sizing resets
    inside @layer base. Adding them un-layered here would override all utility classes. */
