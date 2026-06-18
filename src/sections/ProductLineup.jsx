@@ -22,7 +22,6 @@ const products = [
     specs: [
       { label: 'Payload', value: '4.5 kg', icon: Package },
       { label: 'Endurance', value: '30-35 min', icon: Clock },
-      { label: 'Range', value: '20 km', icon: Navigation },
       { label: 'Battery', value: '10,000 mAh', icon: Battery },
     ],
     useCases: ['Agriculture', 'Inspection', 'Surveillance', 'Surveying', 'Mapping', 'Emergency Response'],
@@ -46,7 +45,6 @@ const products = [
     specs: [
       { label: 'Payload', value: '12 kg', icon: Package },
       { label: 'Endurance', value: '20-25 min', icon: Clock },
-      { label: 'Range', value: '30 km', icon: Navigation },
       { label: 'Battery', value: '16,000 mAh', icon: Battery },
     ],
     useCases: ['Heavy Payload', 'Crop Spraying', 'LiDAR Mapping', 'Delivery', 'Industrial', 'Defense'],
@@ -87,6 +85,7 @@ function ProductCard({ product, isDark, index }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-60px' });
   const isEven = index % 2 === 0;
+  const isQuad = product.id === 'quadcopter-q1';
 
   return (
     <motion.div
@@ -105,23 +104,24 @@ function ProductCard({ product, isDark, index }) {
           <img
             src={product.image}
             alt={product.name}
-            className={`w-full h-[350px] lg:h-[420px] object-cover transition-transform duration-700 group-hover:scale-[1.7] ${
-              product.id === 'quadcopter-q1' ? 'scale-[1.6]' : ''
-            }`}
-          />
-          {/* Overlay gradient */}
-          <div
-            className={`absolute inset-0 rounded-2xl ${isDark
-              ? 'bg-gradient-to-t from-dark-950/60 via-transparent to-transparent'
-              : 'bg-gradient-to-t from-black/20 via-transparent to-transparent'
+            className={`w-full h-[350px] lg:h-[420px] object-cover transition-transform duration-700 group-hover:scale-[1.7] ${isQuad ? 'scale-[1.6]' : ''
               }`}
           />
+          {/* Overlay gradient — skip for quadcopter since it has a white bg */}
+          {!isQuad && (
+            <div
+              className={`absolute inset-0 rounded-2xl ${isDark
+                ? 'bg-gradient-to-t from-dark-950/60 via-transparent to-transparent'
+                : 'bg-gradient-to-t from-black/20 via-transparent to-transparent'
+                }`}
+            />
+          )}
         </div>
 
         {/* Badge */}
         <span
           className={`absolute top-4 left-4 rounded-full px-3 py-1 text-[10px] font-bold tracking-[0.15em] ${isDark
-            ? 'bg-neon/20 text-neon border border-neon/30 backdrop-blur-sm'
+            ? 'bg-dark-950/80 text-neon border border-neon/30 backdrop-blur-sm'
             : 'bg-emerald-100 text-emerald-700 border border-emerald-200'
             }`}
         >

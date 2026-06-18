@@ -26,7 +26,7 @@ const solutions = [
     ],
     stats: [
       { value: '23%', label: 'Avg. Yield Increase' },
-      { value: '500+', label: 'Acres Per Flight' },
+      { value: '2+', label: 'Acres Per Flight' },
       { value: '60%', label: 'Water Savings' },
     ],
   },

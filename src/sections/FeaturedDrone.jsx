@@ -18,7 +18,6 @@ const products = [
     specs: [
       { label: 'Payload', value: '4.5 kg', icon: Package },
       { label: 'Endurance', value: '30-35 min', icon: Clock },
-      { label: 'Range', value: '20 km', icon: Navigation },
       { label: 'Battery', value: '10,000 mAh', icon: Battery },
     ],
   },
@@ -33,7 +32,6 @@ const products = [
     specs: [
       { label: 'Payload', value: '12 kg', icon: Package },
       { label: 'Endurance', value: '20-25 min', icon: Clock },
-      { label: 'Range', value: '30 km', icon: Navigation },
       { label: 'Battery', value: '16,000 mAh', icon: Battery },
     ],
   },
@@ -199,8 +197,8 @@ export default function FeaturedDrone() {
                   animate="center"
                   exit="exit"
                   className={`relative group rounded-2xl overflow-hidden ${isDark
-                      ? 'bg-dark-800 border border-white/5'
-                      : 'bg-white border border-gray-200 shadow-lg'
+                    ? 'bg-dark-800 border border-white/5'
+                    : 'bg-white border border-gray-200 shadow-lg'
                     }`}
                 >
                   {/* Image */}
@@ -208,23 +206,24 @@ export default function FeaturedDrone() {
                     <img
                       src={product.image}
                       alt={product.name}
-                      className={`w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.5] ${
-                        product.id === 'quadcopter-q1' ? 'scale-[1.4]' : ''
-                      }`}
-                    />
-                    {/* Overlay gradient */}
-                    <div
-                      className={`absolute inset-0 ${isDark
-                          ? 'bg-gradient-to-t from-dark-800 via-dark-800/30 to-transparent'
-                          : 'bg-gradient-to-t from-white via-white/20 to-transparent'
+                      className={`w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.5] ${product.id === 'quadcopter-q1' ? 'scale-[1.4]' : ''
                         }`}
                     />
+                    {/* Overlay gradient — skip for quadcopter since it has white bg */}
+                    {product.id !== 'quadcopter-q1' && (
+                      <div
+                        className={`absolute inset-0 ${isDark
+                          ? 'bg-gradient-to-t from-dark-800 via-dark-800/30 to-transparent'
+                          : 'bg-gradient-to-t from-white via-white/20 to-transparent'
+                          }`}
+                      />
+                    )}
 
                     {/* Badge */}
                     <span
                       className={`absolute top-4 left-4 rounded-full px-3 py-1 text-[10px] font-bold tracking-[0.15em] ${isDark
-                          ? 'bg-neon/20 text-neon border border-neon/30 backdrop-blur-sm'
-                          : 'bg-emerald-100 text-emerald-700 border border-emerald-200'
+                        ? 'bg-dark-950/80 text-neon border border-neon/30 backdrop-blur-sm'
+                        : 'bg-emerald-100 text-emerald-700 border border-emerald-200'
                         }`}
                     >
                       {product.badge}
@@ -238,8 +237,8 @@ export default function FeaturedDrone() {
                           <div
                             key={spec.label}
                             className={`flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 backdrop-blur-md ${isDark
-                                ? 'bg-dark-950/70 border border-white/10'
-                                : 'bg-white/80 border border-gray-200 shadow-sm'
+                              ? 'bg-dark-950/70 border border-white/10'
+                              : 'bg-white/80 border border-gray-200 shadow-sm'
                               }`}
                           >
                             <Icon className={`h-3 w-3 ${isDark ? 'text-neon' : 'text-emerald-600'}`} />
@@ -283,8 +282,8 @@ export default function FeaturedDrone() {
                     <a
                       href="/products"
                       className={`inline-flex items-center gap-2 text-sm font-semibold transition-all duration-300 group/link ${isDark
-                          ? 'text-neon hover:text-neon-dim'
-                          : 'text-emerald-600 hover:text-emerald-700'
+                        ? 'text-neon hover:text-neon-dim'
+                        : 'text-emerald-600 hover:text-emerald-700'
                         }`}
                     >
                       View Details
@@ -307,12 +306,12 @@ export default function FeaturedDrone() {
                   {/* Background dot */}
                   <span
                     className={`block h-2.5 w-2.5 rounded-full transition-all duration-300 ${i === activeIndex
-                        ? isDark
-                          ? 'bg-neon scale-125'
-                          : 'bg-emerald-600 scale-125'
-                        : isDark
-                          ? 'bg-white/20 hover:bg-white/40'
-                          : 'bg-gray-300 hover:bg-gray-400'
+                      ? isDark
+                        ? 'bg-neon scale-125'
+                        : 'bg-emerald-600 scale-125'
+                      : isDark
+                        ? 'bg-white/20 hover:bg-white/40'
+                        : 'bg-gray-300 hover:bg-gray-400'
                       }`}
                   />
                 </button>
@@ -342,8 +341,8 @@ export default function FeaturedDrone() {
           <a
             href="/products"
             className={`inline-flex items-center gap-2 rounded-full px-8 py-4 font-semibold transition-all duration-300 ${isDark
-                ? 'bg-neon text-dark-950 hover:shadow-[0_0_30px_rgba(204,255,0,0.3)]'
-                : 'bg-emerald-600 text-white hover:bg-emerald-700 hover:shadow-[0_0_30px_rgba(16,185,129,0.3)]'
+              ? 'bg-neon text-dark-950 hover:shadow-[0_0_30px_rgba(204,255,0,0.3)]'
+              : 'bg-emerald-600 text-white hover:bg-emerald-700 hover:shadow-[0_0_30px_rgba(16,185,129,0.3)]'
               }`}
           >
             Explore Full Product Lineup

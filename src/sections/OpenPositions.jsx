@@ -15,58 +15,16 @@ import {
 const openPositions = [
   {
     id: 1,
-    title: 'AI/ML Engineer',
-    department: 'Engineering',
-    location: 'Hybrid — Mangalagiri, AP',
-    type: 'Full-Time',
-    description:
-      'Design and deploy machine learning models for drone-based image analytics, crop disease detection, and real-time object recognition across our platform.',
-    requirements: [
-      'MS/PhD in CS, EE, or related field',
-      '3+ years experience with PyTorch / TensorFlow',
-      'Experience with computer vision & edge deployment',
-    ],
-  },
-  {
-    id: 2,
-    title: 'Embedded Systems Engineer',
+    title: 'PCB Designer',
     department: 'Hardware',
-    location: 'On-Site — Mangalagiri, AP',
-    type: 'Full-Time',
-    description:
-      'Build firmware for FPGA-based drone controllers, sensor fusion modules, and custom semiconductor test platforms powering next-gen autonomous systems.',
-    requirements: [
-      'BS/MS in ECE or related field',
-      'Proficiency in C/C++, Verilog / VHDL',
-      'Experience with FPGA design & SoC architectures',
-    ],
-  },
-  {
-    id: 3,
-    title: 'Full-Stack Developer',
-    department: 'Platform',
-    location: 'Remote / Hybrid',
-    type: 'Full-Time',
-    description:
-      'Architect and ship features across our cloud-based drone intelligence dashboard — real-time telemetry visualization, analytics, and IoT integrations.',
-    requirements: [
-      'Strong proficiency with React, Node.js, and TypeScript',
-      'Experience with WebSocket / real-time data streams',
-      'Familiarity with AWS / GCP cloud services',
-    ],
-  },
-  {
-    id: 4,
-    title: 'Product Design Intern',
-    department: 'Design',
-    location: 'Remote',
+    location: 'Hybrid',
     type: 'Internship',
     description:
-      'Collaborate with engineering and product to shape the UI/UX of our platform — from wireframes to high-fidelity prototypes and design-system components.',
+      'Design and develop high-performance PCB layouts for drone flight controllers, sensor modules, and custom semiconductor test boards. Work closely with our embedded and hardware teams to bring next-gen autonomous systems from schematic to production.',
     requirements: [
-      'Currently pursuing a degree in Design, HCI, or related',
-      'Portfolio demonstrating strong visual & interaction design',
-      'Familiarity with Figma and prototyping tools',
+      'BS/MS in ECE, EE, or related field',
+      'Strong understanding of high-speed digital and mixed-signal PCB design',
+      'Knowledge of DFM/DFA principles and working with PCB fabrication houses',
     ],
   },
 ];

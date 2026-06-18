@@ -2,6 +2,7 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Play, ChevronDown } from "lucide-react";
 import { useTheme } from "../context/ThemeContext";
+import quadcopterImg from '../assets/quadcopter-prototype.png';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -47,23 +48,22 @@ export default function Hero() {
     >
       {/* Parallax Background */}
       <motion.div
-        className="absolute inset-0 z-0"
+        className="absolute inset-0 z-0 flex items-center justify-center"
         style={{ y: backgroundY }}
       >
         <img
-          src="https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=1920&q=80"
+          src={quadcopterImg}
           alt="Drone Intelligence Platform"
-          className="w-full h-[120%] object-cover"
+          className="w-full h-[120%] object-cover object-center"
         />
       </motion.div>
 
       {/* Overlay */}
       <motion.div
-        className={`absolute inset-0 z-[1] ${
-          isDark
-            ? "bg-gradient-to-b from-dark-950/80 via-dark-950/60 to-dark-950"
-            : "bg-gradient-to-b from-white/85 via-white/70 to-white/95"
-        }`}
+        className={`absolute inset-0 z-[1] ${isDark
+            ? "bg-gradient-to-b from-dark-950/90 via-dark-950/75 to-dark-950"
+            : "bg-gradient-to-b from-white/90 via-white/80 to-white/95"
+          }`}
         style={{ opacity: overlayOpacity }}
       />
 
@@ -95,11 +95,10 @@ export default function Hero() {
         >
           {/* Badge */}
           <motion.div variants={fadeSlideUp}>
-            <span className={`mb-8 inline-block rounded-full border px-4 py-1.5 mt-20 text-xs tracking-[0.2em] backdrop-blur-sm ${
-              isDark
-                ? "border-white/10 bg-white/5 text-white/60"
-                : "border-gray-300 bg-white/60 text-gray-500"
-            }`}>
+            <span className={`mb-8 inline-block rounded-full border px-4 py-1.5 mt-20 text-xs tracking-[0.2em] backdrop-blur-sm ${isDark
+                ? "border-white/15 bg-white/10 text-white/80"
+                : "border-gray-300 bg-white/70 text-gray-600"
+              }`}>
               AI-POWERED DRONE INTELLIGENCE
             </span>
           </motion.div>
@@ -120,9 +119,8 @@ export default function Hero() {
           {/* Description */}
           <motion.p
             variants={fadeSlideUp}
-            className={`mb-12 max-w-4xl text-base leading-relaxed sm:text-lg md:text-xl ${
-              isDark ? "text-white/60" : "text-gray-500"
-            }`}
+            className={`mb-12 max-w-4xl text-base leading-relaxed sm:text-lg md:text-xl ${isDark ? "text-white/80" : "text-gray-700"
+              }`}
           >
             Real-time drone monitoring, AI analytics, IoT integration,
             crop disease detection, infrastructure inspection, aerial
@@ -137,11 +135,10 @@ export default function Hero() {
           >
             <a
               href="/products#industry-solutions"
-              className={`group inline-flex items-center gap-2 rounded-full px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base font-semibold transition-all duration-300 ${
-                isDark
+              className={`group inline-flex items-center gap-2 rounded-full px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base font-semibold transition-all duration-300 ${isDark
                   ? "bg-neon text-dark-950 hover:shadow-xl hover:shadow-neon/30"
                   : "bg-emerald-600 text-white hover:bg-emerald-700 hover:shadow-xl hover:shadow-emerald-600/30"
-              }`}
+                }`}
             >
               Explore Solutions
 
@@ -162,22 +159,19 @@ export default function Hero() {
 
             <a
               href="#demo"
-              className={`group inline-flex items-center gap-3 rounded-full border px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base transition-all duration-300 ${
-                isDark
+              className={`group inline-flex items-center gap-3 rounded-full border px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base transition-all duration-300 ${isDark
                   ? "border-white/20 text-white hover:bg-white/5"
                   : "border-gray-300 text-gray-700 hover:bg-gray-100 hover:border-gray-400"
-              }`}
+                }`}
             >
-              <span className={`flex h-8 w-8 items-center justify-center rounded-full transition-colors ${
-                isDark
-                  ? "bg-white/10 group-hover:bg-neon/20"
-                  : "bg-emerald-50 group-hover:bg-emerald-100"
-              }`}>
+              <span className={`flex h-8 w-8 items-center justify-center rounded-full transition-colors ${isDark
+                  ? "bg-neon group-hover:bg-neon/80"
+                  : "bg-emerald-600 group-hover:bg-emerald-700"
+                }`}>
                 <Play
                   size={14}
-                  className={`ml-0.5 transition-colors ${
-                    isDark ? "group-hover:text-neon" : "text-emerald-600"
-                  }`}
+                  className={`ml-0.5 transition-colors ${isDark ? "text-dark-950" : "text-white"
+                    }`}
                 />
               </span>
 

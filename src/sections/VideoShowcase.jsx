@@ -1,13 +1,32 @@
 import { motion, useInView } from "framer-motion";
-import { Play } from "lucide-react";
-import { useRef } from "react";
+import { Play, Pause } from "lucide-react";
+import { useRef, useState } from "react";
 import { useTheme } from "../context/ThemeContext";
+
+const videoSrc = "https://res.cloudinary.com/dil1zgzdb/video/upload/Video-project1_kapelv.mp4";
 
 export default function VideoShowcase() {
   const sectionRef = useRef(null);
+  const videoRef = useRef(null);
   const { theme } = useTheme();
   const isDark = theme === "dark";
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  const togglePlay = () => {
+    if (!videoRef.current) return;
+    if (isPlaying) {
+      videoRef.current.pause();
+      setIsPlaying(false);
+    } else {
+      videoRef.current.play();
+      setIsPlaying(true);
+    }
+  };
+
+  const handleVideoEnd = () => {
+    setIsPlaying(false);
+  };
 
   return (
     <section id="demo" className={`relative py-16 md:py-20 overflow-hidden ${isDark ? 'bg-dark-900' : 'bg-[#f5f5f7]'
@@ -46,44 +65,41 @@ export default function VideoShowcase() {
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
           className={`max-w-5xl mx-auto aspect-video rounded-2xl overflow-hidden relative group cursor-pointer ${!isDark ? 'shadow-xl' : ''
             }`}
+          onClick={togglePlay}
         >
-          {/* Background Thumbnail */}
-          <img
-            src="https://images.unsplash.com/photo-1527977966376-1c8408f9f108?w=1400&q=80"
-            alt="AeroVault Phantom X1 in flight"
+          {/* Video Element */}
+          <video
+            ref={videoRef}
+            src={videoSrc}
+            onEnded={handleVideoEnd}
+            playsInline
             className="absolute inset-0 w-full h-full object-cover"
           />
 
-          {/* Dark Overlay */}
-          <div className={`absolute inset-0 transition-colors duration-500 ${isDark
+          {/* Dark Overlay - fades out when playing */}
+          <div
+            className={`absolute inset-0 transition-all duration-500 ${isPlaying ? 'opacity-0 pointer-events-none' : ''} ${isDark
               ? 'bg-dark-950/40 group-hover:bg-dark-950/50'
               : 'bg-black/25 group-hover:bg-black/35'
-            }`} />
+              }`}
+          />
 
-          {/* Centered Play Button */}
-          <div className="absolute inset-0 flex items-center justify-center">
+          {/* Centered Play/Pause Button */}
+          <div
+            className={`absolute inset-0 flex items-center justify-center transition-opacity duration-500 ${isPlaying ? 'opacity-0 group-hover:opacity-100' : 'opacity-100'
+              }`}
+          >
             <div className="relative flex items-center justify-center">
-              {/* Pulse Rings */}
-              <span className={`absolute w-24 h-24 rounded-full border pulse-ring ${isDark ? 'border-neon/30' : 'border-emerald-400/40'
-                }`} style={{ animationDelay: "0s" }} />
-              <span className={`absolute w-24 h-24 rounded-full border pulse-ring ${isDark ? 'border-neon/20' : 'border-emerald-400/30'
-                }`} style={{ animationDelay: "0.8s" }} />
-              <span className={`absolute w-24 h-24 rounded-full border pulse-ring ${isDark ? 'border-neon/10' : 'border-emerald-400/20'
-                }`} style={{ animationDelay: "1.6s" }} />
-
-              {/* Outer Ring */}
-              <div className={`w-24 h-24 rounded-full border-2 flex items-center justify-center transition-transform duration-300 group-hover:scale-110 ${isDark ? 'border-neon/50' : 'border-emerald-400/60'
+              {/* Play/Pause Circle */}
+              <div className={`w-16 h-16 rounded-full flex items-center justify-center shadow-lg transition-transform duration-300 group-hover:scale-110 ${isDark
+                ? 'bg-neon shadow-neon/30'
+                : 'bg-emerald-600 shadow-emerald-600/30'
                 }`}>
-                {/* Inner Circle */}
-                <div className={`w-16 h-16 rounded-full flex items-center justify-center shadow-lg ${isDark
-                    ? 'bg-neon shadow-neon/30'
-                    : 'bg-emerald-600 shadow-emerald-600/30'
-                  }`}>
-                  <Play className={`w-7 h-7 ml-1 ${isDark
-                      ? 'text-dark-950 fill-dark-950'
-                      : 'text-white fill-white'
-                    }`} />
-                </div>
+                {isPlaying ? (
+                  <Pause className={`w-7 h-7 ${isDark ? 'text-dark-950 fill-dark-950' : 'text-white fill-white'}`} />
+                ) : (
+                  <Play className={`w-7 h-7 ml-1 ${isDark ? 'text-dark-950 fill-dark-950' : 'text-white fill-white'}`} />
+                )}
               </div>
             </div>
           </div>
