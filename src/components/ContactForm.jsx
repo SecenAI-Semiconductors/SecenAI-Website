@@ -5,7 +5,9 @@ import { buildSubmissionPayload } from '../utils/emailTemplate';
 // ─── Web3Forms Access Key ───────────────────────────────────────────
 // Get your free access key at https://web3forms.com
 // Then set VITE_WEB3FORMS_ACCESS_KEY in your .env file
-const WEB3FORMS_ACCESS_KEY = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || 'a060d378-febe-4c21-ab3f-2ab7bf150341';
+let WEB3FORMS_ACCESS_KEY = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || 'a060d378-febe-4c21-ab3f-2ab7bf150341';
+// Strip surrounding quotes if present (handles env vars wrapped in quotes)
+WEB3FORMS_ACCESS_KEY = WEB3FORMS_ACCESS_KEY.replace(/^['"]|['"]$/g, '');
 
 const ContactForm = () => {
   const { theme } = useTheme();
