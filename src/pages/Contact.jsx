@@ -20,6 +20,29 @@ export default function Contact() {
         transition: 'background-color 0.4s ease, color 0.4s ease',
       }}
     >
+      {/* Mobile responsive overrides */}
+      <style>{`
+        @media (max-width: 768px) {
+          .contact-body {
+            grid-template-columns: 1fr !important;
+            gap: 0 !important;
+          }
+          /* Unwrap the left column so children become grid items */
+          .cb-left {
+            display: contents !important;
+          }
+          .cb-intro { order: 1; margin-bottom: 24px; }
+          .cb-form  { order: 2; margin-bottom: 40px; }
+          .cb-hq    { order: 3; margin-bottom: 24px; }
+          .cb-email { order: 4; margin-bottom: 0; }
+          .cb-form > div {
+            max-width: 100% !important;
+            padding: clamp(20px, 4vw, 40px) !important;
+            box-sizing: border-box !important;
+          }
+        }
+      `}</style>
+
       {/* Container */}
       <div style={{ maxWidth: '1152px', margin: '0 auto' }}>
 
@@ -75,22 +98,24 @@ export default function Contact() {
 
         {/* 2. Body - Two Column Grid */}
         <div
+          className="contact-body"
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(2, 1fr)',
-            gap: '96px',
+            gridTemplateColumns: '1fr 1fr',
+            gap: '0 96px',
             alignItems: 'start',
           }}
         >
 
-          {/* Left Column - Get In Touch Info */}
+          {/* ── Left Column (single item on desktop, unwrapped on mobile) ── */}
           <motion.div
+            className="cb-left"
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            {/* Get in Touch heading */}
-            <div style={{ marginBottom: '48px' }}>
+            {/* Get in Touch intro */}
+            <div className="cb-intro" style={{ marginBottom: '30px' }}>
               <h2
                 style={{
                   fontFamily: "'Outfit', sans-serif",
@@ -114,7 +139,7 @@ export default function Contact() {
             </div>
 
             {/* Headquarters */}
-            <div style={{ marginBottom: '40px' }}>
+            <div className="cb-hq" style={{ marginBottom: '24px' }}>
               <h3
                 style={{
                   fontFamily: "'Outfit', sans-serif",
@@ -142,7 +167,7 @@ export default function Contact() {
             </div>
 
             {/* Email */}
-            <div>
+            <div className="cb-email">
               <h3
                 style={{
                   fontFamily: "'Outfit', sans-serif",
@@ -170,8 +195,9 @@ export default function Contact() {
             </div>
           </motion.div>
 
-          {/* Right Column - Contact Form */}
+          {/* ── Contact Form (right column on desktop) ── */}
           <motion.div
+            className="cb-form"
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
