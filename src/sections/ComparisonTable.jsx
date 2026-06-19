@@ -110,12 +110,12 @@ export default function ComparisonTable({ isDark }) {
           />
         </motion.div>
 
-        {/* Table */}
+        {/* ── Desktop Table (hidden on mobile) ── */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="overflow-x-auto"
+          className="hidden md:block"
         >
           <div
             className={`rounded-2xl overflow-hidden ${isDark
@@ -123,7 +123,7 @@ export default function ComparisonTable({ isDark }) {
                 : 'border border-gray-200 shadow-lg'
               }`}
           >
-            <table className="w-full min-w-[500px]">
+            <table className="w-full">
               {/* Table Head */}
               <thead>
                 <tr className={isDark ? 'bg-dark-800' : 'bg-gray-50'}>
@@ -174,6 +174,98 @@ export default function ComparisonTable({ isDark }) {
                 ))}
               </tbody>
             </table>
+          </div>
+        </motion.div>
+
+        {/* ── Mobile Table with sticky spec column (visible only on mobile) ── */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="md:hidden"
+        >
+          {/* Scroll hint */}
+          <div className={`flex items-center justify-end gap-2 mb-3 text-xs ${isDark ? 'text-white/30' : 'text-gray-400'}`}>
+            <span>Swipe to compare</span>
+            <span>→</span>
+          </div>
+
+          <div
+            className={`rounded-2xl overflow-hidden ${isDark
+                ? 'border border-white/5'
+                : 'border border-gray-200 shadow-lg'
+              }`}
+          >
+            <div className="overflow-x-auto">
+              <table style={{ width: '100%', minWidth: '500px', borderCollapse: 'collapse' }}>
+                {/* Table Head */}
+                <thead>
+                  <tr className={isDark ? 'bg-dark-800' : 'bg-gray-50'}>
+                    <th
+                      className={`text-left py-4 px-4 text-xs font-semibold tracking-wider uppercase ${isDark ? 'text-white/30 bg-dark-800' : 'text-gray-400 bg-gray-50'}`}
+                      style={{
+                        position: 'sticky',
+                        left: 0,
+                        zIndex: 2,
+                        minWidth: '130px',
+                        boxShadow: isDark ? '2px 0 8px rgba(0,0,0,0.4)' : '2px 0 8px rgba(0,0,0,0.06)',
+                      }}
+                    >
+                      Specification
+                    </th>
+                    {modelNames.map((name) => (
+                      <th
+                        key={name}
+                        className={`text-center py-4 px-5 font-[Outfit] text-sm font-semibold whitespace-nowrap ${isDark ? 'text-white' : 'text-[#1e1b4b]'}`}
+                        style={{ minWidth: '170px' }}
+                      >
+                        {name}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+
+                {/* Table Body */}
+                <tbody>
+                  {comparisonSpecs.map((spec, rowIdx) => {
+                    const rowBg = isDark
+                      ? (rowIdx % 2 === 0 ? 'bg-dark-950/50' : 'bg-dark-900/50')
+                      : (rowIdx % 2 === 0 ? 'bg-white' : 'bg-gray-50/50');
+                    // Sticky cell needs an explicit bg matching the row
+                    const stickyBg = isDark
+                      ? (rowIdx % 2 === 0 ? '#050505' : '#0a0a0a')
+                      : (rowIdx % 2 === 0 ? '#ffffff' : '#fafafa');
+
+                    return (
+                      <tr key={spec.key} className={rowBg}>
+                        <td
+                          className={`py-3.5 px-4 text-xs font-medium ${isDark ? 'text-white/60' : 'text-gray-600'}`}
+                          style={{
+                            position: 'sticky',
+                            left: 0,
+                            zIndex: 1,
+                            backgroundColor: stickyBg,
+                            minWidth: '130px',
+                            boxShadow: isDark ? '2px 0 8px rgba(0,0,0,0.4)' : '2px 0 8px rgba(0,0,0,0.06)',
+                          }}
+                        >
+                          {spec.label}
+                        </td>
+                        {modelNames.map((name) => (
+                          <td
+                            key={name}
+                            className={`py-3.5 px-5 text-center text-sm ${isDark ? 'text-white/50' : 'text-gray-500'}`}
+                            style={{ minWidth: '170px' }}
+                          >
+                            {comparisonData[name][spec.key]}
+                          </td>
+                        ))}
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
           </div>
         </motion.div>
 
