@@ -18,12 +18,12 @@ const categories = [
     description: 'Automate inspection of buildings, bridges, power lines, roads, and solar farms using AI-powered defect detection and high-resolution aerial imagery.',
   },
   {
-  title: 'Custom Flight Controller',
-  icon: Route,
-  image: 'https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=800&q=80',
-  description:
-    'Create, manage, and execute autonomous drone missions using a custom flight controller with waypoint planning, route optimization, telemetry tracking, and real-time mission monitoring.',
-},
+    title: 'Custom Flight Controller',
+    icon: Route,
+    image: 'https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=800&q=80',
+    description:
+      'Create, manage, and execute autonomous drone missions using a custom flight controller with waypoint planning, route optimization, telemetry tracking, and real-time mission monitoring.',
+  },
 ];
 
 const containerVariants = {
@@ -72,9 +72,8 @@ export default function DroneCategories() {
   return (
     <section
       ref={sectionRef}
-      className={`relative pt-20 pb-16 md:pt-24 md:pb-20 ${
-        isDark ? 'bg-dark-950' : 'bg-[#f9fafb]'
-      }`}
+      className={`relative pt-20 pb-16 md:pt-24 md:pb-20 ${isDark ? 'bg-dark-950' : 'bg-[#f9fafb]'
+        }`}
     >
       {/* Header */}
       <motion.div
@@ -92,9 +91,8 @@ export default function DroneCategories() {
         </motion.h2>
 
         <motion.p
-          className={`mx-auto mt-6 max-w-4xl text-center text-lg leading-relaxed ${
-            isDark ? 'text-white/50' : 'text-gray-500'
-          }`}
+          className={`mx-auto mt-6 max-w-4xl text-center text-lg leading-relaxed ${isDark ? 'text-white/50' : 'text-gray-500'
+            }`}
           variants={headingVariants}
         >
           Empowering agriculture, infrastructure, and smart city operations
@@ -104,9 +102,8 @@ export default function DroneCategories() {
         </motion.p>
 
         <motion.div
-          className={`mx-auto mt-8 h-0.5 w-24 rounded-full ${
-            isDark ? 'bg-neon' : 'bg-emerald-500'
-          }`}
+          className={`mx-auto mt-8 h-0.5 w-24 rounded-full ${isDark ? 'bg-neon' : 'bg-emerald-500'
+            }`}
           variants={headingVariants}
         />
       </motion.div>
@@ -135,11 +132,10 @@ export default function DroneCategories() {
           return (
             <motion.div
               key={category.title}
-              className={`group w-full md:w-[calc(50%_-_1rem)] lg:w-[calc(33.333%_-_1.333rem)] overflow-hidden rounded-2xl ${
-                isDark
-                  ? 'glass-card'
-                  : 'bg-white border border-gray-200 shadow-sm hover:shadow-lg hover:border-emerald-200'
-              }`}
+              className={`group w-full md:w-[calc(50%_-_1rem)] lg:w-[calc(33.333%_-_1.333rem)] overflow-hidden rounded-2xl ${isDark
+                ? 'glass-card'
+                : 'bg-white border border-gray-200 shadow-sm hover:shadow-lg hover:border-emerald-200'
+                }`}
               variants={cardVariants}
               whileHover={{ y: -8 }}
               transition={{
@@ -159,29 +155,25 @@ export default function DroneCategories() {
 
               {/* Content */}
               <div className="p-8">
-                <div className={`mb-4 flex h-12 w-12 items-center justify-center rounded-full ${
-                  isDark ? 'bg-neon/10' : 'bg-emerald-50'
-                }`}>
+                <div className={`mb-4 flex h-12 w-12 items-center justify-center rounded-full ${isDark ? 'bg-neon/10' : 'bg-emerald-50'
+                  }`}>
                   <Icon className={`h-5 w-5 ${isDark ? 'text-neon' : 'text-emerald-600'}`} />
                 </div>
 
-                <h3 className={`font-[Outfit] text-xl font-semibold ${
-                  isDark ? 'text-white' : 'text-[#1e1b4b]'
-                }`}>
+                <h3 className={`font-[Outfit] text-xl font-semibold ${isDark ? 'text-white' : 'text-[#1e1b4b]'
+                  }`}>
                   {category.title}
                 </h3>
 
-                <p className={`mt-3 text-sm leading-relaxed ${
-                  isDark ? 'text-white/50' : 'text-gray-500'
-                }`}>
+                <p className={`mt-3 text-sm leading-relaxed ${isDark ? 'text-white/50' : 'text-gray-500'
+                  }`}>
                   {category.description}
                 </p>
 
                 <a
                   href="/products#industry-solutions"
-                  className={`mt-6 inline-block text-sm font-medium transition-all hover:tracking-wider ${
-                    isDark ? 'text-neon' : 'text-emerald-600'
-                  }`}
+                  className={`mt-6 inline-block text-sm font-medium transition-all hover:tracking-wider ${isDark ? 'text-neon' : 'text-emerald-600'
+                    }`}
                 >
                   Explore Solution →
                 </a>

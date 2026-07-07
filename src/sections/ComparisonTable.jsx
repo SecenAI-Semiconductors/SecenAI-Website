@@ -25,10 +25,10 @@ const comparisonData = {
     endurance: '30-35 min',
 
     battery: '10,000 mAh',
-    camera: 'Modular payload bay — swappable sensors',
+    camera: 'Modular payload bay with swappable sensors',
     obstacle: '360° LiDAR',
     weather: 'IP54',
-    redundancy: 'No — requires all 4 motors',
+    redundancy: 'No, requires all 4 motors',
     price: 'Professional',
   },
   'SecenAI Hexacopter': {
@@ -37,10 +37,10 @@ const comparisonData = {
     endurance: '20-25 min',
 
     battery: '16,000 mAh',
-    camera: 'Dual-gimbal — supports heavy sensors & LiDAR',
+    camera: 'Dual-gimbal, supports heavy sensors & LiDAR',
     obstacle: '360° LiDAR + downward sonar',
     weather: 'IP55',
-    redundancy: 'Yes — safe single-motor failure',
+    redundancy: 'Yes, safe single-motor failure',
     price: 'Enterprise',
   },
 };

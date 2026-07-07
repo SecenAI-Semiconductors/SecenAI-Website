@@ -7,21 +7,21 @@ const testimonials = [
   {
     name: "Rajesh Patel",
     initials: "RP",
-    company: "Pilot Partner — Precision Farming",
+    company: "Pilot Partner, Precision Farming",
     review:
       "We were among the first farms to test SecenAI's Quadcopter for crop scouting. Even in the early prototype stage, the multispectral data quality impressed us. The team is incredibly responsive and the technology has real potential to change how small farms operate.",
   },
   {
     name: "Ananya Sharma",
     initials: "AS",
-    company: "Beta Tester — Infrastructure",
+    company: "Beta Tester, Infrastructure",
     review:
-      "I got a hands-on demo of SecenAI's Hexacopter during their beta program. The AI-based defect detection is genuinely innovative — it flagged surface cracks on a test structure that our team had overlooked. Excited to see where this goes as they scale.",
+      "I got a hands-on demo of SecenAI's Hexacopter during their beta program. The AI-based defect detection is genuinely innovative. It flagged surface cracks on a test structure that our team had overlooked. Excited to see where this goes as they scale.",
   },
   {
     name: "Dr. Vikram Rao",
     initials: "VR",
-    company: "Industry Advisor — Smart Cities",
+    company: "Industry Advisor, Smart Cities",
     review:
       "As an advisor, I've watched SecenAI evolve from an idea to a working platform. Their custom flight controller and real-time analytics dashboard are impressive for a team this early. This is a startup worth keeping an eye on.",
   },

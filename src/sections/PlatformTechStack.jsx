@@ -94,7 +94,7 @@ export default function PlatformTechStack({ isDark }) {
             className={`mx-auto mt-6 max-w-3xl text-lg leading-relaxed ${isDark ? 'text-white/50' : 'text-gray-500'}`}
             variants={fadeUp}
           >
-            The intelligent backbone powering every SecenAI product — from
+            The intelligent backbone powering every SecenAI product, from
             edge AI inference to enterprise-grade analytics.
           </motion.p>
 

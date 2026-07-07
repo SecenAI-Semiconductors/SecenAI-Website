@@ -45,7 +45,7 @@ const values = [
     icon: Target,
     title: 'Precision First',
     description:
-      'Every solution we build is designed for accuracy — from seed quality prediction to crop health detection, we ensure data-driven precision at every step.',
+      'Every solution we build is designed for accuracy. From seed quality prediction to crop health detection, we ensure data-driven precision at every step.',
   },
   {
     icon: Leaf,
@@ -63,7 +63,7 @@ const values = [
     icon: Lightbulb,
     title: 'Continuous Innovation',
     description:
-      "We push the boundaries of agricultural technology — combining AI, drone intelligence, and IoT to solve tomorrow's food security challenges today.",
+      "We push the boundaries of agricultural technology by combining AI, drone intelligence, and IoT to solve tomorrow's food security challenges today.",
   },
 ];
 
@@ -150,7 +150,7 @@ export default function About() {
                 At SecenAI, we're building the future of agricultural management.
                 Our AI-powered Life Cycle Assure platform integrates drone intelligence,
                 IoT sensors, and machine learning to empower farmers and agribusinesses
-                with actionable, data-driven insights — from seed to shelf.
+                with actionable, data-driven insights, from seed to shelf.
               </motion.p>
 
               {/* Stats row */}
@@ -244,7 +244,7 @@ export default function About() {
                   }}
                 >
                   <span className="text-white text-xs font-medium tracking-wide opacity-80">
-                    🏆 Entrepreneurship Bootcamp 1.0 — Grand Demo Day
+                    🏆 Entrepreneurship Bootcamp 1.0: Grand Demo Day
                   </span>
                 </div>
               </div>

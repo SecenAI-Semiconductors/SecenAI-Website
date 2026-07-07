@@ -64,8 +64,8 @@ export default function ProductsCTA({ isDark }) {
             isDark ? 'text-white/40' : 'text-gray-500'
           }`}
         >
-          Talk to our solutions team to find the right configuration —
-          Quadcopter or Hexacopter — for your specific industry, scale,
+          Talk to our solutions team to find the right configuration,
+          whether Quadcopter or Hexacopter, for your specific industry, scale,
           and mission requirements.
         </p>
 

@@ -68,7 +68,7 @@ const leaders = [
   },
   {
     name: 'Dr. Vinod Kumar Ancha',
-    role: 'Co Founder',
+    role: 'Edge Ai Lead',
     qualifications: 'Assistant Professor (CS & AI)',
     linkedin: 'https://www.linkedin.com/in/dr-vinod-kumar-ancha-22dec2025',
     avatar: VinodImg,
@@ -95,7 +95,7 @@ const leaders = [
   },
   {
     name: 'Sabba Dakshish',
-    role: 'Drone Intern',
+    role: 'Design Lead',
     qualifications: 'B.Tech in Aerospace Engineering',
     linkedin: 'https://www.linkedin.com/in/sabba-dakshish-926a1a214',
     avatar: DakshishImg,
@@ -104,7 +104,7 @@ const leaders = [
   },
   {
     name: 'Gajula Prateek',
-    role: 'Drone Intern',
+    role: 'Product Lead',
     qualifications: 'B.Tech in  Aerospace Engineering',
     linkedin: 'http://linkedin.com/in/prateek-gajula-a0339b321',
     avatar: PrateekImg,
@@ -113,7 +113,7 @@ const leaders = [
   },
   {
     name: 'Sai Shivaram Chary Medoju',
-    role: 'Drone Intern',
+    role: 'Technical Lead',
     qualifications: 'B.Tech in Aerospace Engineering',
     linkedin: 'https://www.linkedin.com/in/sai-shivaram-chary-medoju-7a657a275/',
     avatar: ShivaImg,
@@ -122,7 +122,7 @@ const leaders = [
   },
   {
     name: 'Borra Sumanth Raj',
-    role: 'Drone Intern',
+    role: 'Systems Lead',
     qualifications: 'B.Tech in  Aerospace Engineering',
     linkedin: 'https://www.linkedin.com/in/borra-sumanth-raj',
     avatar: SumanthImg,
@@ -131,7 +131,7 @@ const leaders = [
   },
   {
     name: 'K Akhil Varma',
-    role: 'Development Intern',
+    role: 'Development Lead',
     qualifications: 'B.Tech in Information Technology',
     linkedin: 'https://www.linkedin.com/in/akhil-varma-56a780292/',
     avatar: Akhil,
@@ -140,8 +140,8 @@ const leaders = [
   },
   {
     name: 'N Sai Kishore',
-    role: 'Development Intern',
-    qualifications: 'B.Tech in CSD',
+    role: 'Software Lead',
+    qualifications: 'B.Tech in Computer Science and Engineering',
     linkedin: 'https://www.linkedin.com/in/saikishore30',
     avatar: KishoreImg,
     accent: '#8b5cf6',
