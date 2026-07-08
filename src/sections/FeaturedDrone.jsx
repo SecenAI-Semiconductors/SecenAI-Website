@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect, useCallback } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
-import { Package, Clock, Navigation, Battery, ArrowRight } from 'lucide-react';
+import { Package, Clock, Navigation, Battery, ArrowRight, Plane } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 import quadcopterImg from '../assets/quadcopter-prototype.png';
 
@@ -27,7 +27,7 @@ const products = [
     tagline: 'Heavy-Lift 6-Rotor Platform',
     description:
       'A robust 6-rotor heavy-lift drone engineered for demanding missions requiring superior payload capacity and rock-solid stability.',
-    image: 'https://images.unsplash.com/photo-1527977966376-1c8408f9f108?w=900&q=80',
+    image: null,
     badge: 'HEXACOPTER',
     specs: [
       { label: 'Payload', value: '12 kg', icon: Package },
@@ -173,7 +173,7 @@ export default function FeaturedDrone() {
             variants={fadeUp}
             custom={0.2}
           >
-            Two purpose-built autonomous platforms — a precision Quadcopter
+            Two purpose-built autonomous platforms: a precision Quadcopter
             for agile operations and a heavy-lift Hexacopter for demanding missions.
           </motion.p>
         </div>
@@ -203,14 +203,21 @@ export default function FeaturedDrone() {
                 >
                   {/* Image */}
                   <div className="relative overflow-hidden h-[300px] sm:h-[380px]">
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      className={`w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.5] ${product.id === 'quadcopter-q1' ? 'scale-[1.4]' : ''
-                        }`}
-                    />
+                    {product.image ? (
+                      <img
+                        src={product.image}
+                        alt={product.name}
+                        className={`w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.5] ${product.id === 'quadcopter-q1' ? 'scale-[1.4]' : ''
+                          }`}
+                      />
+                    ) : (
+                      <div className={`w-full h-full flex flex-col items-center justify-center ${isDark ? 'bg-dark-800' : 'bg-gray-100'}`}>
+                        <Plane className={`h-16 w-16 mb-3 ${isDark ? 'text-white/15' : 'text-gray-300'}`} />
+                        <span className={`text-sm font-medium tracking-wider ${isDark ? 'text-white/20' : 'text-gray-400'}`}>Image Coming Soon</span>
+                      </div>
+                    )}
                     {/* Overlay gradient — skip for quadcopter since it has white bg */}
-                    {product.id !== 'quadcopter-q1' && (
+                    {product.image && product.id !== 'quadcopter-q1' && (
                       <div
                         className={`absolute inset-0 ${isDark
                           ? 'bg-gradient-to-t from-dark-800 via-dark-800/30 to-transparent'

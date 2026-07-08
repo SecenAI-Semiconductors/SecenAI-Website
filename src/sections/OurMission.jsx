@@ -48,7 +48,7 @@ const pillars = [
     icon: Rocket,
     title: 'Our Mission',
     description:
-      'To empower the agricultural ecosystem with intelligent, AI-driven solutions that optimize every stage of crop lifecycle — from seed quality assessment to market distribution — ensuring food security and sustainable farming for future generations.',
+      'To empower the agricultural ecosystem with intelligent, AI-driven solutions that optimize every stage of crop lifecycle, from seed quality assessment to market distribution, ensuring food security and sustainable farming for future generations.',
     accent: '#8b5cf6',
   },
   {
@@ -62,7 +62,7 @@ const pillars = [
     icon: Heart,
     title: 'Our Values',
     description:
-      'Innovation, sustainability, and farmer empowerment are at the heart of everything we do. We believe technology should serve people — bridging the gap between advanced AI research and real-world agricultural impact.',
+      'Innovation, sustainability, and farmer empowerment are at the heart of everything we do. We believe technology should serve people by bridging the gap between advanced AI research and real-world agricultural impact.',
     accent: '#10b981',
   },
   {

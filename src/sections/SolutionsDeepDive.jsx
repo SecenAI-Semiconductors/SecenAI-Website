@@ -58,7 +58,7 @@ const solutions = [
     capabilities: [
       { icon: Navigation, text: 'Drag-and-drop waypoint mission planning interface' },
       { icon: Zap, text: 'AI-optimized flight routes for battery efficiency' },
-      { icon: Wifi, text: 'Real-time telemetry — altitude, speed, battery, GPS' },
+      { icon: Wifi, text: 'Real-time telemetry including altitude, speed, battery, and GPS' },
       { icon: Shield, text: 'Geofencing, no-fly zones, and automated RTH failsafes' },
       { icon: Layers, text: 'Multi-drone fleet coordination & swarm management' },
       { icon: BarChart3, text: 'Post-flight analytics & mission performance reports' },

@@ -31,20 +31,20 @@ export default function ProductsHero({ isDark }) {
     >
       {/* Parallax Background */}
       <motion.div className="absolute inset-0 z-0" style={{ y: bgY }}>
-        <img
-          src="https://images.unsplash.com/photo-1527977966376-1c8408f9f108?w=1920&q=80"
-          alt="SecenAI Products"
-          className="w-full h-[120%] object-cover"
+        <div
+          className={`w-full h-[120%] ${isDark
+            ? 'bg-gradient-to-br from-dark-950 via-dark-900 to-dark-950'
+            : 'bg-gradient-to-br from-gray-100 via-white to-gray-50'
+            }`}
         />
       </motion.div>
 
       {/* Overlay */}
       <div
-        className={`absolute inset-0 z-[1] ${
-          isDark
-            ? 'bg-gradient-to-b from-dark-950/85 via-dark-950/70 to-dark-950'
-            : 'bg-gradient-to-b from-white/90 via-white/75 to-white'
-        }`}
+        className={`absolute inset-0 z-[1] ${isDark
+          ? 'bg-gradient-to-b from-dark-950/85 via-dark-950/70 to-dark-950'
+          : 'bg-gradient-to-b from-white/90 via-white/75 to-white'
+          }`}
       />
 
       {/* Grid */}
@@ -74,11 +74,10 @@ export default function ProductsHero({ isDark }) {
         >
           <motion.div variants={fadeUp}>
             <span
-              className={`mb-8 inline-block rounded-full border px-4 py-1.5 mt-20 text-xs tracking-[0.2em] backdrop-blur-sm ${
-                isDark
-                  ? 'border-white/10 bg-white/5 text-white/60'
-                  : 'border-gray-300 bg-white/60 text-gray-500'
-              }`}
+              className={`mb-8 inline-block rounded-full border px-4 py-1.5 mt-20 text-xs tracking-[0.2em] backdrop-blur-sm ${isDark
+                ? 'border-white/10 bg-white/5 text-white/60'
+                : 'border-gray-300 bg-white/60 text-gray-500'
+                }`}
             >
               PRODUCT ECOSYSTEM
             </span>
@@ -98,23 +97,20 @@ export default function ProductsHero({ isDark }) {
 
           <motion.p
             variants={fadeUp}
-            className={`mb-12 max-w-3xl text-lg leading-relaxed md:text-xl ${
-              isDark ? 'text-white/60' : 'text-gray-500'
-            }`}
+            className={`mb-12 max-w-3xl text-lg leading-relaxed md:text-xl ${isDark ? 'text-white/60' : 'text-gray-500'
+              }`}
           >
-            Two versatile autonomous drone platforms — a precision Quadcopter
-            and a heavy-lift Hexacopter — engineered to power any mission
-            across agriculture, infrastructure, security, and beyond.
+            Versatile autonomous drone platforms, including a precision Quadcopter and a heavy-lift Hexacopter, engineered to power missions across agriculture, infrastructure, security, and beyond.
+
           </motion.p>
 
           <motion.div variants={fadeUp} className="flex flex-col items-center gap-4 sm:flex-row">
             <a
               href="#product-lineup"
-              className={`group inline-flex items-center gap-2 rounded-full px-8 py-4 text-base font-semibold transition-all duration-300 ${
-                isDark
-                  ? 'bg-neon text-dark-950 hover:shadow-xl hover:shadow-neon/30'
-                  : 'bg-emerald-600 text-white hover:bg-emerald-700 hover:shadow-xl hover:shadow-emerald-600/30'
-              }`}
+              className={`group inline-flex items-center gap-2 rounded-full px-8 py-4 text-base font-semibold transition-all duration-300 ${isDark
+                ? 'bg-neon text-dark-950 hover:shadow-xl hover:shadow-neon/30'
+                : 'bg-emerald-600 text-white hover:bg-emerald-700 hover:shadow-xl hover:shadow-emerald-600/30'
+                }`}
             >
               Explore Products
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -122,11 +118,10 @@ export default function ProductsHero({ isDark }) {
 
             <a
               href="#comparison"
-              className={`group inline-flex items-center gap-2 rounded-full border px-8 py-4 text-base transition-all duration-300 ${
-                isDark
-                  ? 'border-white/20 text-white hover:bg-white/5'
-                  : 'border-gray-300 text-gray-700 hover:bg-gray-100 hover:border-gray-400'
-              }`}
+              className={`group inline-flex items-center gap-2 rounded-full border px-8 py-4 text-base transition-all duration-300 ${isDark
+                ? 'border-white/20 text-white hover:bg-white/5'
+                : 'border-gray-300 text-gray-700 hover:bg-gray-100 hover:border-gray-400'
+                }`}
             >
               Compare Models
             </a>

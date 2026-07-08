@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import {
   Package, Clock, Navigation, Battery,
-  ArrowRight, CheckCircle2,
+  ArrowRight, CheckCircle2, Plane,
 } from 'lucide-react';
 import quadcopterImg from '../assets/quadcopter-prototype.png';
 
@@ -16,7 +16,7 @@ const products = [
     name: 'SecenAI Quadcopter',
     tagline: 'Versatile 4-Rotor Platform',
     description:
-      'A highly agile and precise 4-rotor autonomous drone built for versatility. From precision agriculture and infrastructure inspection to surveillance, surveying, and emergency response — the Quadcopter adapts to any mission profile with rapid deployment and exceptional maneuverability.',
+      'A highly agile and precise 4-rotor autonomous drone built for versatility. From precision agriculture and infrastructure inspection to surveillance, surveying, and emergency response, the Quadcopter adapts to any mission profile with rapid deployment and exceptional maneuverability.',
     image: quadcopterImg,
     badge: 'QUADCOPTER',
     specs: [
@@ -27,7 +27,7 @@ const products = [
     useCases: ['Agriculture', 'Inspection', 'Surveillance', 'Surveying', 'Mapping', 'Emergency Response'],
     highlights: [
       'Lightweight & highly maneuverable airframe',
-      'Modular payload bay — swap sensors in seconds',
+      'Modular payload bay that lets you swap sensors in seconds',
       'U-blox GPS for centimeter-level positioning',
       'IP54 all-weather flight capability',
       'Automated return-to-home & failsafe protocols',
@@ -39,8 +39,8 @@ const products = [
     name: 'SecenAI Hexacopter',
     tagline: 'Heavy-Lift 6-Rotor Platform',
     description:
-      'A robust 6-rotor heavy-lift drone engineered for demanding missions requiring superior payload capacity and rock-solid stability. Whether carrying advanced LiDAR sensors, multispectral cameras, spray systems, or delivery payloads — the Hexacopter delivers unmatched performance in any industry.',
-    image: 'https://images.unsplash.com/photo-1527977966376-1c8408f9f108?w=900&q=80',
+      'A robust 6-rotor heavy-lift drone engineered for demanding missions requiring superior payload capacity and rock-solid stability. Whether carrying advanced LiDAR sensors, multispectral cameras, spray systems, or delivery payloads, the Hexacopter delivers unmatched performance in any industry.',
+    image: null,
     badge: 'HEXACOPTER',
     specs: [
       { label: 'Payload', value: '12 kg', icon: Package },
@@ -50,7 +50,7 @@ const products = [
     useCases: ['Heavy Payload', 'Crop Spraying', 'LiDAR Mapping', 'Delivery', 'Industrial', 'Defense'],
     highlights: [
       'Heavy-lift capacity up to 12 kg payload',
-      'Redundant 6-motor design — safe single-motor failure',
+      'Redundant 6-motor design with safe single-motor failure',
       'Ultra-stable platform for precision sensor work',
       'Dual-battery hot-swap for extended missions',
       'IP55 weather resistance rating',
@@ -101,14 +101,21 @@ function ProductCard({ product, isDark, index }) {
           className={`overflow-hidden rounded-2xl ${isDark ? '' : 'shadow-xl'
             }`}
         >
-          <img
-            src={product.image}
-            alt={product.name}
-            className={`w-full h-[350px] lg:h-[420px] object-cover transition-transform duration-700 group-hover:scale-[1.7] ${isQuad ? 'scale-[1.6]' : ''
-              }`}
-          />
+          {product.image ? (
+            <img
+              src={product.image}
+              alt={product.name}
+              className={`w-full h-[350px] lg:h-[420px] object-cover transition-transform duration-700 group-hover:scale-[1.7] ${isQuad ? 'scale-[1.6]' : ''
+                }`}
+            />
+          ) : (
+            <div className={`w-full h-[350px] lg:h-[420px] flex flex-col items-center justify-center ${isDark ? 'bg-dark-800' : 'bg-gray-100'}`}>
+              <Plane className={`h-20 w-20 mb-4 ${isDark ? 'text-white/15' : 'text-gray-300'}`} />
+              <span className={`text-sm font-medium tracking-wider ${isDark ? 'text-white/20' : 'text-gray-400'}`}>Image Coming Soon</span>
+            </div>
+          )}
           {/* Overlay gradient — skip for quadcopter since it has a white bg */}
-          {!isQuad && (
+          {product.image && !isQuad && (
             <div
               className={`absolute inset-0 rounded-2xl ${isDark
                 ? 'bg-gradient-to-t from-dark-950/60 via-transparent to-transparent'
@@ -254,8 +261,8 @@ export default function ProductLineup({ isDark }) {
           className={`mx-auto mt-6 max-w-3xl text-lg leading-relaxed ${isDark ? 'text-white/50' : 'text-gray-500'}`}
           variants={fadeUp}
         >
-          Two purpose-built autonomous platforms designed for maximum versatility —
-          a precision Quadcopter for agile operations and a heavy-lift Hexacopter
+          Two purpose-built autonomous platforms designed for maximum versatility,
+          featuring a precision Quadcopter for agile operations and a heavy-lift Hexacopter
           for demanding missions. Both configurable for any industry.
         </motion.p>
 

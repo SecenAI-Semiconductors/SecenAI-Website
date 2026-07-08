@@ -61,8 +61,8 @@ export default function Hero() {
       {/* Overlay */}
       <motion.div
         className={`absolute inset-0 z-[1] ${isDark
-            ? "bg-gradient-to-b from-dark-950/90 via-dark-950/75 to-dark-950"
-            : "bg-gradient-to-b from-white/90 via-white/80 to-white/95"
+          ? "bg-gradient-to-b from-dark-950/90 via-dark-950/75 to-dark-950"
+          : "bg-gradient-to-b from-white/90 via-white/80 to-white/95"
           }`}
         style={{ opacity: overlayOpacity }}
       />
@@ -96,8 +96,8 @@ export default function Hero() {
           {/* Badge */}
           <motion.div variants={fadeSlideUp}>
             <span className={`mb-8 inline-block rounded-full border px-4 py-1.5 mt-20 text-xs tracking-[0.2em] backdrop-blur-sm ${isDark
-                ? "border-white/15 bg-white/10 text-white/80"
-                : "border-gray-300 bg-white/70 text-gray-600"
+              ? "border-white/15 bg-white/10 text-white/80"
+              : "border-gray-300 bg-white/70 text-gray-600"
               }`}>
               AI-POWERED DRONE INTELLIGENCE
             </span>
@@ -109,7 +109,7 @@ export default function Hero() {
             className="mb-6 font-[Outfit] text-4xl font-bold leading-tight sm:text-5xl md:text-7xl lg:text-8xl"
           >
             <span className={isDark ? "text-white" : "text-[#1e1b4b]"}>
-              AI-Powered Drone
+              Edge AI-Powered Drone
             </span>
             <span className={`block ${isDark ? "text-gradient-neon" : "text-gradient-emerald"}`}>
               Intelligence Platform
@@ -136,8 +136,8 @@ export default function Hero() {
             <a
               href="/products#industry-solutions"
               className={`group inline-flex items-center gap-2 rounded-full px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base font-semibold transition-all duration-300 ${isDark
-                  ? "bg-neon text-dark-950 hover:shadow-xl hover:shadow-neon/30"
-                  : "bg-emerald-600 text-white hover:bg-emerald-700 hover:shadow-xl hover:shadow-emerald-600/30"
+                ? "bg-neon text-dark-950 hover:shadow-xl hover:shadow-neon/30"
+                : "bg-emerald-600 text-white hover:bg-emerald-700 hover:shadow-xl hover:shadow-emerald-600/30"
                 }`}
             >
               Explore Solutions
@@ -160,13 +160,13 @@ export default function Hero() {
             <a
               href="#demo"
               className={`group inline-flex items-center gap-3 rounded-full border px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base transition-all duration-300 ${isDark
-                  ? "border-white/20 text-white hover:bg-white/5"
-                  : "border-gray-300 text-gray-700 hover:bg-gray-100 hover:border-gray-400"
+                ? "border-white/20 text-white hover:bg-white/5"
+                : "border-gray-300 text-gray-700 hover:bg-gray-100 hover:border-gray-400"
                 }`}
             >
               <span className={`flex h-8 w-8 items-center justify-center rounded-full transition-colors ${isDark
-                  ? "bg-neon group-hover:bg-neon/80"
-                  : "bg-emerald-600 group-hover:bg-emerald-700"
+                ? "bg-neon group-hover:bg-neon/80"
+                : "bg-emerald-600 group-hover:bg-emerald-700"
                 }`}>
                 <Play
                   size={14}
