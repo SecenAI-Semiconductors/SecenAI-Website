@@ -224,7 +224,7 @@ const ContactForm = () => {
             name="name"
             value={formData.name}
             onChange={handleChange}
-            placeholder="Your full name"
+            placeholder="organization name"
             style={errors.name ? inputErrorStyle : inputStyle}
           />
           {errors.name && <p style={errorTextStyle}>⚠ {errors.name}</p>}
@@ -268,6 +268,7 @@ const ContactForm = () => {
               <option value="pricing">Pricing &amp; Licensing</option>
               <option value="custom-integration">Custom Integration</option>
               <option value="Recruitment">Recruitment</option>
+              <option value="Funding">Funding</option>
               <option value="general">Others</option>
             </select>
             <span
