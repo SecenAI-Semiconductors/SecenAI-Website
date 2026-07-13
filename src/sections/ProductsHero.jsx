@@ -87,11 +87,14 @@ export default function ProductsHero({ isDark }) {
             variants={fadeUp}
             className="mb-6 font-[Outfit] text-5xl font-bold leading-tight md:text-7xl lg:text-8xl"
           >
+            <span className={isDark ? 'text-gradient-neon' : 'text-gradient-emerald'}>
+              Products{' '}
+            </span>
             <span className={isDark ? 'text-white' : 'text-[#1e1b4b]'}>
-              Our{' '}
+              And{' '}
             </span>
             <span className={isDark ? 'text-gradient-neon' : 'text-gradient-emerald'}>
-              Products
+              Services
             </span>
           </motion.h1>
 

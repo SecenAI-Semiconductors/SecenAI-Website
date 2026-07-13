@@ -113,7 +113,7 @@ export default function VideoShowcase() {
           className={`text-sm text-center mt-6 ${isDark ? 'text-white/30' : 'text-gray-400'
             }`}
         >
-          Autonomous Mission Demo
+          Quadcopter Drone Testing
         </motion.p>
       </div>
     </section>
