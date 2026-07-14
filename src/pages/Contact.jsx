@@ -180,7 +180,7 @@ export default function Contact() {
                 Email
               </h3>
               <a
-                href="mailto:secen.semiconductor@gmail.com"
+                href="mailto:info@secenai.com"
                 style={{
                   fontSize: '0.9rem',
                   color: isDark ? 'rgba(255,255,255,0.6)' : '#4b5563',
@@ -190,7 +190,7 @@ export default function Contact() {
                 onMouseEnter={(e) => (e.target.style.color = isDark ? '#CCFF00' : '#059669')}
                 onMouseLeave={(e) => (e.target.style.color = isDark ? 'rgba(255,255,255,0.6)' : '#4b5563')}
               >
-                secen.semiconductor@gmail.com
+                info@secenai.com
               </a>
             </div>
           </motion.div>

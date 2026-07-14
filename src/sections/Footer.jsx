@@ -27,13 +27,13 @@ const solutionLinks = [
 const socialIcons = [
   { Icon: Github, href: '#', label: 'GitHub' },
   { Icon: Twitter, href: '#', label: 'Twitter' },
-  { Icon: Linkedin, href: '#', label: 'LinkedIn' },
+  { Icon: Linkedin, href: 'https://www.linkedin.com/company/secenai-semiconductors', label: 'LinkedIn' },
   { Icon: Youtube, href: '#', label: 'YouTube' },
   { Icon: Instagram, href: '#', label: 'Instagram' },
 ];
 
 const contactInfo = [
-  { Icon: Mail, text: 'Secen.semiconductor@gmail.com', href: 'mailto:Secen.semiconductor@gmail.com' },
+  { Icon: Mail, text: 'info@secenai.com', href: 'mailto:info@secenai.com' },
   { Icon: Phone, text: '+91 95509 67278', href: 'tel:+919550967278' },
   { Icon: MapPin, text: 'Hyderabad, India' },
 ];
