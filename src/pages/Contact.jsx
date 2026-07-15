@@ -180,7 +180,9 @@ export default function Contact() {
                 Email
               </h3>
               <a
-                href="mailto:info@secenai.com"
+                href="https://mail.google.com/mail/?view=cm&to=info@secenai.com&su=Contact%20Inquiry"
+                target="_blank"
+                rel="noopener noreferrer"
                 style={{
                   fontSize: '0.9rem',
                   color: isDark ? 'rgba(255,255,255,0.6)' : '#4b5563',
