@@ -262,7 +262,9 @@ function JobCard({ job, isDark, index }) {
                   </ul>
 
                   <a
-                    href="mailto:secen.semiconductor@gmail.com?subject=Application: "
+                    href={`https://mail.google.com/mail/?view=cm&to=careers@secenai.com&su=${encodeURIComponent('Application: ' + job.title)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     style={{
                       display: 'inline-flex',
                       alignItems: 'center',

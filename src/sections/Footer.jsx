@@ -27,13 +27,13 @@ const solutionLinks = [
 const socialIcons = [
   { Icon: Github, href: '#', label: 'GitHub' },
   { Icon: Twitter, href: '#', label: 'Twitter' },
-  { Icon: Linkedin, href: '#', label: 'LinkedIn' },
+  { Icon: Linkedin, href: 'https://www.linkedin.com/company/secenai-semiconductors', label: 'LinkedIn' },
   { Icon: Youtube, href: '#', label: 'YouTube' },
   { Icon: Instagram, href: '#', label: 'Instagram' },
 ];
 
 const contactInfo = [
-  { Icon: Mail, text: 'Secen.semiconductor@gmail.com', href: 'mailto:Secen.semiconductor@gmail.com' },
+  { Icon: Mail, text: 'info@secenai.com', href: 'https://mail.google.com/mail/?view=cm&to=info@secenai.com&su=General%20Inquiry', external: true },
   { Icon: Phone, text: '+91 95509 67278', href: 'tel:+919550967278' },
   { Icon: MapPin, text: 'Hyderabad, India' },
 ];
@@ -182,7 +182,7 @@ export default function Footer() {
             </h4>
 
             <ul className="space-y-4">
-              {contactInfo.map(({ Icon, text, href }) => (
+              {contactInfo.map(({ Icon, text, href, external }) => (
                 <li
                   key={text}
                   className="flex items-center gap-3"
@@ -195,6 +195,7 @@ export default function Footer() {
                   {href ? (
                     <a
                       href={href}
+                      {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                       className={`text-sm transition-colors ${isDark
                         ? 'text-white/30 hover:text-neon'
                         : 'text-gray-500 hover:text-emerald-600'
