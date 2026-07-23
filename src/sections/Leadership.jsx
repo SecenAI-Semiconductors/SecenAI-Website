@@ -72,7 +72,7 @@ const leaders = [
     qualifications: 'Assistant Professor (CS & AI)',
     linkedin: 'https://www.linkedin.com/in/dr-vinod-kumar-ancha-22dec2025',
     avatar: VinodImg,
-    accent: '#10b981',
+    accent: '#538944',
     initials: 'VA',
   },
   {
@@ -282,7 +282,7 @@ function LeaderCard({ leader, isDark, index }) {
             fontWeight: 700,
             textAlign: 'center',
             marginBottom: '6px',
-            color: isDark ? '#ffffff' : '#1e1b4b',
+            color: isDark ? '#ffffff' : '#0d0d0d',
             lineHeight: 1.3,
           }}
         >
@@ -352,7 +352,7 @@ function LeaderCard({ leader, isDark, index }) {
               ? leader.accent
               : isDark
                 ? 'rgba(255,255,255,0.50)'
-                : '#6b7280',
+                : '#374151',
             border: `1px solid ${isHovered ? `${leader.accent}25` : 'transparent'}`,
           }}
           onMouseEnter={(e) => {
@@ -366,7 +366,7 @@ function LeaderCard({ leader, isDark, index }) {
               : 'rgba(0,0,0,0.03)';
             e.currentTarget.style.color = isDark
               ? 'rgba(255,255,255,0.50)'
-              : '#6b7280';
+              : '#374151';
             e.currentTarget.style.borderColor = 'transparent';
           }}
         >

@@ -223,7 +223,7 @@ export default function About() {
                   style={{
                     background: isDark
                       ? 'linear-gradient(135deg, rgba(204,255,0,0.06) 0%, transparent 50%, rgba(99,102,241,0.06) 100%)'
-                      : 'linear-gradient(135deg, rgba(16,185,129,0.08) 0%, transparent 50%, rgba(99,102,241,0.06) 100%)',
+                      : 'linear-gradient(135deg, rgba(83,137,68,0.08) 0%, transparent 50%, rgba(99,102,241,0.06) 100%)',
                   }}
                 />
 

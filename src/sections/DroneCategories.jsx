@@ -134,8 +134,9 @@ export default function DroneCategories() {
               key={category.title}
               className={`group w-full md:w-[calc(50%_-_1rem)] lg:w-[calc(33.333%_-_1.333rem)] overflow-hidden rounded-2xl ${isDark
                 ? 'glass-card'
-                : 'bg-white border border-gray-200 shadow-sm hover:shadow-lg hover:border-emerald-200'
+                : 'border border-gray-200 shadow-sm hover:shadow-lg hover:border-emerald-200'
                 }`}
+              style={!isDark ? { backgroundColor: '#ffffff' } : undefined}
               variants={cardVariants}
               whileHover={{ y: -8 }}
               transition={{
@@ -171,7 +172,7 @@ export default function DroneCategories() {
                 </p>
 
                 <a
-                  href="/products#industry-solutions"
+                  href="/defence/gps-denied-navigation"
                   className={`mt-6 inline-block text-sm font-medium transition-all hover:tracking-wider ${isDark ? 'text-neon' : 'text-emerald-600'
                     }`}
                 >

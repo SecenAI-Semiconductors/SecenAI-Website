@@ -26,7 +26,7 @@ export default function Careers() {
     <div
       style={{
         minHeight: '100vh',
-        backgroundColor: isDark ? '#030303' : '#f9fafb',
+        backgroundColor: isDark ? '#030303' : '#e4e2d8',
         color: isDark ? '#ffffff' : '#1f2937',
         transition: 'background-color 0.4s ease, color 0.4s ease',
       }}
@@ -58,7 +58,7 @@ export default function Careers() {
             pointerEvents: 'none',
             background: isDark
               ? 'radial-gradient(circle, rgba(204,255,0,0.5), transparent 60%)'
-              : 'radial-gradient(circle, rgba(16,185,129,0.25), transparent 60%)',
+              : 'radial-gradient(circle, rgba(83,137,68,0.25), transparent 60%)',
           }}
         />
         <div
@@ -116,7 +116,7 @@ export default function Careers() {
                 background: isDark
                   ? 'rgba(255,255,255,0.04)'
                   : 'rgba(0,0,0,0.03)',
-                color: isDark ? 'rgba(255,255,255,0.5)' : '#6b7280',
+                color: isDark ? 'rgba(255,255,255,0.5)' : '#374151',
                 backdropFilter: 'blur(10px)',
               }}
             >
@@ -140,10 +140,10 @@ export default function Careers() {
               marginBottom: '24px',
             }}
           >
-            <span style={{ color: isDark ? '#ffffff' : '#1e1b4b' }}>
+            <span style={{ color: isDark ? '#ffffff' : '#000000ff' }}>
               Join Our{' '}
             </span>
-            <span className="text-gradient-emerald">
+            <span className={isDark ? 'text-gradient-neon' : 'text-gradient-emerald'}>
               Team
             </span>
           </motion.h1>
@@ -155,7 +155,7 @@ export default function Careers() {
               fontSize: 'clamp(1rem, 2vw, 1.2rem)',
               lineHeight: 1.7,
               maxWidth: '600px',
-              color: isDark ? 'rgba(255,255,255,0.55)' : '#6b7280',
+              color: isDark ? 'rgba(255,255,255,0.55)' : '#374151',
             }}
           >
             Build the future with us. We are looking for passionate engineers and
@@ -177,23 +177,23 @@ export default function Careers() {
                 fontWeight: 600,
                 textDecoration: 'none',
                 color: isDark ? '#030303' : '#ffffff',
-                background: isDark ? '#CCFF00' : '#059669',
+                background: isDark ? '#CCFF00' : '#538944',
                 transition: 'all 0.3s ease',
                 boxShadow: isDark
                   ? '0 8px 30px rgba(204,255,0,0.2)'
-                  : '0 8px 30px rgba(16,185,129,0.2)',
+                  : '0 8px 30px rgba(83,137,68,0.2)',
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = 'translateY(-3px)';
                 e.currentTarget.style.boxShadow = isDark
                   ? '0 14px 40px rgba(204,255,0,0.3)'
-                  : '0 14px 40px rgba(16,185,129,0.3)';
+                  : '0 14px 40px rgba(83,137,68,0.3)';
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.transform = 'translateY(0)';
                 e.currentTarget.style.boxShadow = isDark
                   ? '0 8px 30px rgba(204,255,0,0.2)'
-                  : '0 8px 30px rgba(16,185,129,0.2)';
+                  : '0 8px 30px rgba(83,137,68,0.2)';
               }}
             >
               View Open Positions

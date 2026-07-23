@@ -8,28 +8,28 @@ import { BrainCircuit, Cpu, Server, ShieldCheck } from 'lucide-react';
 
 const techCapabilities = [
   {
-    icon: BrainCircuit,
-    title: 'AI-Powered Analytics',
+    icon: Cpu,
+    title: 'Flight Controller',
     description:
-      'Leverage computer vision and deep learning models to detect crop diseases, structural defects, objects, and environmental changes from aerial imagery. Supports custom model training for specialized detection tasks.',
+      'High-performance UAV control systems designed for reliable processing, precise navigation, and flexible integration across commercial, research, and specialised drone platforms.',
   },
   {
-    icon: Cpu,
-    title: 'Real-Time Monitoring',
+    icon: BrainCircuit,
+    title: 'Ground Control Suite',
     description:
-      'Track live telemetry, flight paths, video streams, mission status, and drone health metrics through a centralized monitoring dashboard with sub-second latency.',
+      'A unified software platform for mission planning, real-time UAV monitoring, fleet management, telemetry analysis, and operational control.',
   },
   {
     icon: Server,
-    title: 'IoT Sensor Integration',
+    title: 'Our Dashboard',
     description:
-      'Combine drone intelligence with ground-based IoT sensor networks. Soil moisture, temperature, humidity, pH, and environmental data feeds merge into a unified analytics platform.',
+      'A unified agriculture platform with separate Admin and Farmer portals for managing farmers and fields, monitoring drone operations, analysing crops and pests, tracking market data, viewing weather and soil insights, and accessing AI-assisted farming tools.',
   },
   {
     icon: ShieldCheck,
-    title: 'Enterprise Platform',
+    title: 'Defence Solutions',
     description:
-      'Generate automated reports, interactive maps, alerts, and analytics for agriculture, infrastructure, logistics, and smart city operations with role-based access control.',
+      'Indigenous UAV technologies focused on mission-specific applications, including GPS-denied navigation, Edge AI-based VIO, autonomous operations, and customised defence integration.',
   },
 ];
 
@@ -119,8 +119,8 @@ export default function PlatformTechStack({ isDark }) {
                 key={tech.title}
                 variants={cardVariants}
                 className={`group rounded-2xl p-8 transition-all duration-400 ${isDark
-                    ? 'glass-card'
-                    : 'bg-white border border-gray-200 shadow-sm hover:shadow-lg hover:border-emerald-200'
+                  ? 'glass-card'
+                  : 'bg-white border border-gray-200 shadow-sm hover:shadow-lg hover:border-emerald-200'
                   }`}
                 whileHover={{ y: -4 }}
               >
@@ -128,8 +128,8 @@ export default function PlatformTechStack({ isDark }) {
                 <div className="flex items-start gap-4">
                   <div
                     className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl transition-all duration-300 group-hover:scale-110 ${isDark
-                        ? 'bg-neon/10 group-hover:bg-neon/20'
-                        : 'bg-emerald-50 group-hover:bg-emerald-100'
+                      ? 'bg-neon/10 group-hover:bg-neon/20'
+                      : 'bg-emerald-50 group-hover:bg-emerald-100'
                       }`}
                   >
                     <Icon className={`h-6 w-6 ${isDark ? 'text-neon' : 'text-emerald-600'}`} />
