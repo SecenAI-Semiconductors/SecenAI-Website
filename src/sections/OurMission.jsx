@@ -63,7 +63,7 @@ const pillars = [
     title: 'Our Values',
     description:
       'Innovation, sustainability, and farmer empowerment are at the heart of everything we do. We believe technology should serve people by bridging the gap between advanced AI research and real-world agricultural impact.',
-    accent: '#10b981',
+    accent: '#538944',
   },
   {
     icon: Shield,
@@ -231,7 +231,7 @@ export default function OurMission() {
                   {/* Title */}
                   <h3
                     className="font-[Outfit] text-xl font-bold mb-3"
-                    style={{ color: isDark ? '#ffffff' : '#1e1b4b' }}
+                    style={{ color: isDark ? '#ffffff' : '#0d0d0d' }}
                   >
                     {pillar.title}
                   </h3>
@@ -240,7 +240,7 @@ export default function OurMission() {
                   <p
                     className="text-sm leading-relaxed"
                     style={{
-                      color: isDark ? 'rgba(255,255,255,0.50)' : '#6b7280',
+                      color: isDark ? 'rgba(255,255,255,0.50)' : '#374151',
                     }}
                   >
                     {pillar.description}

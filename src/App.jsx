@@ -7,9 +7,14 @@ import ParticleGrid from './components/ParticleGrid'
 import Home from './pages/Home'
 import Contact from './pages/Contact'
 import Careers from './pages/Careers'
-import Products from './pages/Products'
 import About from './pages/About'
 import Footer from './sections/Footer'
+
+// Explore Us pages
+import FlightController from './pages/explore/FlightController'
+import GroundControlSuite from './pages/explore/GroundControlSuite'
+import Dashboard from './pages/explore/Dashboard'
+import Defence from './pages/explore/Defence'
 
 function App() {
   const { theme } = useTheme()
@@ -42,9 +47,8 @@ function App() {
 
   return (
     <AnimatePresence>
-      <div className={`relative min-h-screen overflow-x-hidden transition-colors duration-400 ${
-        isDark ? 'bg-dark-950 text-white' : 'bg-gray-50 text-gray-900'
-      }`}>
+      <div className={`relative min-h-screen overflow-x-hidden transition-colors duration-400 ${isDark ? 'bg-dark-950 text-white' : 'bg-gray-50 text-gray-900'
+        }`}>
         {/* Ambient particle grid background — dark mode only */}
         {isDark && (
           <div className="fixed inset-0 z-0 pointer-events-none">
@@ -61,8 +65,13 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/careers" element={<Careers />} />
-            <Route path="/products" element={<Products />} />
             <Route path="/about" element={<About />} />
+
+            {/* Explore Us routes */}
+            <Route path="/flight-controller" element={<FlightController />} />
+            <Route path="/ground-control-suite" element={<GroundControlSuite />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/defence" element={<Defence />} />
           </Routes>
         </main>
 

@@ -12,16 +12,16 @@ import { Link, useLocation } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
 
 const platformLinks = [
-  { name: 'Drone Telemetry', path: '/products#product-lineup' },
-  { name: 'AI Analytics', path: '/products#product-lineup' },
-  { name: 'IoT Monitoring', path: '/products#product-lineup' },
-  { name: 'Mission Planning', path: '/products#product-lineup' },
+  { name: 'Drone Telemetry', path: '/dashboard' },
+  { name: 'AI Analytics', path: '/dashboard' },
+  { name: 'IoT Monitoring', path: '/dashboard' },
+  { name: 'Mission Planning', path: '/ground-control-suite' },
 ];
 
 const solutionLinks = [
-  { name: 'Smart Agriculture', path: '/products#industry-solutions' },
-  { name: 'Infrastructure Inspection', path: '/products#industry-solutions' },
-  { name: 'Flight Controller', path: '/products#industry-solutions' },
+  { name: 'Defence Solutions', path: '/defence/gps-denied-navigation' },
+  { name: 'GPS-Denied Navigation', path: '/defence/gps-denied-navigation' },
+  { name: 'Flight Controller', path: '/flight-controller' },
 ];
 
 const socialIcons = [

@@ -198,8 +198,9 @@ export default function FeaturedDrone() {
                   exit="exit"
                   className={`relative group rounded-2xl overflow-hidden ${isDark
                     ? 'bg-dark-800 border border-white/5'
-                    : 'bg-white border border-gray-200 shadow-lg'
+                    : 'border border-gray-200 shadow-lg'
                     }`}
+                  style={!isDark ? { backgroundColor: '#ffffff' } : undefined}
                 >
                   {/* Image */}
                   <div className="relative overflow-hidden h-[300px] sm:h-[380px]">
@@ -287,7 +288,7 @@ export default function FeaturedDrone() {
                     </p>
 
                     <a
-                      href="/products"
+                      href="/flight-controller"
                       className={`inline-flex items-center gap-2 text-sm font-semibold transition-all duration-300 group/link ${isDark
                         ? 'text-neon hover:text-neon-dim'
                         : 'text-emerald-600 hover:text-emerald-700'
@@ -346,10 +347,10 @@ export default function FeaturedDrone() {
           custom={0.8}
         >
           <a
-            href="/products"
+            href="/flight-controller"
             className={`inline-flex items-center gap-2 rounded-full px-8 py-4 font-semibold transition-all duration-300 ${isDark
               ? 'bg-neon text-dark-950 hover:shadow-[0_0_30px_rgba(204,255,0,0.3)]'
-              : 'bg-emerald-600 text-white hover:bg-emerald-700 hover:shadow-[0_0_30px_rgba(16,185,129,0.3)]'
+              : 'bg-emerald-600 text-white hover:bg-emerald-700 hover:shadow-[0_0_30px_rgba(83,137,68,0.3)]'
               }`}
           >
             Explore Full Product Lineup

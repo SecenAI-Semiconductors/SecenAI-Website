@@ -187,9 +187,9 @@ const ContactForm = () => {
             animation: 'fadeIn 0.3s ease',
             ...(submitStatus === 'success'
               ? {
-                backgroundColor: isDark ? 'rgba(204,255,0,0.1)' : 'rgba(5,150,105,0.08)',
-                border: `1px solid ${isDark ? 'rgba(204,255,0,0.3)' : 'rgba(5,150,105,0.25)'}`,
-                color: isDark ? '#ccff00' : '#059669',
+                backgroundColor: isDark ? 'rgba(204,255,0,0.1)' : 'rgba(83,137,68,0.08)',
+                border: `1px solid ${isDark ? 'rgba(204,255,0,0.3)' : 'rgba(83,137,68,0.25)'}`,
+                color: isDark ? '#ccff00' : '#538944',
               }
               : {
                 backgroundColor: isDark ? 'rgba(255,68,68,0.1)' : 'rgba(239,68,68,0.08)',
@@ -278,7 +278,7 @@ const ContactForm = () => {
                 top: '50%',
                 transform: 'translateY(-50%)',
                 pointerEvents: 'none',
-                color: isDark ? '#666' : '#6b7280',
+                color: isDark ? '#666' : '#374151',
                 fontSize: '14px',
                 lineHeight: 1,
               }}
@@ -314,8 +314,8 @@ const ContactForm = () => {
             width: '100%',
             padding: '14px',
             background: isSubmitting
-              ? (isDark ? 'rgba(204,255,0,0.5)' : 'rgba(5,150,105,0.5)')
-              : (isDark ? '#ccff00' : '#059669'),
+              ? (isDark ? 'rgba(204,255,0,0.5)' : 'rgba(83,137,68,0.5)')
+              : (isDark ? '#ccff00' : '#538944'),
             color: isDark ? '#000' : '#ffffff',
             border: 'none',
             borderRadius: '50px',

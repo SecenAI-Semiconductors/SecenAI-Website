@@ -5,28 +5,28 @@ import { useTheme } from '../context/ThemeContext';
 
 const features = [
   {
-    icon: BrainCircuit,
-    title: 'AI-Powered Analytics',
+    icon: Cpu,
+    title: 'Flight Controller',
     description:
-      'Leverage computer vision and machine learning models to detect crop diseases, infrastructure defects, objects, and environmental changes from aerial imagery.',
+      'High-performance UAV control systems designed for reliable processing, precise navigation, and flexible integration across commercial, research, and specialised drone platforms.',
   },
   {
-    icon: Cpu,
-    title: 'Real-Time Drone Monitoring',
+    icon: BrainCircuit,
+    title: 'Ground Control Suite',
     description:
-      'Track live telemetry, flight paths, video streams, mission status, and drone health metrics through a centralized monitoring dashboard.',
+      'A unified software platform for mission planning, real-time UAV monitoring, fleet management, telemetry analysis, and operational control.',
   },
   {
     icon: Server,
-    title: 'IoT Sensor Integration',
+    title: 'Our Dashboard',
     description:
-      'Combine drone intelligence with soil moisture, temperature, humidity, pH, and environmental sensor data for deeper operational insights.',
+      'A unified platform for farm management, drone monitoring, crop insights, market data, and AI-assisted farming.',
   },
   {
     icon: ShieldCheck,
-    title: 'Enterprise Intelligence Platform',
+    title: 'Defence Solutions',
     description:
-      'Generate automated reports, interactive maps, alerts, and analytics for agriculture, infrastructure inspection, logistics, and smart city operations.',
+      'Indigenous UAV technologies focused on mission-specific applications, including GPS-denied navigation, Edge AI-based VIO, autonomous operations, and customised defence integration.',
   },
 ];
 
@@ -77,9 +77,8 @@ export default function Features() {
   return (
     <section
       ref={sectionRef}
-      className={`relative py-16 md:py-20 ${
-        isDark ? 'bg-dark-950' : 'bg-[#f9fafb]'
-      }`}
+      className={`relative py-16 md:py-20 ${isDark ? 'bg-dark-950' : 'bg-[#f9fafb]'
+        }`}
     >
       {/* Section Header */}
       <motion.div
@@ -97,9 +96,8 @@ export default function Features() {
         </motion.h2>
 
         <motion.p
-          className={`mx-auto mt-4 max-w-2xl text-base ${
-            isDark ? 'text-white/40' : 'text-gray-500'
-          }`}
+          className={`mx-auto mt-4 max-w-2xl text-base ${isDark ? 'text-white/40' : 'text-gray-500'
+            }`}
           variants={headingVariants}
         >
           Advanced AI, drone intelligence, IoT integration, and real-time
@@ -120,11 +118,11 @@ export default function Features() {
           return (
             <motion.div
               key={feature.title}
-              className={`group rounded-2xl p-8 text-center ${
-                isDark
-                  ? 'glass-card'
-                  : 'bg-white border border-gray-200 shadow-sm hover:shadow-lg hover:border-emerald-200'
-              }`}
+              className={`group rounded-2xl p-8 text-center ${isDark
+                ? 'glass-card'
+                : 'border border-gray-200 shadow-sm hover:shadow-lg hover:border-emerald-200'
+                }`}
+              style={!isDark ? { backgroundColor: '#ffffff' } : undefined}
               variants={cardVariants}
               whileHover={{ y: -6 }}
               transition={{
@@ -134,25 +132,22 @@ export default function Features() {
               }}
             >
               {/* Icon Container */}
-              <div className={`mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-xl transition-all duration-300 group-hover:scale-110 ${
-                isDark
-                  ? 'bg-neon/10 group-hover:bg-neon/20'
-                  : 'bg-emerald-50 group-hover:bg-emerald-100'
-              }`}>
+              <div className={`mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-xl transition-all duration-300 group-hover:scale-110 ${isDark
+                ? 'bg-neon/10 group-hover:bg-neon/20'
+                : 'bg-emerald-50 group-hover:bg-emerald-100'
+                }`}>
                 <Icon className={`h-6 w-6 ${isDark ? 'text-neon' : 'text-emerald-600'}`} />
               </div>
 
               {/* Title */}
-              <h3 className={`font-[Outfit] text-lg font-semibold ${
-                isDark ? 'text-white' : 'text-[#1e1b4b]'
-              }`}>
+              <h3 className={`font-[Outfit] text-lg font-semibold ${isDark ? 'text-white' : 'text-[#1e1b4b]'
+                }`}>
                 {feature.title}
               </h3>
 
               {/* Description */}
-              <p className={`mt-3 text-sm leading-relaxed ${
-                isDark ? 'text-white/40' : 'text-gray-500'
-              }`}>
+              <p className={`mt-3 text-sm leading-relaxed ${isDark ? 'text-white/40' : 'text-gray-500'
+                }`}>
                 {feature.description}
               </p>
             </motion.div>

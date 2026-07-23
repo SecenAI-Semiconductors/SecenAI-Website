@@ -22,7 +22,7 @@ export default function ProductsCTA({ isDark }) {
       {!isDark && (
         <div
           className="pointer-events-none absolute left-1/2 top-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[150px]"
-          style={{ background: 'radial-gradient(circle, rgba(16,185,129,0.08), transparent 60%)' }}
+          style={{ background: 'radial-gradient(circle, rgba(83,137,68,0.08), transparent 60%)' }}
         />
       )}
 

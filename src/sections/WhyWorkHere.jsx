@@ -19,7 +19,7 @@ const perks = [
     title: 'Growth',
     description:
       'Continuous learning opportunities, conference budgets, and tuition reimbursement.',
-    accent: '#10b981',
+    accent: '#538944',
   },
   {
     icon: Users,
@@ -143,7 +143,7 @@ function PerkCard({ perk, isDark }) {
             fontSize: '1.2rem',
             fontWeight: 700,
             marginBottom: '10px',
-            color: isDark ? '#ffffff' : '#1e1b4b',
+            color: isDark ? '#ffffff' : '#0d0d0d',
           }}
         >
           {perk.title}
@@ -153,7 +153,7 @@ function PerkCard({ perk, isDark }) {
           style={{
             fontSize: '0.875rem',
             lineHeight: 1.7,
-            color: isDark ? 'rgba(255,255,255,0.45)' : '#6b7280',
+            color: isDark ? 'rgba(255,255,255,0.45)' : '#374151',
           }}
         >
           {perk.description}
@@ -190,7 +190,7 @@ export default function WhyWorkHere() {
           inset: 0,
           background: isDark
             ? 'linear-gradient(180deg, transparent 0%, rgba(204,255,0,0.015) 50%, transparent 100%)'
-            : 'linear-gradient(180deg, transparent 0%, rgba(16,185,129,0.03) 50%, transparent 100%)',
+            : 'linear-gradient(180deg, transparent 0%, rgba(83,137,68,0.03) 50%, transparent 100%)',
           pointerEvents: 'none',
         }}
       />
@@ -211,11 +211,11 @@ export default function WhyWorkHere() {
               fontWeight: 800,
               letterSpacing: '-0.02em',
               marginBottom: '14px',
-              color: isDark ? '#ffffff' : '#1e1b4b',
+              color: isDark ? '#ffffff' : '#0d0d0d',
             }}
           >
             Why Work{' '}
-            <span className="text-gradient-emerald">
+            <span className={isDark ? 'text-gradient-neon' : 'text-gradient-emerald'}>
               Here?
             </span>
           </motion.h2>
@@ -225,7 +225,7 @@ export default function WhyWorkHere() {
               fontSize: '1rem',
               maxWidth: '500px',
               margin: '0 auto',
-              color: isDark ? 'rgba(255,255,255,0.45)' : '#6b7280',
+              color: isDark ? 'rgba(255,255,255,0.45)' : '#374151',
             }}
           >
             We believe great work comes from great culture.

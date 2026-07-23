@@ -81,7 +81,7 @@ export default function Hero() {
       {/* Light mode subtle accent orb */}
       {!isDark && (
         <div className="absolute top-1/4 right-10 z-[3] h-96 w-96 rounded-full blur-[140px] pointer-events-none"
-          style={{ background: 'radial-gradient(circle, rgba(16,185,129,0.12), transparent 60%)' }}
+          style={{ background: 'radial-gradient(circle, rgba(83,137,68,0.12), transparent 60%)' }}
         />
       )}
 
@@ -134,7 +134,7 @@ export default function Hero() {
             className="flex flex-col items-center gap-4 sm:flex-row"
           >
             <a
-              href="/products#industry-solutions"
+              href="/flight-controller"
               className={`group inline-flex items-center gap-2 rounded-full px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base font-semibold transition-all duration-300 ${isDark
                 ? "bg-neon text-dark-950 hover:shadow-xl hover:shadow-neon/30"
                 : "bg-emerald-600 text-white hover:bg-emerald-700 hover:shadow-xl hover:shadow-emerald-600/30"

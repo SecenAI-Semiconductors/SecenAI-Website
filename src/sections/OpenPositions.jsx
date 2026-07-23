@@ -68,7 +68,7 @@ function JobCard({ job, isDark, index }) {
           background: expanded
             ? isDark
               ? 'linear-gradient(135deg, rgba(204,255,0,0.4), rgba(204,255,0,0.05))'
-              : 'linear-gradient(135deg, rgba(16,185,129,0.4), rgba(16,185,129,0.05))'
+              : 'linear-gradient(135deg, rgba(83,137,68,0.4), rgba(83,137,68,0.05))'
             : 'transparent',
           transition: 'background 0.4s ease',
         }}
@@ -92,7 +92,7 @@ function JobCard({ job, isDark, index }) {
             boxShadow: expanded
               ? isDark
                 ? '0 20px 60px rgba(204,255,0,0.06), 0 0 0 1px rgba(204,255,0,0.08)'
-                : '0 20px 60px rgba(16,185,129,0.08), 0 0 0 1px rgba(16,185,129,0.1)'
+                : '0 20px 60px rgba(83,137,68,0.08), 0 0 0 1px rgba(83,137,68,0.1)'
               : 'none',
           }}
         >
@@ -120,8 +120,8 @@ function JobCard({ job, isDark, index }) {
                   fontSize: '0.85rem',
                   fontWeight: 700,
                   flexShrink: 0,
-                  background: isDark ? 'rgba(204,255,0,0.1)' : 'rgba(16,185,129,0.1)',
-                  color: isDark ? '#CCFF00' : '#059669',
+                  background: isDark ? 'rgba(204,255,0,0.1)' : 'rgba(83,137,68,0.1)',
+                  color: isDark ? '#CCFF00' : '#538944',
                   transition: 'all 0.3s ease',
                 }}
               >
@@ -136,7 +136,7 @@ function JobCard({ job, isDark, index }) {
                     fontSize: 'clamp(1.1rem, 2vw, 1.35rem)',
                     fontWeight: 700,
                     marginBottom: '6px',
-                    color: isDark ? '#ffffff' : '#1e1b4b',
+                    color: isDark ? '#ffffff' : '#0d0d0d',
                     transition: 'color 0.3s ease',
                   }}
                 >
@@ -149,7 +149,7 @@ function JobCard({ job, isDark, index }) {
                     gap: '16px',
                     alignItems: 'center',
                     fontSize: '0.8rem',
-                    color: isDark ? 'rgba(255,255,255,0.45)' : '#6b7280',
+                    color: isDark ? 'rgba(255,255,255,0.45)' : '#374151',
                   }}
                 >
                   <span style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
@@ -181,7 +181,7 @@ function JobCard({ job, isDark, index }) {
                 justifyContent: 'center',
                 flexShrink: 0,
                 background: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.04)',
-                color: isDark ? 'rgba(255,255,255,0.5)' : '#6b7280',
+                color: isDark ? 'rgba(255,255,255,0.5)' : '#374151',
                 transition: 'background 0.3s ease, color 0.3s ease',
               }}
             >
@@ -213,7 +213,7 @@ function JobCard({ job, isDark, index }) {
                       fontSize: '0.9rem',
                       lineHeight: 1.75,
                       marginBottom: '20px',
-                      color: isDark ? 'rgba(255,255,255,0.6)' : '#4b5563',
+                      color: isDark ? 'rgba(255,255,255,0.6)' : '#1f2937',
                     }}
                   >
                     {job.description}
@@ -227,7 +227,7 @@ function JobCard({ job, isDark, index }) {
                       letterSpacing: '0.08em',
                       textTransform: 'uppercase',
                       marginBottom: '12px',
-                      color: isDark ? '#CCFF00' : '#059669',
+                      color: isDark ? '#CCFF00' : '#538944',
                     }}
                   >
                     Requirements
@@ -243,7 +243,7 @@ function JobCard({ job, isDark, index }) {
                           fontSize: '0.85rem',
                           lineHeight: 1.6,
                           marginBottom: '8px',
-                          color: isDark ? 'rgba(255,255,255,0.5)' : '#4b5563',
+                          color: isDark ? 'rgba(255,255,255,0.5)' : '#1f2937',
                         }}
                       >
                         <span
@@ -251,7 +251,7 @@ function JobCard({ job, isDark, index }) {
                             width: '5px',
                             height: '5px',
                             borderRadius: '50%',
-                            background: isDark ? '#CCFF00' : '#059669',
+                            background: isDark ? '#CCFF00' : '#538944',
                             marginTop: '8px',
                             flexShrink: 0,
                           }}
@@ -276,23 +276,23 @@ function JobCard({ job, isDark, index }) {
                       fontWeight: 600,
                       textDecoration: 'none',
                       color: isDark ? '#030303' : '#ffffff',
-                      background: isDark ? '#CCFF00' : '#059669',
+                      background: isDark ? '#CCFF00' : '#538944',
                       transition: 'all 0.3s ease',
                       boxShadow: isDark
                         ? '0 8px 24px rgba(204,255,0,0.2)'
-                        : '0 8px 24px rgba(16,185,129,0.2)',
+                        : '0 8px 24px rgba(83,137,68,0.2)',
                     }}
                     onMouseEnter={(e) => {
                       e.currentTarget.style.transform = 'translateY(-2px)';
                       e.currentTarget.style.boxShadow = isDark
                         ? '0 12px 32px rgba(204,255,0,0.3)'
-                        : '0 12px 32px rgba(16,185,129,0.3)';
+                        : '0 12px 32px rgba(83,137,68,0.3)';
                     }}
                     onMouseLeave={(e) => {
                       e.currentTarget.style.transform = 'translateY(0)';
                       e.currentTarget.style.boxShadow = isDark
                         ? '0 8px 24px rgba(204,255,0,0.2)'
-                        : '0 8px 24px rgba(16,185,129,0.2)';
+                        : '0 8px 24px rgba(83,137,68,0.2)';
                     }}
                   >
                     Apply Now
@@ -345,7 +345,7 @@ export default function OpenPositions() {
               fontWeight: 800,
               letterSpacing: '-0.02em',
               marginBottom: '12px',
-              color: isDark ? '#ffffff' : '#1e1b4b',
+              color: isDark ? '#ffffff' : '#0d0d0d',
             }}
           >
             Open Positions
@@ -354,7 +354,7 @@ export default function OpenPositions() {
             variants={fadeUp}
             style={{
               fontSize: '1rem',
-              color: isDark ? 'rgba(255,255,255,0.45)' : '#6b7280',
+              color: isDark ? 'rgba(255,255,255,0.45)' : '#374151',
             }}
           >
             Browse our current openings and apply today.

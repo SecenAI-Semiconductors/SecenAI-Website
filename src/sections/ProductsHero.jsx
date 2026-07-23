@@ -60,7 +60,7 @@ export default function ProductsHero({ isDark }) {
       {!isDark && (
         <div
           className="absolute top-1/3 right-10 z-[3] h-96 w-96 rounded-full blur-[140px] pointer-events-none"
-          style={{ background: 'radial-gradient(circle, rgba(16,185,129,0.12), transparent 60%)' }}
+          style={{ background: 'radial-gradient(circle, rgba(83,137,68,0.12), transparent 60%)' }}
         />
       )}
 

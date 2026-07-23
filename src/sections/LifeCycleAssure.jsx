@@ -593,7 +593,7 @@ function LifecycleFlowchart({ isDark, onStepClick, activeStep }) {
                       dominantBaseline="auto"
                       className="font-[Outfit]"
                       style={{ fontSize: 15, fontWeight: 600 }}
-                      fill={isDark ? '#ffffff' : '#1e1b4b'}
+                      fill={isDark ? '#ffffff' : '#0d0d0d'}
                     >
                       {step.title}
                     </text>
@@ -608,7 +608,7 @@ function LifecycleFlowchart({ isDark, onStepClick, activeStep }) {
                       dominantBaseline={yOffset > 0 ? 'hanging' : 'middle'}
                       className="font-[Outfit]"
                       style={{ fontSize: 15, fontWeight: 600 }}
-                      fill={isDark ? '#ffffff' : '#1e1b4b'}
+                      fill={isDark ? '#ffffff' : '#0d0d0d'}
                     >
                       {step.title}
                     </text>
