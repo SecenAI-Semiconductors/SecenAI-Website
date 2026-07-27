@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, useInView } from 'framer-motion';
 import { Cpu, ShieldCheck, BrainCircuit, Server } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
@@ -9,24 +10,28 @@ const features = [
     title: 'Flight Controller',
     description:
       'High-performance UAV control systems designed for reliable processing, precise navigation, and flexible integration across commercial, research, and specialised drone platforms.',
+    path: '/flight-controller',
   },
   {
     icon: BrainCircuit,
     title: 'Ground Control Suite',
     description:
       'A unified software platform for mission planning, real-time UAV monitoring, fleet management, telemetry analysis, and operational control.',
+    path: '/ground-control-suite',
   },
   {
     icon: Server,
     title: 'Our Dashboard',
     description:
       'A unified platform for farm management, drone monitoring, crop insights, market data, and AI-assisted farming.',
+    path: '/dashboard',
   },
   {
     icon: ShieldCheck,
     title: 'Defence Solutions',
     description:
       'Indigenous UAV technologies focused on mission-specific applications, including GPS-denied navigation, Edge AI-based VIO, autonomous operations, and customised defence integration.',
+    path: '/defence',
   },
 ];
 
@@ -150,6 +155,17 @@ export default function Features() {
                 }`}>
                 {feature.description}
               </p>
+
+              <Link
+                to={feature.path}
+                className={`mt-6 inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 ${isDark
+                  ? 'bg-neon/10 text-neon hover:bg-neon/20'
+                  : 'bg-emerald-50 text-emerald-700 hover:bg-emerald-100'
+                  }`}
+              >
+                Explore
+                <span className="ml-2">→</span>
+              </Link>
             </motion.div>
           );
         })}

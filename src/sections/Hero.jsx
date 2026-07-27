@@ -99,7 +99,7 @@ export default function Hero() {
               ? "border-white/15 bg-white/10 text-white/80"
               : "border-gray-300 bg-white/70 text-gray-600"
               }`}>
-              AI-POWERED DRONE INTELLIGENCE
+              EDGE AI-POWERED DRONE INTELLIGENCE
             </span>
           </motion.div>
 

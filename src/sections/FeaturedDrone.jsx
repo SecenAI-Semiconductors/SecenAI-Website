@@ -149,7 +149,7 @@ export default function FeaturedDrone() {
             variants={fadeUp}
             custom={0}
           >
-            OUR PRODUCTS
+            OUR FLIGHT CONTROLLERS
           </motion.span>
 
           <motion.h2
@@ -159,9 +159,9 @@ export default function FeaturedDrone() {
             variants={fadeUp}
             custom={0.1}
           >
-            <span className={isDark ? 'text-white' : 'text-[#1e1b4b]'}>Drone </span>
+            <span className={isDark ? 'text-white' : 'text-[#1e1b4b]'}>Flight Controller </span>
             <span className={isDark ? 'text-gradient-neon' : 'text-gradient-emerald'}>
-              Product Lineup
+              Lineup
             </span>
           </motion.h2>
 
@@ -173,7 +173,7 @@ export default function FeaturedDrone() {
             variants={fadeUp}
             custom={0.2}
           >
-            Two purpose-built autonomous platforms: a precision Quadcopter
+            Three purpose-built flight controllers: a precision Quadcopter
             for agile operations and a heavy-lift Hexacopter for demanding missions.
           </motion.p>
         </div>

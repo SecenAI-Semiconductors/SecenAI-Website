@@ -26,7 +26,7 @@ const dropdownCategories = [
     icon: Cpu,
     href: "/flight-controller",
     items: [
-      { label: "SECENAI FC H743 V1", href: "/flight-controller#secenai-fc-h743" },
+      { label: "SECENAI FC H743 V1", href: "/explore/secenai-fc-h743-v1" },
       { label: "Edu/Light Version", href: "/flight-controller#edu-light" },
       { label: "Defence-Grade Version", href: "/flight-controller#defence" },
     ],

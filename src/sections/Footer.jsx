@@ -25,11 +25,11 @@ const solutionLinks = [
 ];
 
 const socialIcons = [
-  { Icon: Github, href: '#', label: 'GitHub' },
+  { Icon: Github, href: '', label: 'GitHub' },
   { Icon: Twitter, href: '#', label: 'Twitter' },
   { Icon: Linkedin, href: 'https://www.linkedin.com/company/secenai-semiconductors', label: 'LinkedIn' },
-  { Icon: Youtube, href: '#', label: 'YouTube' },
-  { Icon: Instagram, href: '#', label: 'Instagram' },
+  { Icon: Youtube, href: 'https://www.youtube.com/@SECENAI', label: 'YouTube' },
+  { Icon: Instagram, href: 'https://www.instagram.com/secen.ai/', label: 'Instagram' },
 ];
 
 const contactInfo = [
