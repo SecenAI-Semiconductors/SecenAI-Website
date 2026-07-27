@@ -16,11 +16,10 @@ export default function CTABanner() {
   return (
     <section
       ref={sectionRef}
-      className={`relative overflow-hidden py-16 md:py-20 ${
-        isDark
+      className={`relative overflow-hidden py-16 md:py-20 ${isDark
           ? 'bg-gradient-to-br from-dark-800 via-dark-900 to-dark-950'
           : 'bg-gradient-to-br from-[#e4e2d8] via-[#e9e7dd] to-[#e4e2d8]'
-      }`}
+        }`}
     >
       {/* Glow Orb */}
       {isDark && (
@@ -33,9 +32,8 @@ export default function CTABanner() {
       )}
 
       {/* Grid Background Overlay */}
-      <div className={`grid-bg pointer-events-none absolute inset-0 ${
-        isDark ? 'opacity-40' : 'opacity-15'
-      }`} />
+      <div className={`grid-bg pointer-events-none absolute inset-0 ${isDark ? 'opacity-40' : 'opacity-15'
+        }`} />
 
       {/* Content */}
       <motion.div
@@ -52,18 +50,16 @@ export default function CTABanner() {
         }}
       >
         {/* Badge */}
-        <span className={`mb-8 inline-block rounded-full border px-4 py-1.5 text-xs font-medium tracking-[0.2em] ${
-          isDark
+        <span className={`mb-8 inline-block rounded-full border px-4 py-1.5 text-xs font-medium tracking-[0.2em] ${isDark
             ? 'border-neon/30 bg-neon/5 text-neon'
             : 'border-emerald-200 bg-emerald-50 text-emerald-700'
-        }`}>
-          AI-POWERED DRONE INTELLIGENCE
+          }`}>
+          EDGE AI-POWERED DRONE INTELLIGENCE
         </span>
 
         {/* Heading */}
-        <h2 className={`mb-6 font-[Outfit] text-4xl font-bold leading-tight md:text-6xl ${
-          isDark ? 'text-white' : 'text-[#1e1b4b]'
-        }`}>
+        <h2 className={`mb-6 font-[Outfit] text-4xl font-bold leading-tight md:text-6xl ${isDark ? 'text-white' : 'text-[#1e1b4b]'
+          }`}>
           Ready to Unlock
           <br />
           <span className={isDark ? 'text-gradient-neon' : 'text-gradient-emerald'}>
@@ -72,9 +68,8 @@ export default function CTABanner() {
         </h2>
 
         {/* Subtitle */}
-        <p className={`mx-auto mb-10 max-w-2xl text-lg leading-relaxed ${
-          isDark ? 'text-white/40' : 'text-gray-500'
-        }`}>
+        <p className={`mx-auto mb-10 max-w-2xl text-lg leading-relaxed ${isDark ? 'text-white/40' : 'text-gray-500'
+          }`}>
           Transform aerial imagery, telemetry, and IoT sensor data into
           actionable insights for agriculture, infrastructure inspection,
           logistics, environmental monitoring, and smart city operations.
@@ -84,11 +79,10 @@ export default function CTABanner() {
         <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
           <motion.a
             href="/contact"
-            className={`inline-flex cursor-pointer items-center gap-2 rounded-full px-8 py-4 font-semibold transition-all ${
-              isDark
+            className={`inline-flex cursor-pointer items-center gap-2 rounded-full px-8 py-4 font-semibold transition-all ${isDark
                 ? 'bg-neon text-dark-950 hover:shadow-xl hover:shadow-neon/30'
                 : 'bg-emerald-600 text-white hover:bg-emerald-700 hover:shadow-xl hover:shadow-emerald-600/30'
-            }`}
+              }`}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.97 }}
           >
@@ -98,11 +92,10 @@ export default function CTABanner() {
 
           <motion.a
             href="/about"
-            className={`inline-flex cursor-pointer items-center gap-2 rounded-full border px-8 py-4 transition-all ${
-              isDark
+            className={`inline-flex cursor-pointer items-center gap-2 rounded-full border px-8 py-4 transition-all ${isDark
                 ? 'border-white/20 text-white hover:border-white/40 hover:bg-white/5'
                 : 'border-gray-300 text-gray-700 hover:border-gray-400'
-            }`}
+              }`}
             style={!isDark ? { backgroundColor: '#ffffff' } : undefined}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.97 }}

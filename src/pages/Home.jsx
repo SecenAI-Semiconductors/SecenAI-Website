@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <DroneCategories />
+      {/* <DroneCategories /> */}
       <FeaturedDrone />
       <Features />
       <VideoShowcase />

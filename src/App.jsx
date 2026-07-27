@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { Routes, Route, useLocation } from 'react-router-dom'
+import { Routes, Route, useLocation, Navigate } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
 import { useTheme } from './context/ThemeContext'
 import Navbar from './components/Navbar'
@@ -15,6 +15,7 @@ import FlightController from './pages/explore/FlightController'
 import GroundControlSuite from './pages/explore/GroundControlSuite'
 import Dashboard from './pages/explore/Dashboard'
 import Defence from './pages/explore/Defence'
+import SecenaiFCH743Page from './pages/explore/SecenaiFCH743'
 
 function App() {
   const { theme } = useTheme()
@@ -72,6 +73,10 @@ function App() {
             <Route path="/ground-control-suite" element={<GroundControlSuite />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/defence" element={<Defence />} />
+
+            {/* Product detail pages */}
+            <Route path="/explore/secenai-fc-h743-v1" element={<SecenaiFCH743Page />} />
+            <Route path="/products/secenai-fc-h743-v1" element={<Navigate to="/explore/secenai-fc-h743-v1" replace />} />
           </Routes>
         </main>
 
