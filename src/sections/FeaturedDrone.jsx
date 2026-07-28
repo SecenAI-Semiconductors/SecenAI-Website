@@ -3,6 +3,7 @@ import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { Package, Clock, Navigation, Battery, ArrowRight, Plane } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 import quadcopterImg from '../assets/quadcopter-prototype.png';
+import { ZoomableImage } from '../components/ImageLightbox';
 
 const SLIDE_INTERVAL = 7000; // 7 seconds per slide
 
@@ -205,7 +206,7 @@ export default function FeaturedDrone() {
                   {/* Image */}
                   <div className="relative overflow-hidden h-[300px] sm:h-[380px]">
                     {product.image ? (
-                      <img
+                      <ZoomableImage
                         src={product.image}
                         alt={product.name}
                         className={`w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.5] ${product.id === 'quadcopter-q1' ? 'scale-[1.4]' : ''

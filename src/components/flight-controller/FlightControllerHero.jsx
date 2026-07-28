@@ -4,6 +4,7 @@ import { useTheme } from '../../context/ThemeContext';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { heroData } from '../../data/secenaiFCH743V1Data';
+import { ZoomableImage } from '../ImageLightbox';
 
 /* ═══════════════════════════════════════════
    ANIMATION VARIANTS
@@ -192,8 +193,8 @@ export default function FlightControllerHero() {
               <Link
                 to="/contact"
                 className={`inline-flex items-center gap-2 font-semibold px-7 py-3 rounded-full text-sm border transition-all duration-300 ${isDark
-                  ? 'border-white/10 text-white/60 hover:border-neon/30 hover:text-neon'
-                  : 'border-gray-300 text-gray-600 hover:border-emerald-400 hover:text-emerald-600'
+                  ? 'border-white/20 bg-white/10 text-white hover:border-neon/40 hover:text-neon hover:bg-white/15'
+                  : 'border-gray-300 bg-gray-50 text-gray-800 shadow-sm hover:border-emerald-500 hover:text-emerald-700 hover:shadow-md'
                   }`}
               >
                 Contact Engineering
@@ -233,7 +234,7 @@ export default function FlightControllerHero() {
                 />
 
                 {heroData.productImage ? (
-                  <img
+                  <ZoomableImage
                     src={heroData.productImage}
                     alt="SECENAI FC H743 V1 Flight Controller"
                     className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-[1.03]"

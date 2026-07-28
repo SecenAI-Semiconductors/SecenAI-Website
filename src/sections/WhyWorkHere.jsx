@@ -78,11 +78,14 @@ function PerkCard({ perk, isDark }) {
         borderRadius: '20px',
         padding: '36px 32px',
         background: isDark
-          ? 'rgba(255,255,255,0.03)'
-          : 'rgba(255,255,255,0.8)',
+          ? 'rgba(255,255,255,0.05)'
+          : '#ffffff',
         border: isDark
-          ? '1px solid rgba(255,255,255,0.06)'
-          : '1px solid rgba(0,0,0,0.06)',
+          ? '1px solid rgba(255,255,255,0.10)'
+          : '1px solid rgba(0,0,0,0.10)',
+        boxShadow: isDark
+          ? '0 4px 20px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.05)'
+          : '0 2px 12px rgba(0,0,0,0.06), 0 0 0 1px rgba(0,0,0,0.03)',
         backdropFilter: 'blur(20px)',
         cursor: 'default',
         transition: 'all 0.4s cubic-bezier(0.4,0,0.2,1)',
@@ -99,9 +102,11 @@ function PerkCard({ perk, isDark }) {
       onMouseLeave={(e) => {
         const card = e.currentTarget;
         card.style.borderColor = isDark
-          ? 'rgba(255,255,255,0.06)'
-          : 'rgba(0,0,0,0.06)';
-        card.style.boxShadow = 'none';
+          ? 'rgba(255,255,255,0.10)'
+          : 'rgba(0,0,0,0.10)';
+        card.style.boxShadow = isDark
+          ? '0 4px 20px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.05)'
+          : '0 2px 12px rgba(0,0,0,0.06), 0 0 0 1px rgba(0,0,0,0.03)';
       }}
     >
       {/* Subtle gradient background */}

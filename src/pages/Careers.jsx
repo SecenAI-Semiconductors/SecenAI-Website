@@ -3,6 +3,7 @@ import { useTheme } from '../context/ThemeContext';
 import { Briefcase, ChevronRight } from 'lucide-react';
 import OpenPositions from '../sections/OpenPositions';
 import WhyWorkHere from '../sections/WhyWorkHere';
+import GeneralApplication from '../sections/GeneralApplication';
 
 const stagger = {
   hidden: {},
@@ -205,6 +206,7 @@ export default function Careers() {
 
       <OpenPositions />
       <WhyWorkHere />
+      <GeneralApplication />
     </div>
   );
 }

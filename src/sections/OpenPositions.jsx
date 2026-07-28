@@ -79,21 +79,23 @@ function JobCard({ job, isDark, index }) {
             padding: '28px 32px',
             background: isDark
               ? expanded
-                ? 'rgba(255,255,255,0.05)'
-                : 'rgba(255,255,255,0.02)'
+                ? 'rgba(255,255,255,0.07)'
+                : 'rgba(255,255,255,0.05)'
               : expanded
-                ? 'rgba(255,255,255,0.95)'
-                : 'rgba(255,255,255,0.7)',
+                ? '#ffffff'
+                : '#ffffff',
             border: isDark
-              ? '1px solid rgba(255,255,255,0.06)'
-              : '1px solid rgba(0,0,0,0.06)',
+              ? '1px solid rgba(255,255,255,0.10)'
+              : '1px solid rgba(0,0,0,0.10)',
             backdropFilter: 'blur(20px)',
             transition: 'all 0.4s cubic-bezier(0.4,0,0.2,1)',
             boxShadow: expanded
               ? isDark
                 ? '0 20px 60px rgba(204,255,0,0.06), 0 0 0 1px rgba(204,255,0,0.08)'
                 : '0 20px 60px rgba(83,137,68,0.08), 0 0 0 1px rgba(83,137,68,0.1)'
-              : 'none',
+              : isDark
+                ? '0 4px 20px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.05)'
+                : '0 2px 12px rgba(0,0,0,0.06), 0 0 0 1px rgba(0,0,0,0.03)',
           }}
         >
           {/* Header Row */}

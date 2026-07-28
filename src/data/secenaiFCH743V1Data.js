@@ -73,14 +73,14 @@ export const tripleIMUData = {
       busNote: 'Shares SPI bus with IMU 2',
     },
     {
-      name: 'ICM-42688-P',
+      name: 'ICM-42605',
       role: 'IMU 2',
       axes: '3-axis gyroscope + 3-axis accelerometer',
       spiBus: 'SPI Bus A (shared)',
       busNote: 'Shares SPI bus with IMU 1',
     },
     {
-      name: 'ICM-42605',
+      name: 'ICM-42688-P',
       role: 'IMU 3',
       axes: '3-axis gyroscope + 3-axis accelerometer',
       spiBus: 'SPI Bus B (separate)',
@@ -245,10 +245,12 @@ export const powerFirmwareData = {
       {
         name: 'ArduPilot',
         description: 'Open-source autopilot software supporting a wide range of autonomous vehicle types.',
+        url: 'https://ardupilot.org',
       },
       {
         name: 'PX4',
         description: 'Open-source flight control software for drones and other autonomous vehicles.',
+        url: 'https://px4.io',
       },
     ],
     platformTags: [
@@ -294,13 +296,12 @@ export const technicalSpecsData = {
     {
       name: 'Reliability and Isolation',
       specs: [
-        { label: 'Independent IMU power', value: 'No' },
         { label: 'Automatic IMU failover', value: 'Supported' },
         { label: 'Sensor voting', value: 'Supported' },
         { label: 'IMU fault isolation', value: 'Supported' },
         { label: 'Barometer cross-checking', value: 'Supported in firmware' },
-        { label: 'PCB vibration isolation', value: 'Supported' },
-        { label: 'Enclosure vibration isolation', value: 'Supported' },
+        { label: 'PCB vibration isolation', value: 'Yes' },
+        { label: 'Enclosure vibration isolation', value: 'Yes' },
       ],
     },
     {
@@ -326,9 +327,9 @@ export const technicalSpecsData = {
         { label: 'ADC', value: '2' },
         { label: 'USB', value: 'USB Type-C and internal Molex connection' },
         { label: 'Logging', value: 'External MicroSD' },
-        { label: 'FRAM', value: '32 MB, verification required for MB versus Mbit' },
+        { label: 'FRAM', value: '32 MB' },
         { label: 'GPS', value: 'Supported' },
-        { label: 'RC input', value: 'Supported' },
+        { label: 'RC input', value: 'SBUS, CRSF, Spectrum DSM' },
         { label: 'Connector system', value: 'Molex, Pixhawk-standard approach' },
       ],
     },
@@ -376,10 +377,10 @@ export const mechanicalData = {
 
   /* Dimensions — all TBD until confirmed */
   dimensions: {
-    boardDimensions: 'TBD',
-    mountingHoleSpacing: 'TBD',
-    pcbThickness: 'TBD',
-    weight: 'TBD',
+    boardDimensions: '70x85 mm',
+    mountingHoleSpacing: 'M2.5',
+    pcbThickness: '1.6 mm',
+    weight: '40-50 g',
   },
 
   downloadButton: {
