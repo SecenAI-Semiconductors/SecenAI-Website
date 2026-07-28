@@ -29,10 +29,10 @@ const fadeUp = {
 function SpecGroup({ group, isDark, isOpen, onToggle }) {
   return (
     <div
-      className={`rounded-xl border transition-colors duration-200 ${
+      className={`rounded-xl border transition-all duration-200 ${
         isDark
-          ? `border-white/[0.06] ${isOpen ? 'bg-white/[0.02]' : 'bg-transparent'}`
-          : `border-gray-200 ${isOpen ? 'bg-white' : 'bg-transparent'}`
+          ? `border-white/[0.10] shadow-[0_4px_20px_rgba(0,0,0,0.25)] ${isOpen ? 'bg-white/[0.06]' : 'bg-white/[0.05]'}`
+          : `border-gray-300/80 ${isOpen ? 'bg-white shadow-md' : 'bg-white shadow-sm'}`
       }`}
     >
       {/* Header */}
@@ -148,7 +148,7 @@ export default function TechnicalSpecifications() {
     <section
       ref={sectionRef}
       className={`relative py-24 md:py-32 overflow-hidden ${
-        isDark ? 'bg-dark-950' : 'bg-[#f9fafb]'
+        isDark ? 'bg-dark-900' : 'bg-[#f0f0f3]'
       }`}
     >
       {/* Ambient glow */}

@@ -530,18 +530,32 @@ html.light .text-gradient-emerald {
 
 /* Glassmorphism card */
 .glass-card {
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.05);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .glass-card:hover {
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.08);
   border-color: rgba(204, 255, 0, 0.2);
   box-shadow: 0 8px 32px rgba(204, 255, 0, 0.08),
     0 0 0 1px rgba(204, 255, 0, 0.1);
+}
+
+/* Light mode glass-card */
+html.light .glass-card {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.10);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06), 0 0 0 1px rgba(0, 0, 0, 0.03);
+}
+
+html.light .glass-card:hover {
+  background: #ffffff;
+  border-color: rgba(83, 137, 68, 0.35);
+  box-shadow: 0 8px 28px rgba(83, 137, 68, 0.10), 0 0 0 1px rgba(83, 137, 68, 0.08);
 }
 
 /* Glow effects */
@@ -661,4 +675,87 @@ html.light * {
 .animate-spin-slow,
 .pulse-ring {
   transition: none !important;
+}
+
+/* ========== VIDEO VOLUME SLIDER ========== */
+.video-volume-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  outline: none;
+}
+
+.video-volume-slider::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.video-volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #CCFF00;
+  margin-top: -4px;
+  cursor: pointer;
+  border: none;
+  transition: transform 0.15s ease;
+}
+
+.video-volume-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.3);
+}
+
+.video-volume-slider::-moz-range-track {
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+}
+
+.video-volume-slider::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #CCFF00;
+  cursor: pointer;
+  border: none;
+}
+
+html.light .video-volume-slider::-webkit-slider-runnable-track {
+  background: rgba(0, 0, 0, 0.15);
+}
+
+html.light .video-volume-slider::-webkit-slider-thumb {
+  background: #538944;
+}
+
+html.light .video-volume-slider::-moz-range-track {
+  background: rgba(0, 0, 0, 0.15);
+}
+
+html.light .video-volume-slider::-moz-range-thumb {
+  background: #538944;
+}
+
+/* ========== IMAGE LIGHTBOX ========== */
+.lightbox-overlay {
+  cursor: zoom-out;
+}
+
+.lightbox-image {
+  cursor: default !important;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5);
+}
+
+/* Disable theme transitions on lightbox to prevent flicker */
+.lightbox-overlay,
+.lightbox-overlay * {
+  transition: none !important;
+}
+
+.lightbox-image {
+  transition: transform 0.2s ease !important;
 }

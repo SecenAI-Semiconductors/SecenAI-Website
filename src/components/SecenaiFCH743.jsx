@@ -3,6 +3,7 @@ import { motion, useInView } from 'framer-motion';
 import { useTheme } from '../context/ThemeContext';
 import { Zap, Layers, Gauge, Cable, Code2, Network } from 'lucide-react';
 import fcH743Img from '../assets/fc-h743.png';
+import { ZoomableImage } from './ImageLightbox';
 
 /* ═══════════════════════════════════════════
    ANIMATION VARIANTS
@@ -92,7 +93,7 @@ export default function SecenaiFCH743() {
                 }}
               />
 
-              <img
+              <ZoomableImage
                 src={fcH743Img}
                 alt="SECENAI FC H743 Flight Controller"
                 className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"

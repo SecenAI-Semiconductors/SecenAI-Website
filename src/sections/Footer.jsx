@@ -27,9 +27,9 @@ const solutionLinks = [
 const socialIcons = [
   { Icon: Github, href: '', label: 'GitHub' },
   { Icon: Twitter, href: '#', label: 'Twitter' },
-  { Icon: Linkedin, href: 'https://www.linkedin.com/company/secenai-semiconductors', label: 'LinkedIn' },
-  { Icon: Youtube, href: 'https://www.youtube.com/@SECENAI', label: 'YouTube' },
-  { Icon: Instagram, href: 'https://www.instagram.com/secen.ai/', label: 'Instagram' },
+  { Icon: Linkedin, href: 'https://www.linkedin.com/company/secenai-semiconductors', target: '_blank', label: 'LinkedIn' },
+  { Icon: Youtube, href: 'https://www.youtube.com/@SECENAI', target: '_blank', label: 'YouTube' },
+  { Icon: Instagram, href: 'https://www.instagram.com/secen.ai/', target: '_blank', label: 'Instagram' },
 ];
 
 const contactInfo = [
@@ -102,11 +102,12 @@ export default function Footer() {
             </p>
 
             <div className="mt-6 flex gap-4">
-              {socialIcons.map(({ Icon, href, label }) => (
+              {socialIcons.map(({ Icon, href, target, label }) => (
                 <a
                   key={label}
                   href={href}
                   aria-label={label}
+                  {...(target ? { target, rel: 'noopener noreferrer' } : {})}
                   className={`transition-colors ${isDark
                     ? 'text-white/30 hover:text-neon'
                     : 'text-gray-400 hover:text-emerald-600'

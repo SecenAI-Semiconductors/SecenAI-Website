@@ -38,25 +38,28 @@ const featureIcons = {
 
 function BusTopologyDiagram({ isDark, prefersReducedMotion }) {
   const lineColor = isDark ? 'rgba(204,255,0,0.35)' : 'rgba(83,137,68,0.4)';
-  const lineColorDim = isDark ? 'rgba(204,255,0,0.15)' : 'rgba(83,137,68,0.2)';
   const nodeText = isDark ? 'text-white/70' : 'text-gray-700';
   const nodeTextDim = isDark ? 'text-white/40' : 'text-gray-500';
-  const nodeBg = isDark ? 'bg-dark-800 border-white/[0.08]' : 'bg-white border-gray-200';
-  const accentBg = isDark ? 'bg-neon/[0.08] border-neon/20' : 'bg-emerald-50 border-emerald-200/50';
-  const outputBg = isDark ? 'bg-neon/[0.06] border-neon/15' : 'bg-emerald-50/80 border-emerald-200/40';
+  const nodeBg = isDark ? 'bg-dark-800 border-white/12 shadow-lg shadow-black/30' : 'bg-white border-emerald-200/70 shadow-md';
+  const accentBg = isDark ? 'bg-neon/[0.08] border-neon/25 shadow-sm' : 'bg-emerald-50/90 border-emerald-200/80 shadow-xs';
+  const outputBg = isDark ? 'bg-neon/[0.08] border-neon/25 shadow-lg shadow-black/20' : 'bg-emerald-50 border-emerald-300/60 shadow-md';
+
+  const animatedStroke = !prefersReducedMotion ? (
+    <animate attributeName="stroke-dashoffset" values="7;0" dur="1.5s" repeatCount="indefinite" />
+  ) : null;
 
   return (
-    <div className="relative mt-10">
-      {/* Responsive stacked layout */}
-      <div className="flex flex-col items-center gap-3">
+    <div className="relative mt-10 w-full max-w-lg">
+      {/* ── Side-by-side SPI Bus blocks ── */}
+      <div className="grid grid-cols-2 gap-4">
         {/* SPI Bus A — shared */}
-        <div className={`w-full max-w-md rounded-xl border px-5 py-4 ${nodeBg}`}>
+        <div className={`rounded-xl border px-4 py-4 ${nodeBg}`}>
           <span className={`block text-[0.625rem] font-bold tracking-[0.2em] uppercase mb-2.5 ${nodeTextDim}`}>
             SPI Bus A — Shared
           </span>
-          <div className="flex gap-3">
+          <div className="flex flex-col gap-2">
             {tripleIMUData.sensors.slice(0, 2).map((s, i) => (
-              <div key={i} className={`flex-1 rounded-lg border px-3 py-2.5 ${accentBg}`}>
+              <div key={i} className={`rounded-lg border px-3 py-2.5 ${accentBg}`}>
                 <span className={`block text-xs font-semibold ${isDark ? 'text-neon' : 'text-emerald-600'}`}>
                   {s.name}
                 </span>
@@ -66,43 +69,47 @@ function BusTopologyDiagram({ isDark, prefersReducedMotion }) {
           </div>
         </div>
 
-        {/* Connector lines */}
-        <svg width="2" height="20" className="shrink-0">
-          <line x1="1" y1="0" x2="1" y2="20" stroke={lineColor} strokeWidth="2" strokeDasharray={prefersReducedMotion ? 'none' : '4 3'}>
-            {!prefersReducedMotion && (
-              <animate attributeName="stroke-dashoffset" values="7;0" dur="1.5s" repeatCount="indefinite" />
-            )}
-          </line>
-        </svg>
-
         {/* SPI Bus B — separate */}
-        <div className={`w-full max-w-md rounded-xl border px-5 py-4 ${nodeBg}`}>
+        <div className={`rounded-xl border px-4 py-4 ${nodeBg}`}>
           <span className={`block text-[0.625rem] font-bold tracking-[0.2em] uppercase mb-2.5 ${nodeTextDim}`}>
             SPI Bus B — Separate
           </span>
-          <div className={`rounded-lg border px-3 py-2.5 max-w-[50%] ${accentBg}`}>
+          <div className={`rounded-lg border px-3 py-2.5 ${accentBg}`}>
             <span className={`block text-xs font-semibold ${isDark ? 'text-neon' : 'text-emerald-600'}`}>
               {tripleIMUData.sensors[2].name}
             </span>
             <span className={`block text-[0.625rem] mt-0.5 ${nodeTextDim}`}>{tripleIMUData.sensors[2].role}</span>
           </div>
         </div>
+      </div>
 
-        {/* Connector lines */}
-        <svg width="2" height="24" className="shrink-0">
-          <line x1="1" y1="0" x2="1" y2="24" stroke={lineColor} strokeWidth="2" strokeDasharray={prefersReducedMotion ? 'none' : '4 3'}>
-            {!prefersReducedMotion && (
-              <animate attributeName="stroke-dashoffset" values="7;0" dur="1.5s" repeatCount="indefinite" />
-            )}
+      {/* ── Separate connection lines from each bus converging to center ── */}
+      <div className="flex justify-center">
+        <svg width="100%" height="48" viewBox="0 0 200 48" preserveAspectRatio="xMidYMid meet" className="overflow-visible">
+          {/* Left vertical line (from Bus A center) */}
+          <line x1="50" y1="0" x2="50" y2="32" stroke={lineColor} strokeWidth="2" strokeDasharray={prefersReducedMotion ? 'none' : '4 3'}>
+            {animatedStroke}
+          </line>
+          {/* Right vertical line (from Bus B center) */}
+          <line x1="150" y1="0" x2="150" y2="32" stroke={lineColor} strokeWidth="2" strokeDasharray={prefersReducedMotion ? 'none' : '4 3'}>
+            {animatedStroke}
+          </line>
+          {/* Horizontal connecting line */}
+          <line x1="50" y1="32" x2="150" y2="32" stroke={lineColor} strokeWidth="2" strokeDasharray={prefersReducedMotion ? 'none' : '4 3'}>
+            {animatedStroke}
+          </line>
+          {/* Center vertical line down to output */}
+          <line x1="100" y1="32" x2="100" y2="48" stroke={lineColor} strokeWidth="2" strokeDasharray={prefersReducedMotion ? 'none' : '4 3'}>
+            {animatedStroke}
           </line>
         </svg>
+      </div>
 
-        {/* Output node */}
-        <div className={`w-full max-w-md rounded-xl border px-5 py-4 text-center ${outputBg}`}>
-          <span className={`text-sm font-semibold ${isDark ? 'text-neon/80' : 'text-emerald-600'}`}>
-            Flight-State Estimation
-          </span>
-        </div>
+      {/* ── Output node ── */}
+      <div className={`w-full rounded-xl border px-5 py-4 text-center ${outputBg}`}>
+        <span className={`text-sm font-semibold ${isDark ? 'text-neon/80' : 'text-emerald-600'}`}>
+          Flight-State Estimation
+        </span>
       </div>
     </div>
   );
@@ -122,9 +129,8 @@ export default function TripleIMUSection() {
   return (
     <section
       ref={sectionRef}
-      className={`relative py-24 md:py-32 overflow-hidden ${
-        isDark ? 'bg-dark-950' : 'bg-[#f9fafb]'
-      }`}
+      className={`relative py-24 md:py-32 overflow-hidden ${isDark ? 'bg-dark-950' : 'bg-[#f9fafb]'
+        }`}
     >
       {/* Ambient glow */}
       {isDark && (
@@ -146,9 +152,8 @@ export default function TripleIMUSection() {
           >
             {/* Eyebrow */}
             <motion.span
-              className={`inline-block text-[0.6875rem] font-bold tracking-[0.25em] uppercase mb-4 ${
-                isDark ? 'text-neon/50' : 'text-emerald-600/70'
-              }`}
+              className={`inline-block text-[0.6875rem] font-bold tracking-[0.25em] uppercase mb-4 ${isDark ? 'text-neon/50' : 'text-emerald-600/70'
+                }`}
               variants={fadeUp}
             >
               {tripleIMUData.badge}
@@ -156,9 +161,8 @@ export default function TripleIMUSection() {
 
             {/* Heading */}
             <motion.h2
-              className={`font-[Outfit] text-3xl sm:text-4xl md:text-[2.75rem] font-bold leading-[1.12] ${
-                isDark ? 'text-white' : 'text-[#1e1b4b]'
-              }`}
+              className={`font-[Outfit] text-3xl sm:text-4xl md:text-[2.75rem] font-bold leading-[1.12] ${isDark ? 'text-white' : 'text-[#1e1b4b]'
+                }`}
               variants={fadeUp}
             >
               {tripleIMUData.title}
@@ -166,9 +170,8 @@ export default function TripleIMUSection() {
 
             {/* Description */}
             <motion.p
-              className={`mt-5 text-[0.9375rem] md:text-base leading-[1.75] ${
-                isDark ? 'text-white/50' : 'text-gray-600'
-              }`}
+              className={`mt-5 text-[0.9375rem] md:text-base leading-[1.75] ${isDark ? 'text-white/50' : 'text-gray-600'
+                }`}
               variants={fadeUp}
             >
               {tripleIMUData.description}
@@ -176,11 +179,10 @@ export default function TripleIMUSection() {
 
             {/* Divider */}
             <motion.div
-              className={`my-8 h-px w-full ${
-                isDark
+              className={`my-8 h-px w-full ${isDark
                   ? 'bg-gradient-to-r from-neon/15 via-white/5 to-transparent'
                   : 'bg-gradient-to-r from-emerald-300/30 via-gray-200 to-transparent'
-              }`}
+                }`}
               variants={fadeUp}
             />
 
@@ -193,9 +195,8 @@ export default function TripleIMUSection() {
                   variants={fadeUp}
                 >
                   <div
-                    className={`mb-3 flex h-8 w-8 items-center justify-center rounded-lg ${
-                      isDark ? 'bg-neon/[0.08]' : 'bg-emerald-50'
-                    }`}
+                    className={`mb-3 flex h-8 w-8 items-center justify-center rounded-lg ${isDark ? 'bg-neon/[0.08]' : 'bg-emerald-50'
+                      }`}
                   >
                     <Layers size={14} className={isDark ? 'text-neon' : 'text-emerald-600'} />
                   </div>
@@ -206,15 +207,14 @@ export default function TripleIMUSection() {
                     {sensor.axes}
                   </p>
                   <span
-                    className={`mt-2.5 inline-block text-[0.5625rem] font-semibold tracking-[0.15em] uppercase px-2 py-1 rounded-md ${
-                      sensor.spiBus.includes('Shared')
+                    className={`mt-2.5 inline-block text-[0.5625rem] font-semibold tracking-[0.15em] uppercase px-2 py-1 rounded-md ${sensor.spiBus.includes('Shared')
                         ? isDark
                           ? 'bg-white/[0.04] text-white/30'
                           : 'bg-gray-100 text-gray-400'
                         : isDark
                           ? 'bg-neon/[0.06] text-neon/50'
                           : 'bg-emerald-50 text-emerald-500/70'
-                    }`}
+                      }`}
                   >
                     {sensor.spiBus}
                   </span>
@@ -229,14 +229,13 @@ export default function TripleIMUSection() {
                 return (
                   <motion.div
                     key={feat}
-                    className={`inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-medium border ${
-                      isDark
-                        ? 'border-white/[0.06] text-white/50 bg-white/[0.02]'
-                        : 'border-gray-200 text-gray-500 bg-gray-50'
-                    }`}
+                    className={`inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold border ${isDark
+                        ? 'border-white/15 text-white/90 bg-white/10 shadow-sm'
+                        : 'border-gray-300/80 text-gray-800 bg-white shadow-sm'
+                      }`}
                     variants={fadeUp}
                   >
-                    <Icon size={12} className={isDark ? 'text-neon/60' : 'text-emerald-500'} />
+                    <Icon size={14} className={isDark ? 'text-neon' : 'text-emerald-600'} />
                     {feat}
                   </motion.div>
                 );

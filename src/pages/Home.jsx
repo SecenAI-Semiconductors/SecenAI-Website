@@ -1,5 +1,5 @@
 import Hero from '../sections/Hero'
-import DroneCategories from '../sections/DroneCategories'
+// import DroneCategories from '../sections/DroneCategories'
 import FeaturedDrone from '../sections/FeaturedDrone'
 import Features from '../sections/Features'
 import VideoShowcase from '../sections/VideoShowcase'

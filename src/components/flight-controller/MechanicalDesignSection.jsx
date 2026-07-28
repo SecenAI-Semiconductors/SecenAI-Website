@@ -3,6 +3,7 @@ import { motion, useInView } from 'framer-motion';
 import { useTheme } from '../../context/ThemeContext';
 import { Ruler, ShieldCheck, Box, ArrowDownToLine, Cpu } from 'lucide-react';
 import { mechanicalData } from '../../data/secenaiFCH743V1Data';
+import { ZoomableImage } from '../ImageLightbox';
 
 /* ═══════════════════════════════════════════
    ANIMATION VARIANTS
@@ -40,15 +41,14 @@ const featureIcons = {
 function ImagePlaceholder({ label, isDark }) {
   return (
     <div
-      className={`relative flex items-center justify-center rounded-xl border aspect-[4/3] ${
-        isDark
-          ? 'bg-dark-800 border-white/[0.06]'
-          : 'bg-white border-gray-200'
-      }`}
+      className={`relative flex items-center justify-center rounded-xl border aspect-[4/3] ${isDark
+        ? 'bg-dark-800 border-white/12 shadow-lg'
+        : 'bg-white border-gray-300 shadow-md'
+        }`}
       style={{
         boxShadow: isDark
-          ? '0 20px 60px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.04)'
-          : '0 20px 60px rgba(0,0,0,0.04), 0 0 0 1px rgba(0,0,0,0.03)',
+          ? '0 20px 60px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.06)'
+          : '0 20px 60px rgba(0,0,0,0.06), 0 0 0 1px rgba(0,0,0,0.05)',
       }}
     >
       {/* Grid trace pattern */}
@@ -66,16 +66,14 @@ function ImagePlaceholder({ label, isDark }) {
 
       <div className="text-center relative z-10">
         <div
-          className={`mx-auto mb-3 h-12 w-12 rounded-xl flex items-center justify-center ${
-            isDark ? 'bg-neon/[0.06] border border-neon/10' : 'bg-emerald-50 border border-emerald-200/30'
-          }`}
+          className={`mx-auto mb-3 h-12 w-12 rounded-xl flex items-center justify-center ${isDark ? 'bg-neon/[0.06] border border-neon/10' : 'bg-emerald-50 border border-emerald-200/30'
+            }`}
         >
           <Cpu size={20} className={isDark ? 'text-neon/25' : 'text-emerald-400/35'} strokeWidth={1.5} />
         </div>
         <span
-          className={`text-[0.625rem] font-semibold tracking-[0.15em] uppercase ${
-            isDark ? 'text-white/10' : 'text-gray-300'
-          }`}
+          className={`text-[0.625rem] font-semibold tracking-[0.15em] uppercase ${isDark ? 'text-white/20' : 'text-gray-400'
+            }`}
         >
           {label}
         </span>
@@ -103,9 +101,8 @@ export default function MechanicalDesignSection() {
   return (
     <section
       ref={sectionRef}
-      className={`relative py-24 md:py-32 overflow-hidden ${
-        isDark ? 'bg-dark-900' : 'bg-[#f0f0f3]'
-      }`}
+      className={`relative py-24 md:py-32 overflow-hidden ${isDark ? 'bg-dark-950' : 'bg-[#f9fafb]'
+        }`}
     >
       {/* Ambient glow */}
       {isDark && (
@@ -123,18 +120,16 @@ export default function MechanicalDesignSection() {
         >
           {/* ── Header ── */}
           <motion.span
-            className={`inline-block text-[0.6875rem] font-bold tracking-[0.25em] uppercase mb-4 ${
-              isDark ? 'text-neon/50' : 'text-emerald-600/70'
-            }`}
+            className={`inline-block text-[0.6875rem] font-bold tracking-[0.25em] uppercase mb-4 ${isDark ? 'text-neon/50' : 'text-emerald-600/70'
+              }`}
             variants={fadeUp}
           >
             {mechanicalData.badge}
           </motion.span>
 
           <motion.h2
-            className={`font-[Outfit] text-3xl sm:text-4xl md:text-[2.75rem] font-bold leading-[1.12] max-w-2xl ${
-              isDark ? 'text-white' : 'text-[#1e1b4b]'
-            }`}
+            className={`font-[Outfit] text-3xl sm:text-4xl md:text-[2.75rem] font-bold leading-[1.12] max-w-2xl ${isDark ? 'text-white' : 'text-[#1e1b4b]'
+              }`}
             variants={fadeUp}
           >
             {mechanicalData.title}
@@ -142,11 +137,10 @@ export default function MechanicalDesignSection() {
 
           {/* Divider */}
           <motion.div
-            className={`my-8 h-px w-full max-w-2xl ${
-              isDark
-                ? 'bg-gradient-to-r from-neon/15 via-white/5 to-transparent'
-                : 'bg-gradient-to-r from-emerald-300/30 via-gray-200 to-transparent'
-            }`}
+            className={`my-8 h-px w-full max-w-2xl ${isDark
+              ? 'bg-gradient-to-r from-neon/15 via-white/5 to-transparent'
+              : 'bg-gradient-to-r from-emerald-300/30 via-gray-200 to-transparent'
+              }`}
             variants={fadeUp}
           />
 
@@ -155,7 +149,7 @@ export default function MechanicalDesignSection() {
             {viewLabels.map(({ key, label }) => (
               <motion.div key={key} variants={fadeUp}>
                 {mechanicalData.images[key] ? (
-                  <img
+                  <ZoomableImage
                     src={mechanicalData.images[key]}
                     alt={`SECENAI FC H743 V1 flight controller PCB — ${label.toLowerCase()} showing board outline, mounting holes and component placement`}
                     className="w-full rounded-xl object-contain"
@@ -173,9 +167,8 @@ export default function MechanicalDesignSection() {
             {/* Features */}
             <motion.div variants={fadeUp}>
               <span
-                className={`block text-[0.625rem] font-bold tracking-[0.2em] uppercase mb-4 ${
-                  isDark ? 'text-white/25' : 'text-gray-400'
-                }`}
+                className={`block text-[0.625rem] font-bold tracking-[0.2em] uppercase mb-4 ${isDark ? 'text-white/25' : 'text-gray-400'
+                  }`}
               >
                 Confirmed features
               </span>
@@ -185,16 +178,14 @@ export default function MechanicalDesignSection() {
                   return (
                     <div key={feat} className="glass-card rounded-xl px-5 py-4 flex items-start gap-3">
                       <div
-                        className={`mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg ${
-                          isDark ? 'bg-neon/[0.08]' : 'bg-emerald-50'
-                        }`}
+                        className={`mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg ${isDark ? 'bg-neon/[0.08]' : 'bg-emerald-50'
+                          }`}
                       >
                         <Icon size={14} className={isDark ? 'text-neon' : 'text-emerald-600'} />
                       </div>
                       <span
-                        className={`text-sm font-medium leading-snug pt-1 ${
-                          isDark ? 'text-white/60' : 'text-[#1e1b4b]'
-                        }`}
+                        className={`text-sm font-semibold leading-snug pt-1 ${isDark ? 'text-white/80' : 'text-gray-800'
+                          }`}
                       >
                         {feat}
                       </span>
@@ -207,16 +198,16 @@ export default function MechanicalDesignSection() {
             {/* Dimensions table */}
             <motion.div variants={fadeUp}>
               <span
-                className={`block text-[0.625rem] font-bold tracking-[0.2em] uppercase mb-4 ${
-                  isDark ? 'text-white/25' : 'text-gray-400'
-                }`}
+                className={`block text-[0.625rem] font-bold tracking-[0.2em] uppercase mb-4 ${isDark ? 'text-white/25' : 'text-gray-400'
+                  }`}
               >
                 Dimensions
               </span>
               <div
-                className={`rounded-xl border overflow-hidden ${
-                  isDark ? 'border-white/[0.06]' : 'border-gray-200'
-                }`}
+                className={`rounded-xl border overflow-hidden ${isDark
+                  ? 'border-white/12 bg-dark-800/80 shadow-md'
+                  : 'border-gray-300/80 bg-white shadow-md'
+                  }`}
               >
                 <table className="w-full">
                   <tbody>
@@ -231,28 +222,26 @@ export default function MechanicalDesignSection() {
                         className={
                           i < arr.length - 1
                             ? isDark
-                              ? 'border-b border-white/[0.04]'
-                              : 'border-b border-gray-100'
+                              ? 'border-b border-white/[0.06]'
+                              : 'border-b border-gray-200/80'
                             : ''
                         }
                       >
                         <td
-                          className={`px-5 py-3 text-[0.8125rem] font-medium ${
-                            isDark ? 'text-white/40' : 'text-gray-500'
-                          }`}
+                          className={`px-5 py-3 text.8125rem] font-semibold ${isDark ? 'text-white/70' : 'text-gray-800'
+                            }`}
                         >
                           {label}
                         </td>
                         <td
-                          className={`px-5 py-3 text-[0.8125rem] text-right ${
-                            value === 'TBD'
-                              ? isDark
-                                ? 'text-white/20 italic'
-                                : 'text-gray-300 italic'
-                              : isDark
-                                ? 'text-white/70'
-                                : 'text-[#1e1b4b]'
-                          }`}
+                          className={`px-5 py-3 text-[0.8125rem] text-right font-medium ${value === 'TBD'
+                            ? isDark
+                              ? 'text-white/30 italic'
+                              : 'text-gray-400 italic'
+                            : isDark
+                              ? 'text-white/90'
+                              : 'text-[#1e1b4b]'
+                            }`}
                         >
                           {value}
                         </td>
@@ -266,9 +255,8 @@ export default function MechanicalDesignSection() {
 
           {/* ── Dimension notice ── */}
           <motion.p
-            className={`text-[0.8125rem] italic mb-8 ${
-              isDark ? 'text-white/25' : 'text-gray-400'
-            }`}
+            className={`text-[0.8125rem] italic mb-8 ${isDark ? 'text-white/25' : 'text-gray-400'
+              }`}
             variants={fadeUp}
           >
             {mechanicalData.dimensionNotice}
@@ -278,19 +266,17 @@ export default function MechanicalDesignSection() {
           <motion.div variants={fadeUp}>
             <button
               disabled
-              className={`inline-flex items-center gap-2.5 rounded-xl px-6 py-3 text-sm font-semibold transition-colors cursor-not-allowed ${
-                isDark
-                  ? 'bg-white/[0.04] text-white/20 border border-white/[0.06]'
-                  : 'bg-gray-100 text-gray-300 border border-gray-200'
-              }`}
+              className={`inline-flex items-center gap-2.5 rounded-xl px-6 py-3 text-sm font-semibold transition-colors cursor-not-allowed ${isDark
+                ? 'bg-white/10 text-white/40 border border-white/15'
+                : 'bg-white text-gray-500 border border-gray-300 shadow-xs'
+                }`}
               aria-label={`${mechanicalData.downloadButton.label} — ${mechanicalData.downloadButton.disabledLabel}`}
             >
               <ArrowDownToLine size={14} />
               {mechanicalData.downloadButton.label}
               <span
-                className={`ml-1 text-[0.625rem] font-bold tracking-[0.1em] uppercase px-2 py-0.5 rounded-full ${
-                  isDark ? 'bg-white/[0.04] text-white/15' : 'bg-gray-200/60 text-gray-400'
-                }`}
+                className={`ml-1 text-[0.625rem] font-bold tracking-[0.1em] uppercase px-2 py-0.5 rounded-full ${isDark ? 'bg-white/10 text-white/30' : 'bg-gray-100 text-gray-500'
+                  }`}
               >
                 {mechanicalData.downloadButton.disabledLabel}
               </span>

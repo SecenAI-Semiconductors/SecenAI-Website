@@ -89,9 +89,8 @@ export default function DualBarometerSection() {
   return (
     <section
       ref={sectionRef}
-      className={`relative py-24 md:py-32 overflow-hidden ${
-        isDark ? 'bg-dark-900' : 'bg-[#f0f0f3]'
-      }`}
+      className={`relative py-24 md:py-32 overflow-hidden ${isDark ? 'bg-dark-900' : 'bg-[#f0f0f3]'
+        }`}
     >
       {/* Ambient glow */}
       {isDark ? (
@@ -109,27 +108,24 @@ export default function DualBarometerSection() {
           variants={stagger}
         >
           <motion.span
-            className={`inline-block text-[0.6875rem] font-bold tracking-[0.25em] uppercase mb-4 ${
-              isDark ? 'text-neon/50' : 'text-emerald-600/70'
-            }`}
+            className={`inline-block text-[0.6875rem] font-bold tracking-[0.25em] uppercase mb-4 ${isDark ? 'text-neon/50' : 'text-emerald-600/70'
+              }`}
             variants={fadeUp}
           >
             {dualBarometerData.badge}
           </motion.span>
 
           <motion.h2
-            className={`font-[Outfit] text-3xl sm:text-4xl md:text-[2.75rem] font-bold leading-[1.12] ${
-              isDark ? 'text-white' : 'text-[#1e1b4b]'
-            }`}
+            className={`font-[Outfit] text-3xl sm:text-4xl md:text-[2.75rem] font-bold leading-[1.12] ${isDark ? 'text-white' : 'text-[#1e1b4b]'
+              }`}
             variants={fadeUp}
           >
             {dualBarometerData.title}
           </motion.h2>
 
           <motion.p
-            className={`mt-5 text-[0.9375rem] md:text-base leading-[1.75] ${
-              isDark ? 'text-white/50' : 'text-gray-600'
-            }`}
+            className={`mt-5 text-[0.9375rem] md:text-base leading-[1.75] ${isDark ? 'text-white/50' : 'text-gray-600'
+              }`}
             variants={fadeUp}
           >
             {dualBarometerData.description}
@@ -151,15 +147,13 @@ export default function DualBarometerSection() {
             <PressureWaves isDark={isDark} prefersReducedMotion={prefersReducedMotion} />
             <div className="relative z-10 px-6 py-8 sm:px-8 sm:py-10">
               <span
-                className={`inline-block text-[0.5625rem] font-bold tracking-[0.25em] uppercase px-2.5 py-1 rounded-md mb-5 ${
-                  isDark ? 'bg-neon/[0.08] text-neon/60' : 'bg-emerald-50 text-emerald-500/80'
-                }`}
+                className={`inline-block text-[0.5625rem] font-bold tracking-[0.25em] uppercase px-2.5 py-1 rounded-md mb-5 ${isDark ? 'bg-neon/[0.08] text-neon/60' : 'bg-emerald-50 text-emerald-500/80'
+                  }`}
               >
                 {dualBarometerData.sensors[0].label}
               </span>
-              <div className={`mb-3 flex h-10 w-10 items-center justify-center rounded-xl ${
-                isDark ? 'bg-neon/[0.08]' : 'bg-emerald-50'
-              }`}>
+              <div className={`mb-3 flex h-10 w-10 items-center justify-center rounded-xl ${isDark ? 'bg-neon/[0.08]' : 'bg-emerald-50'
+                }`}>
                 <Gauge size={18} className={isDark ? 'text-neon' : 'text-emerald-600'} />
               </div>
               <h3 className={`text-xl font-bold font-[Outfit] ${isDark ? 'text-white/80' : 'text-[#1e1b4b]'}`}>
@@ -206,16 +200,15 @@ export default function DualBarometerSection() {
               </svg>
 
               <div
-                className={`rounded-xl border px-5 py-4 text-center whitespace-nowrap ${
-                  isDark
-                    ? 'bg-neon/[0.05] border-neon/15'
-                    : 'bg-emerald-50/80 border-emerald-200/40'
-                }`}
+                className={`rounded-xl border px-5 py-4 text-center whitespace-nowrap ${isDark
+                    ? 'bg-neon/[0.08] border-neon/25 shadow-md'
+                    : 'bg-white border-emerald-300/60 shadow-md'
+                  }`}
               >
-                <span className={`text-[0.625rem] font-bold tracking-[0.15em] uppercase block mb-0.5 ${isDark ? 'text-white/30' : 'text-gray-400'}`}>
+                <span className={`text-[0.625rem] font-bold tracking-[0.15em] uppercase block mb-0.5 ${isDark ? 'text-white/40' : 'text-gray-500'}`}>
                   Firmware
                 </span>
-                <span className={`text-xs font-semibold ${isDark ? 'text-neon/70' : 'text-emerald-600'}`}>
+                <span className={`text-xs font-semibold ${isDark ? 'text-neon' : 'text-emerald-600'}`}>
                   {dualBarometerData.crossCheck}
                 </span>
               </div>
@@ -235,11 +228,10 @@ export default function DualBarometerSection() {
 
             {/* Mobile: central badge */}
             <div
-              className={`md:hidden rounded-xl border px-5 py-4 text-center ${
-                isDark
+              className={`md:hidden rounded-xl border px-5 py-4 text-center ${isDark
                   ? 'bg-neon/[0.05] border-neon/15'
                   : 'bg-emerald-50/80 border-emerald-200/40'
-              }`}
+                }`}
             >
               <span className={`text-[0.625rem] font-bold tracking-[0.15em] uppercase block mb-0.5 ${isDark ? 'text-white/30' : 'text-gray-400'}`}>
                 Firmware
@@ -271,15 +263,13 @@ export default function DualBarometerSection() {
             <PressureWaves isDark={isDark} prefersReducedMotion={prefersReducedMotion} />
             <div className="relative z-10 px-6 py-8 sm:px-8 sm:py-10">
               <span
-                className={`inline-block text-[0.5625rem] font-bold tracking-[0.25em] uppercase px-2.5 py-1 rounded-md mb-5 ${
-                  isDark ? 'bg-neon/[0.08] text-neon/60' : 'bg-emerald-50 text-emerald-500/80'
-                }`}
+                className={`inline-block text-[0.5625rem] font-bold tracking-[0.25em] uppercase px-2.5 py-1 rounded-md mb-5 ${isDark ? 'bg-neon/[0.08] text-neon/60' : 'bg-emerald-50 text-emerald-500/80'
+                  }`}
               >
                 {dualBarometerData.sensors[1].label}
               </span>
-              <div className={`mb-3 flex h-10 w-10 items-center justify-center rounded-xl ${
-                isDark ? 'bg-neon/[0.08]' : 'bg-emerald-50'
-              }`}>
+              <div className={`mb-3 flex h-10 w-10 items-center justify-center rounded-xl ${isDark ? 'bg-neon/[0.08]' : 'bg-emerald-50'
+                }`}>
                 <Gauge size={18} className={isDark ? 'text-neon' : 'text-emerald-600'} />
               </div>
               <h3 className={`text-xl font-bold font-[Outfit] ${isDark ? 'text-white/80' : 'text-[#1e1b4b]'}`}>

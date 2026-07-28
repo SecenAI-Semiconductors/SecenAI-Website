@@ -1,6 +1,6 @@
 import { motion, useInView } from "framer-motion";
-import { Play, Pause } from "lucide-react";
-import { useRef, useState } from "react";
+import { Play, Pause, Volume2, VolumeX } from "lucide-react";
+import { useRef, useState, useEffect } from "react";
 import { useTheme } from "../context/ThemeContext";
 
 const videoSrc = "https://res.cloudinary.com/dil1zgzdb/video/upload/Video-project1_kapelv.mp4";
@@ -12,6 +12,15 @@ export default function VideoShowcase() {
   const isDark = theme === "dark";
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
   const [isPlaying, setIsPlaying] = useState(false);
+  const [volume, setVolume] = useState(0.5);
+  const [isMuted, setIsMuted] = useState(true);
+
+  /* Sync volume / muted state to the video element */
+  useEffect(() => {
+    if (!videoRef.current) return;
+    videoRef.current.volume = volume;
+    videoRef.current.muted = isMuted;
+  }, [volume, isMuted]);
 
   const togglePlay = () => {
     if (!videoRef.current) return;
@@ -26,6 +35,19 @@ export default function VideoShowcase() {
 
   const handleVideoEnd = () => {
     setIsPlaying(false);
+  };
+
+  const toggleMute = (e) => {
+    e.stopPropagation();
+    setIsMuted((prev) => !prev);
+  };
+
+  const handleVolumeChange = (e) => {
+    e.stopPropagation();
+    const val = parseFloat(e.target.value);
+    setVolume(val);
+    if (val > 0 && isMuted) setIsMuted(false);
+    if (val === 0) setIsMuted(true);
   };
 
   return (
@@ -73,6 +95,7 @@ export default function VideoShowcase() {
             src={videoSrc}
             onEnded={handleVideoEnd}
             playsInline
+            muted={isMuted}
             className="absolute inset-0 w-full h-full object-cover"
           />
 
@@ -103,6 +126,39 @@ export default function VideoShowcase() {
               </div>
             </div>
           </div>
+
+          {/* ── Volume Control Strip ── */}
+          <div
+            className={`absolute bottom-3 right-3 z-20 flex items-center gap-2 rounded-full px-3 py-2 backdrop-blur-md transition-opacity duration-300 ${isPlaying ? 'opacity-60 hover:opacity-100' : 'opacity-80 hover:opacity-100'
+              } ${isDark
+                ? 'bg-dark-950/70 border border-white/10'
+                : 'bg-white/70 border border-gray-200 shadow-sm'
+              }`}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={toggleMute}
+              className={`flex items-center justify-center rounded-full p-1 transition-colors ${isDark ? 'hover:bg-white/10 text-white/80' : 'hover:bg-gray-100 text-gray-700'
+                }`}
+              aria-label={isMuted ? 'Unmute' : 'Mute'}
+            >
+              {isMuted || volume === 0 ? (
+                <VolumeX className="w-4 h-4" />
+              ) : (
+                <Volume2 className="w-4 h-4" />
+              )}
+            </button>
+            <input
+              type="range"
+              min="0"
+              max="1"
+              step="0.01"
+              value={isMuted ? 0 : volume}
+              onChange={handleVolumeChange}
+              className="video-volume-slider w-16 sm:w-20 h-1 cursor-pointer"
+              aria-label="Volume"
+            />
+          </div>
         </motion.div>
 
         {/* Caption */}
@@ -113,7 +169,6 @@ export default function VideoShowcase() {
           className={`text-sm text-center mt-6 ${isDark ? 'text-white/30' : 'text-gray-400'
             }`}
         >
-          Quadcopter Drone Testing
         </motion.p>
       </div>
     </section>

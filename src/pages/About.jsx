@@ -95,9 +95,8 @@ export default function About() {
       {/* ─── HERO SECTION ─── */}
       <section
         ref={heroRef}
-        className={`relative pt-24 pb-14 md:pt-28 md:pb-20 overflow-hidden ${
-          isDark ? 'bg-dark-950' : 'bg-white'
-        }`}
+        className={`relative pt-24 pb-14 md:pt-28 md:pb-20 overflow-hidden ${isDark ? 'bg-dark-950' : 'bg-white'
+          }`}
       >
         {/* Background effects */}
         {isDark && (
@@ -117,9 +116,8 @@ export default function About() {
               variants={stagger}
             >
               <motion.span
-                className={`inline-block text-xs font-bold tracking-[0.25em] uppercase mb-4 ${
-                  isDark ? 'text-neon/70' : 'text-emerald-600'
-                }`}
+                className={`inline-block text-xs font-bold tracking-[0.25em] uppercase mb-4 ${isDark ? 'text-neon/70' : 'text-emerald-600'
+                  }`}
                 variants={fadeUp}
               >
                 About Us
@@ -142,9 +140,8 @@ export default function About() {
               </motion.h1>
 
               <motion.p
-                className={`mt-6 text-lg leading-relaxed ${
-                  isDark ? 'text-white/50' : 'text-gray-500'
-                }`}
+                className={`mt-6 text-lg leading-relaxed ${isDark ? 'text-white/50' : 'text-gray-500'
+                  }`}
                 variants={fadeUp}
               >
                 At SecenAI, we're building the future of agricultural management.
@@ -167,9 +164,8 @@ export default function About() {
                       variants={fadeUp}
                     >
                       <div
-                        className={`w-10 h-10 rounded-xl flex items-center justify-center ${
-                          isDark ? 'bg-neon/10' : 'bg-emerald-50'
-                        }`}
+                        className={`w-10 h-10 rounded-xl flex items-center justify-center ${isDark ? 'bg-neon/10' : 'bg-emerald-50'
+                          }`}
                       >
                         <Icon
                           size={18}
@@ -178,16 +174,14 @@ export default function About() {
                       </div>
                       <div>
                         <span
-                          className={`font-[Outfit] text-xl font-bold block leading-tight ${
-                            isDark ? 'text-white' : 'text-[#1e1b4b]'
-                          }`}
+                          className={`font-[Outfit] text-xl font-bold block leading-tight ${isDark ? 'text-white' : 'text-[#1e1b4b]'
+                            }`}
                         >
                           {stat.value}
                         </span>
                         <span
-                          className={`text-[11px] tracking-wider uppercase ${
-                            isDark ? 'text-white/40' : 'text-gray-400'
-                          }`}
+                          className={`text-[11px] tracking-wider uppercase ${isDark ? 'text-white/40' : 'text-gray-400'
+                            }`}
                         >
                           {stat.label}
                         </span>

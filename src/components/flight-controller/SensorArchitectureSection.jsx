@@ -64,14 +64,14 @@ function SignalLine({ direction = 'down', length = 28, isDark, prefersReducedMot
 function PipelineNode({ label, type, isDark }) {
   const styles = {
     data: isDark
-      ? 'bg-dark-800 border-white/[0.08] text-white/60'
-      : 'bg-white border-gray-200 text-gray-600',
+      ? 'bg-dark-800 border-white/12 text-white/70 shadow-md'
+      : 'bg-white border-gray-300 text-gray-700 shadow-md',
     process: isDark
-      ? 'bg-white/[0.03] border-neon/10 text-white/55'
-      : 'bg-emerald-50/50 border-emerald-200/30 text-gray-600',
+      ? 'bg-white/[0.05] border-neon/20 text-white/70 shadow-md'
+      : 'bg-white border-emerald-300/70 text-gray-700 shadow-md',
     output: isDark
-      ? 'bg-neon/[0.06] border-neon/20 text-neon/80'
-      : 'bg-emerald-50 border-emerald-200/50 text-emerald-600',
+      ? 'bg-neon/[0.08] border-neon/30 text-neon/90 shadow-md'
+      : 'bg-emerald-50 border-emerald-300 text-emerald-700 shadow-md',
   };
 
   return (
@@ -88,11 +88,10 @@ function PipelineNode({ label, type, isDark }) {
 function SensorNode({ name, isDark }) {
   return (
     <div
-      className={`rounded-lg border px-3 py-2 text-[0.6875rem] font-medium whitespace-nowrap ${
-        isDark
-          ? 'bg-dark-800 border-white/[0.08] text-white/60'
-          : 'bg-white border-gray-200 text-gray-600'
-      }`}
+      className={`rounded-lg border px-3 py-2 text-[0.6875rem] font-medium whitespace-nowrap ${isDark
+          ? 'bg-dark-800 border-white/12 text-white/70 shadow-md'
+          : 'bg-white border-gray-300 text-gray-700 shadow-md'
+        }`}
     >
       {name}
     </div>
@@ -217,9 +216,8 @@ export default function SensorArchitectureSection() {
     <section
       id="sensor-architecture"
       ref={sectionRef}
-      className={`relative py-24 md:py-32 overflow-hidden ${
-        isDark ? 'bg-dark-950' : 'bg-[#f9fafb]'
-      }`}
+      className={`relative py-24 md:py-32 overflow-hidden ${isDark ? 'bg-dark-950' : 'bg-[#f9fafb]'
+        }`}
     >
       {/* Ambient glow */}
       {isDark && (
@@ -238,27 +236,24 @@ export default function SensorArchitectureSection() {
           variants={stagger}
         >
           <motion.span
-            className={`inline-block text-[0.6875rem] font-bold tracking-[0.25em] uppercase mb-4 ${
-              isDark ? 'text-neon/50' : 'text-emerald-600/70'
-            }`}
+            className={`inline-block text-[0.6875rem] font-bold tracking-[0.25em] uppercase mb-4 ${isDark ? 'text-neon/50' : 'text-emerald-600/70'
+              }`}
             variants={fadeUp}
           >
             {sensorArchitectureData.badge}
           </motion.span>
 
           <motion.h2
-            className={`font-[Outfit] text-3xl sm:text-4xl md:text-[2.75rem] font-bold leading-[1.12] ${
-              isDark ? 'text-white' : 'text-[#1e1b4b]'
-            }`}
+            className={`font-[Outfit] text-3xl sm:text-4xl md:text-[2.75rem] font-bold leading-[1.12] ${isDark ? 'text-white' : 'text-[#1e1b4b]'
+              }`}
             variants={fadeUp}
           >
             {sensorArchitectureData.title}
           </motion.h2>
 
           <motion.p
-            className={`mt-5 text-[0.9375rem] md:text-base leading-[1.75] ${
-              isDark ? 'text-white/50' : 'text-gray-600'
-            }`}
+            className={`mt-5 text-[0.9375rem] md:text-base leading-[1.75] ${isDark ? 'text-white/50' : 'text-gray-600'
+              }`}
             variants={fadeUp}
           >
             {sensorArchitectureData.description}
@@ -267,9 +262,8 @@ export default function SensorArchitectureSection() {
 
         {/* ─── Architecture Diagram ─── */}
         <motion.div
-          className={`glass-card rounded-2xl p-6 sm:p-8 md:p-10 ${
-            isDark ? '' : ''
-          }`}
+          className={`glass-card rounded-2xl p-6 sm:p-8 md:p-10 ${isDark ? '' : ''
+            }`}
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
@@ -279,9 +273,8 @@ export default function SensorArchitectureSection() {
 
         {/* ─── Bus Note ─── */}
         <motion.p
-          className={`mt-8 text-center text-[0.8125rem] leading-relaxed max-w-2xl mx-auto ${
-            isDark ? 'text-white/30' : 'text-gray-400'
-          }`}
+          className={`mt-8 text-center text-[0.8125rem] leading-relaxed max-w-2xl mx-auto ${isDark ? 'text-white/30' : 'text-gray-400'
+            }`}
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : { opacity: 0 }}
           transition={{ duration: 0.6, delay: 0.5 }}
@@ -299,14 +292,13 @@ export default function SensorArchitectureSection() {
           {sensorArchitectureData.mechanicalIsolation.map((feature) => (
             <motion.div
               key={feature}
-              className={`inline-flex items-center gap-2.5 rounded-full px-5 py-2.5 text-xs font-medium border ${
-                isDark
-                  ? 'border-white/[0.06] text-white/45 bg-white/[0.02]'
-                  : 'border-gray-200 text-gray-500 bg-gray-50'
-              }`}
+              className={`inline-flex items-center gap-2.5 rounded-full px-5 py-2.5 text-xs font-semibold border ${isDark
+                  ? 'border-white/15 text-white/90 bg-white/10 shadow-sm'
+                  : 'border-gray-300/80 text-gray-800 bg-white shadow-sm'
+                }`}
               variants={fadeUp}
             >
-              <ShieldCheck size={13} className={isDark ? 'text-neon/50' : 'text-emerald-500'} />
+              <ShieldCheck size={14} className={isDark ? 'text-neon' : 'text-emerald-600'} />
               {feature}
             </motion.div>
           ))}

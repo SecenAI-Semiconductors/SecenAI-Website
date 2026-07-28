@@ -6,6 +6,7 @@ import {
   Usb, SatelliteDish, Radio, HardDrive, Plug, Info, X, FileText,
 } from 'lucide-react';
 import { connectivityData } from '../../data/secenaiFCH743V1Data';
+import { ZoomableImage } from '../ImageLightbox';
 
 /* ═══════════════════════════════════════════
    ANIMATION VARIANTS
@@ -268,7 +269,7 @@ function BoardHotspotView({ isDark, prefersReducedMotion }) {
 
         {/* Top-view image or placeholder */}
         {connectivityData.topViewImage ? (
-          <img
+          <ZoomableImage
             src={connectivityData.topViewImage}
             alt="SECENAI FC H743 V1 — top view showing connector layout and component placement"
             className="absolute inset-0 w-full h-full object-contain"
@@ -344,118 +345,115 @@ export default function ConnectivitySection() {
       )}
 
       <div className="relative z-10 mx-auto max-w-7xl px-6">
-        <div className="flex flex-col lg:flex-row gap-14 lg:gap-20">
-
-          {/* ─── Left: Text + Cards ─── */}
-          <motion.div
-            className="flex-1 max-w-xl"
-            initial="hidden"
-            animate={inView ? 'visible' : 'hidden'}
-            variants={stagger}
+        <motion.div
+          initial="hidden"
+          animate={inView ? 'visible' : 'hidden'}
+          variants={stagger}
+        >
+          {/* Eyebrow */}
+          <motion.span
+            className={`inline-block text-[0.6875rem] font-bold tracking-[0.25em] uppercase mb-4 text-center w-full ${
+              isDark ? 'text-neon/50' : 'text-emerald-600/70'
+            }`}
+            variants={fadeUp}
           >
-            {/* Eyebrow */}
-            <motion.span
-              className={`inline-block text-[0.6875rem] font-bold tracking-[0.25em] uppercase mb-4 ${
-                isDark ? 'text-neon/50' : 'text-emerald-600/70'
+            {connectivityData.badge}
+          </motion.span>
+
+          {/* Heading */}
+          <motion.h2
+            className={`font-[Outfit] text-3xl sm:text-4xl md:text-[2.75rem] font-bold leading-[1.12] text-center ${
+              isDark ? 'text-white' : 'text-[#1e1b4b]'
+            }`}
+            variants={fadeUp}
+          >
+            {connectivityData.title}
+          </motion.h2>
+
+          {/* Description */}
+          <motion.p
+            className={`mt-5 text-[0.9375rem] md:text-base leading-[1.75] text-center max-w-3xl mx-auto ${
+              isDark ? 'text-white/50' : 'text-gray-600'
+            }`}
+            variants={fadeUp}
+          >
+            {connectivityData.description}
+          </motion.p>
+
+          {/* Divider */}
+          <motion.div
+            className={`my-8 h-px w-full max-w-3xl mx-auto ${
+              isDark
+                ? 'bg-gradient-to-r from-transparent via-neon/15 to-transparent'
+                : 'bg-gradient-to-r from-transparent via-gray-200 to-transparent'
+            }`}
+            variants={fadeUp}
+          />
+
+          {/* Interface count cards — wider grid */}
+          <motion.div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3" variants={stagger}>
+            {connectivityData.interfaces.map((iface) => (
+              <InterfaceCard
+                key={iface.name}
+                iface={iface}
+                isDark={isDark}
+                variants={fadeUp}
+              />
+            ))}
+          </motion.div>
+
+          {/* Additional features */}
+          <motion.div className="mt-8 text-center" variants={fadeUp}>
+            <span
+              className={`block text-[0.625rem] font-bold tracking-[0.2em] uppercase mb-3 ${
+                isDark ? 'text-white/25' : 'text-gray-400'
               }`}
-              variants={fadeUp}
             >
-              {connectivityData.badge}
-            </motion.span>
-
-            {/* Heading */}
-            <motion.h2
-              className={`font-[Outfit] text-3xl sm:text-4xl md:text-[2.75rem] font-bold leading-[1.12] ${
-                isDark ? 'text-white' : 'text-[#1e1b4b]'
-              }`}
-              variants={fadeUp}
-            >
-              {connectivityData.title}
-            </motion.h2>
-
-            {/* Description */}
-            <motion.p
-              className={`mt-5 text-[0.9375rem] md:text-base leading-[1.75] ${
-                isDark ? 'text-white/50' : 'text-gray-600'
-              }`}
-              variants={fadeUp}
-            >
-              {connectivityData.description}
-            </motion.p>
-
-            {/* Divider */}
-            <motion.div
-              className={`my-8 h-px w-full ${
-                isDark
-                  ? 'bg-gradient-to-r from-neon/15 via-white/5 to-transparent'
-                  : 'bg-gradient-to-r from-emerald-300/30 via-gray-200 to-transparent'
-              }`}
-              variants={fadeUp}
-            />
-
-            {/* Interface count cards */}
-            <motion.div className="grid grid-cols-1 sm:grid-cols-2 gap-3" variants={stagger}>
-              {connectivityData.interfaces.map((iface) => (
-                <InterfaceCard
-                  key={iface.name}
-                  iface={iface}
-                  isDark={isDark}
-                  variants={fadeUp}
-                />
+              Also includes
+            </span>
+            <div className="flex flex-wrap justify-center gap-2">
+              {connectivityData.additionalFeatures.map((feat) => (
+                <span
+                  key={feat}
+                  className={`inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-xs font-semibold border ${
+                    isDark
+                      ? 'border-white/15 text-white/90 bg-white/10 shadow-sm'
+                      : 'border-gray-300/80 text-gray-800 bg-white shadow-sm'
+                  }`}
+                >
+                  {feat}
+                </span>
               ))}
-            </motion.div>
-
-            {/* Additional features */}
-            <motion.div className="mt-8" variants={fadeUp}>
-              <span
-                className={`block text-[0.625rem] font-bold tracking-[0.2em] uppercase mb-3 ${
-                  isDark ? 'text-white/25' : 'text-gray-400'
-                }`}
-              >
-                Also includes
-              </span>
-              <div className="flex flex-wrap gap-2">
-                {connectivityData.additionalFeatures.map((feat) => (
-                  <span
-                    key={feat}
-                    className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[0.6875rem] font-medium border ${
-                      isDark
-                        ? 'border-white/[0.06] text-white/40 bg-white/[0.02]'
-                        : 'border-gray-200 text-gray-500 bg-gray-50'
-                    }`}
-                  >
-                    {feat}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* Pinout notice */}
-            <motion.div
-              className={`mt-8 flex items-center gap-2.5 rounded-xl border px-5 py-3.5 ${
-                isDark
-                  ? 'bg-white/[0.02] border-white/[0.06]'
-                  : 'bg-gray-50 border-gray-200'
-              }`}
-              variants={fadeUp}
-            >
-              <FileText size={14} className={isDark ? 'text-neon/40' : 'text-emerald-500/60'} />
-              <span className={`text-xs font-medium ${isDark ? 'text-white/35' : 'text-gray-400'}`}>
-                {connectivityData.pinoutStatus}
-              </span>
-            </motion.div>
+            </div>
           </motion.div>
 
-          {/* ─── Right: Board Hotspot View ─── */}
+          {/* Pinout notice */}
           <motion.div
-            className="flex-1 flex items-start justify-center lg:sticky lg:top-32 lg:self-start"
-            initial={{ opacity: 0, x: 40 }}
-            animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: 40 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+            className={`mt-8 flex items-center justify-center gap-2.5 rounded-xl border px-5 py-3.5 max-w-md mx-auto ${
+              isDark
+                ? 'bg-white/[0.03] border-white/12 shadow-sm'
+                : 'bg-white border-gray-300 shadow-sm'
+            }`}
+            variants={fadeUp}
           >
-            <BoardHotspotView isDark={isDark} prefersReducedMotion={prefersReducedMotion} />
+            <FileText size={14} className={isDark ? 'text-neon/40' : 'text-emerald-500/60'} />
+            <span className={`text-xs font-medium ${isDark ? 'text-white/35' : 'text-gray-400'}`}>
+              {connectivityData.pinoutStatus}
+            </span>
           </motion.div>
-        </div>
+
+          {/* ─── Board Hotspot View — centered below ─── */}
+          <motion.div
+            className="mt-14 flex justify-center"
+            initial={{ opacity: 0, y: 40 }}
+            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
+          >
+            <div className="w-full max-w-2xl">
+              <BoardHotspotView isDark={isDark} prefersReducedMotion={prefersReducedMotion} />
+            </div>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );

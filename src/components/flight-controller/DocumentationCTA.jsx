@@ -80,8 +80,8 @@ function ResourceCard({ resource, index, isDark }) {
           <span
             className={`inline-flex items-center text-[0.625rem] font-bold tracking-[0.12em] uppercase px-3 py-1.5 rounded-full ${
               isDark
-                ? 'bg-white/[0.04] text-white/20 border border-white/[0.06]'
-                : 'bg-gray-100 text-gray-400 border border-gray-200'
+                ? 'bg-white/10 text-white/50 border border-white/15'
+                : 'bg-white text-gray-600 border border-gray-300 shadow-xs'
             }`}
           >
             {resource.status}
@@ -126,17 +126,17 @@ export default function DocumentationCTA() {
     <section
       ref={sectionRef}
       className={`relative py-24 md:py-32 overflow-hidden ${
-        isDark ? 'bg-dark-950' : 'bg-[#f9fafb]'
+        isDark ? 'bg-dark-900' : 'bg-[#f0f0f3]'
       }`}
     >
       {/* Ambient glow */}
       {isDark && (
-        <div className="pointer-events-none absolute right-[15%] top-[10%] h-[400px] w-[500px] rounded-full bg-neon/[0.02] blur-[180px]" />
+        <div className="pointer-events-none absolute left-[15%] top-[10%] h-[400px] w-[500px] rounded-full bg-neon/[0.02] blur-[180px]" />
       )}
 
-      <div className="relative z-10 mx-auto max-w-7xl px-6">
-        {/* ── Resources heading ── */}
+      <div className="relative z-10 mx-auto max-w-5xl px-6">
         <motion.div
+          className="text-center mb-16"
           initial="hidden"
           animate={inView ? 'visible' : 'hidden'}
           variants={stagger}
@@ -151,80 +151,56 @@ export default function DocumentationCTA() {
           </motion.span>
 
           <motion.h2
-            className={`font-[Outfit] text-3xl sm:text-4xl md:text-[2.75rem] font-bold leading-[1.12] max-w-xl ${
+            className={`font-[Outfit] text-3xl sm:text-4xl md:text-[2.75rem] font-bold leading-[1.12] ${
               isDark ? 'text-white' : 'text-[#1e1b4b]'
             }`}
             variants={fadeUp}
           >
             {documentationData.title}
           </motion.h2>
-
-          {/* Divider */}
-          <motion.div
-            className={`my-8 h-px w-full max-w-xl ${
-              isDark
-                ? 'bg-gradient-to-r from-neon/15 via-white/5 to-transparent'
-                : 'bg-gradient-to-r from-emerald-300/30 via-gray-200 to-transparent'
-            }`}
-            variants={fadeUp}
-          />
-
-          {/* ── Resource cards ── */}
-          <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 mb-24"
-            variants={stagger}
-          >
-            {documentationData.resources.map((resource, i) => (
-              <motion.div key={resource.title} variants={fadeUp}>
-                <ResourceCard resource={resource} index={i} isDark={isDark} />
-              </motion.div>
-            ))}
-          </motion.div>
         </motion.div>
 
-        {/* ════════════════════════════════════
-           FINAL CTA
-           ════════════════════════════════════ */}
+        {/* Resources Grid */}
         <motion.div
-          className={`rounded-2xl border px-8 py-14 sm:px-12 md:px-16 text-center ${
-            isDark
-              ? 'bg-gradient-to-br from-white/[0.02] via-white/[0.01] to-transparent border-white/[0.06]'
-              : 'bg-gradient-to-br from-white via-gray-50 to-transparent border-gray-200'
-          }`}
-          style={{
-            boxShadow: isDark
-              ? '0 30px 80px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.04)'
-              : '0 30px 80px rgba(0,0,0,0.04), 0 0 0 1px rgba(0,0,0,0.02)',
-          }}
-          initial={{ opacity: 0, y: 40 }}
-          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-16"
+          initial="hidden"
+          animate={inView ? 'visible' : 'hidden'}
+          variants={stagger}
         >
-          {/* Ambient glow inside card */}
-          {isDark && (
-            <div className="pointer-events-none absolute inset-0 rounded-2xl overflow-hidden">
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[300px] w-[400px] rounded-full bg-neon/[0.03] blur-[120px]" />
-            </div>
-          )}
+          {documentationData.resources.map((res, i) => (
+            <motion.div key={res.title} variants={fadeUp}>
+              <ResourceCard resource={res} index={i} isDark={isDark} />
+            </motion.div>
+          ))}
+        </motion.div>
 
+        {/* Bottom CTA Banner */}
+        <motion.div
+          className={`rounded-2xl border px-8 py-10 sm:px-12 sm:py-12 text-center ${
+            isDark
+              ? 'bg-dark-800/80 border-white/12 shadow-2xl shadow-black/40'
+              : 'bg-white border-gray-300 shadow-xl'
+          }`}
+          initial="hidden"
+          animate={inView ? 'visible' : 'hidden'}
+          variants={fadeUp}
+        >
           <h3
-            className={`relative z-10 font-[Outfit] text-2xl sm:text-3xl md:text-4xl font-bold leading-[1.15] max-w-lg mx-auto ${
+            className={`font-[Outfit] text-2xl sm:text-3xl font-bold ${
               isDark ? 'text-white' : 'text-[#1e1b4b]'
             }`}
           >
             {documentationData.cta.heading}
           </h3>
-
           <p
-            className={`relative z-10 mt-5 text-[0.9375rem] leading-[1.75] max-w-lg mx-auto ${
-              isDark ? 'text-white/45' : 'text-gray-600'
+            className={`mt-3 text-sm sm:text-base leading-relaxed max-w-xl mx-auto ${
+              isDark ? 'text-white/50' : 'text-gray-600'
             }`}
           >
             {documentationData.cta.text}
           </p>
 
-          {/* Buttons */}
-          <div className="relative z-10 mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
             {documentationData.cta.buttons.map((btn) => (
               <Link
                 key={btn.label}
@@ -236,7 +212,7 @@ export default function DocumentationCTA() {
                       : 'bg-[#538944] text-white hover:bg-[#466e3a] shadow-lg shadow-[#538944]/20'
                     : isDark
                       ? 'bg-white/[0.06] text-white/70 border border-white/[0.08] hover:bg-white/[0.1]'
-                      : 'bg-white text-[#1e1b4b] border border-gray-200 hover:bg-gray-50'
+                      : 'bg-gray-50 text-[#1e1b4b] border border-gray-300 shadow-sm hover:bg-gray-100'
                 }`}
               >
                 {btn.label}

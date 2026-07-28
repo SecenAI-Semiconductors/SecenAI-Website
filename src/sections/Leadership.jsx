@@ -167,18 +167,18 @@ function LeaderCard({ leader, isDark, index }) {
         overflow: 'hidden',
         position: 'relative',
         background: isDark
-          ? 'rgba(255,255,255,0.03)'
-          : 'rgba(255,255,255,0.9)',
+          ? 'rgba(255,255,255,0.05)'
+          : 'rgba(255,255,255,0.95)',
         border: isDark
-          ? `1px solid ${isHovered ? `${leader.accent}40` : 'rgba(255,255,255,0.06)'}`
-          : `1px solid ${isHovered ? `${leader.accent}30` : 'rgba(0,0,0,0.06)'}`,
+          ? `1px solid ${isHovered ? `${leader.accent}40` : 'rgba(255,255,255,0.10)'}`
+          : `1px solid ${isHovered ? `${leader.accent}30` : 'rgba(0,0,0,0.10)'}`,
         backdropFilter: 'blur(20px)',
         transition: 'all 0.4s cubic-bezier(0.4,0,0.2,1)',
         boxShadow: isHovered
           ? `0 20px 60px ${leader.accent}15, 0 0 0 1px ${leader.accent}10`
           : isDark
-            ? '0 4px 20px rgba(0,0,0,0.2)'
-            : '0 4px 20px rgba(0,0,0,0.04)',
+            ? '0 4px 20px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.05)'
+            : '0 2px 12px rgba(0,0,0,0.06), 0 0 0 1px rgba(0,0,0,0.03)',
       }}
     >
       {/* Top accent gradient bar */}
