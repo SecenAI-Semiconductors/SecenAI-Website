@@ -94,9 +94,9 @@ export default function DualBarometerSection() {
     >
       {/* Ambient glow */}
       {isDark ? (
-        <div className="pointer-events-none absolute right-[15%] top-[20%] h-[400px] w-[450px] rounded-full bg-[#6366f1]/[0.025] blur-[180px]" />
+        <div className="pointer-events-none absolute right-[15%] top-[20%] h-100 w-112.5 rounded-full bg-[#6366f1]/2.5 blur-[180px]" />
       ) : (
-        <div className="pointer-events-none absolute right-[15%] top-[20%] h-[350px] w-[400px] rounded-full bg-emerald-300/[0.05] blur-[160px]" />
+        <div className="pointer-events-none absolute right-[15%] top-[20%] h-87.5 w-100 rounded-full bg-emerald-300/5 blur-[160px]" />
       )}
 
       <div className="relative z-10 mx-auto max-w-7xl px-6">
@@ -147,12 +147,12 @@ export default function DualBarometerSection() {
             <PressureWaves isDark={isDark} prefersReducedMotion={prefersReducedMotion} />
             <div className="relative z-10 px-6 py-8 sm:px-8 sm:py-10">
               <span
-                className={`inline-block text-[0.5625rem] font-bold tracking-[0.25em] uppercase px-2.5 py-1 rounded-md mb-5 ${isDark ? 'bg-neon/[0.08] text-neon/60' : 'bg-emerald-50 text-emerald-500/80'
+                className={`inline-block text-[0.5625rem] font-bold tracking-[0.25em] uppercase px-2.5 py-1 rounded-md mb-5 ${isDark ? 'bg-neon/8 text-neon/60' : 'bg-emerald-50 text-emerald-500/80'
                   }`}
               >
                 {dualBarometerData.sensors[0].label}
               </span>
-              <div className={`mb-3 flex h-10 w-10 items-center justify-center rounded-xl ${isDark ? 'bg-neon/[0.08]' : 'bg-emerald-50'
+              <div className={`mb-3 flex h-10 w-10 items-center justify-center rounded-xl ${isDark ? 'bg-neon/8' : 'bg-emerald-50'
                 }`}>
                 <Gauge size={18} className={isDark ? 'text-neon' : 'text-emerald-600'} />
               </div>
@@ -201,7 +201,7 @@ export default function DualBarometerSection() {
 
               <div
                 className={`rounded-xl border px-5 py-4 text-center whitespace-nowrap ${isDark
-                    ? 'bg-neon/[0.08] border-neon/25 shadow-md'
+                    ? 'bg-neon/8 border-neon/25 shadow-md'
                     : 'bg-white border-emerald-300/60 shadow-md'
                   }`}
               >
@@ -229,7 +229,7 @@ export default function DualBarometerSection() {
             {/* Mobile: central badge */}
             <div
               className={`md:hidden rounded-xl border px-5 py-4 text-center ${isDark
-                  ? 'bg-neon/[0.05] border-neon/15'
+                  ? 'bg-neon/5 border-neon/15'
                   : 'bg-emerald-50/80 border-emerald-200/40'
                 }`}
             >
@@ -263,12 +263,12 @@ export default function DualBarometerSection() {
             <PressureWaves isDark={isDark} prefersReducedMotion={prefersReducedMotion} />
             <div className="relative z-10 px-6 py-8 sm:px-8 sm:py-10">
               <span
-                className={`inline-block text-[0.5625rem] font-bold tracking-[0.25em] uppercase px-2.5 py-1 rounded-md mb-5 ${isDark ? 'bg-neon/[0.08] text-neon/60' : 'bg-emerald-50 text-emerald-500/80'
+                className={`inline-block text-[0.5625rem] font-bold tracking-[0.25em] uppercase px-2.5 py-1 rounded-md mb-5 ${isDark ? 'bg-neon/8 text-neon/60' : 'bg-emerald-50 text-emerald-500/80'
                   }`}
               >
                 {dualBarometerData.sensors[1].label}
               </span>
-              <div className={`mb-3 flex h-10 w-10 items-center justify-center rounded-xl ${isDark ? 'bg-neon/[0.08]' : 'bg-emerald-50'
+              <div className={`mb-3 flex h-10 w-10 items-center justify-center rounded-xl ${isDark ? 'bg-neon/8' : 'bg-emerald-50'
                 }`}>
                 <Gauge size={18} className={isDark ? 'text-neon' : 'text-emerald-600'} />
               </div>

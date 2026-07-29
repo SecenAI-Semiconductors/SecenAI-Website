@@ -61,9 +61,7 @@ export default function Contact() {
               filter: 'blur(100px)',
               opacity: 0.2,
               pointerEvents: 'none',
-              background: isDark
-                ? 'radial-gradient(circle, rgba(204,255,0,0.3) 0%, transparent 70%)'
-                : 'radial-gradient(circle, rgba(83,137,68,0.15) 0%, transparent 70%)',
+              background: isDark ? 'radial-gradient(circle, rgba(var(--accent-rgb),0.3) 0%, transparent 70%)' : 'radial-gradient(circle, rgba(var(--accent-rgb),0.15) 0%, transparent 70%)',
             }}
           />
 
@@ -146,7 +144,7 @@ export default function Contact() {
                   fontSize: '0.95rem',
                   fontWeight: 700,
                   marginBottom: '16px',
-                  color: isDark ? '#CCFF00' : '#538944',
+                  color: 'var(--accent)',
                 }}
               >
                 Headquarters
@@ -174,7 +172,7 @@ export default function Contact() {
                   fontSize: '0.95rem',
                   fontWeight: 700,
                   marginBottom: '12px',
-                  color: isDark ? '#CCFF00' : '#538944',
+                  color: 'var(--accent)',
                 }}
               >
                 Email
@@ -189,7 +187,7 @@ export default function Contact() {
                   textDecoration: 'none',
                   transition: 'color 0.2s ease',
                 }}
-                onMouseEnter={(e) => (e.target.style.color = isDark ? '#CCFF00' : '#538944')}
+                onMouseEnter={(e) => (e.target.style.color = 'var(--accent)')}
                 onMouseLeave={(e) => (e.target.style.color = isDark ? 'rgba(255,255,255,0.6)' : '#1f2937')}
               >
                 info@secenai.com

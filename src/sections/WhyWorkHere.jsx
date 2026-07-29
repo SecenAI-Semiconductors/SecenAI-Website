@@ -193,9 +193,7 @@ export default function WhyWorkHere() {
         style={{
           position: 'absolute',
           inset: 0,
-          background: isDark
-            ? 'linear-gradient(180deg, transparent 0%, rgba(204,255,0,0.015) 50%, transparent 100%)'
-            : 'linear-gradient(180deg, transparent 0%, rgba(83,137,68,0.03) 50%, transparent 100%)',
+          background: isDark ? 'linear-gradient(180deg, transparent 0%, rgba(var(--accent-rgb),0.015) 50%, transparent 100%)' : 'linear-gradient(180deg, transparent 0%, rgba(var(--accent-rgb),0.03) 50%, transparent 100%)',
           pointerEvents: 'none',
         }}
       />
@@ -220,7 +218,7 @@ export default function WhyWorkHere() {
             }}
           >
             Why Work{' '}
-            <span className={isDark ? 'text-gradient-neon' : 'text-gradient-emerald'}>
+            <span className="text-gradient-accent">
               Here?
             </span>
           </motion.h2>

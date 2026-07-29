@@ -74,24 +74,24 @@ export default function FlightControllerHero() {
       {isDark ? (
         <>
           <motion.div
-            className="pointer-events-none absolute left-[15%] top-[20%] h-[550px] w-[550px] rounded-full bg-neon/[0.03] blur-[200px]"
+            className="pointer-events-none absolute left-[15%] top-[20%] h-137.5 w-137.5 rounded-full bg-neon/3 blur-[200px]"
             style={{ scale: prefersReducedMotion ? 1 : glowScale }}
           />
-          <div className="pointer-events-none absolute -right-20 bottom-[10%] h-[400px] w-[450px] rounded-full bg-[#6366f1]/[0.025] blur-[180px]" />
-          <div className="pointer-events-none absolute left-[40%] bottom-0 h-[300px] w-[600px] rounded-full bg-neon/[0.015] blur-[160px]" />
+          <div className="pointer-events-none absolute -right-20 bottom-[10%] h-100 w-112.5 rounded-full bg-[#6366f1]/2.5 blur-[180px]" />
+          <div className="pointer-events-none absolute left-[40%] bottom-0 h-75 w-150 rounded-full bg-neon/1.5 blur-[160px]" />
         </>
       ) : (
         <>
           <motion.div
-            className="pointer-events-none absolute left-[15%] top-[20%] h-[450px] w-[450px] rounded-full bg-emerald-400/[0.07] blur-[180px]"
+            className="pointer-events-none absolute left-[15%] top-[20%] h-112.5 w-112.5 rounded-full bg-emerald-400/[0.07] blur-[180px]"
             style={{ scale: prefersReducedMotion ? 1 : glowScale }}
           />
-          <div className="pointer-events-none absolute -right-10 bottom-[15%] h-[350px] w-[400px] rounded-full bg-emerald-300/[0.05] blur-[150px]" />
+          <div className="pointer-events-none absolute -right-10 bottom-[15%] h-87.5 w-100 rounded-full bg-emerald-300/5 blur-[150px]" />
         </>
       )}
 
       {/* ── Grid overlay ── */}
-      <div className={`absolute inset-0 z-[1] grid-bg ${isDark ? 'opacity-30' : 'opacity-15'}`} />
+      <div className={`absolute inset-0 z-1 grid-bg ${isDark ? 'opacity-30' : 'opacity-15'}`} />
 
       {/* ── Content ── */}
       <div ref={contentRef} className="relative z-10 mx-auto max-w-7xl px-6 w-full">
@@ -147,8 +147,8 @@ export default function FlightControllerHero() {
             {/* Divider */}
             <motion.div
               className={`my-8 h-px w-full ${isDark
-                ? 'bg-gradient-to-r from-neon/20 via-white/5 to-transparent'
-                : 'bg-gradient-to-r from-emerald-300/40 via-gray-200 to-transparent'
+                ? 'bg-linear-to-r from-neon/20 via-white/5 to-transparent'
+                : 'bg-linear-to-r from-emerald-300/40 via-gray-200 to-transparent'
                 }`}
               variants={fadeUp}
             />

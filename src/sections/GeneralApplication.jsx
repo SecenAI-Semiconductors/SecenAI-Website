@@ -83,7 +83,7 @@ export default function GeneralApplication() {
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
-                  color: isDark ? '#CCFF00' : '#3f6f35',
+                  color: 'var(--accent-hover)',
                   textDecoration: 'none',
                   fontWeight: 500,
                   fontSize: '1.2rem',

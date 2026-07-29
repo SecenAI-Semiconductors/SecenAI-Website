@@ -1,10 +1,10 @@
 @import "tailwindcss";
 
-@theme {
-  --color-neon: #CCFF00;
-  --color-neon-dim: #99cc00;
-  --color-neon-glow: rgba(204, 255, 0, 0.15);
-  --color-neon-glow-strong: rgba(204, 255, 0, 0.3);
+@theme inline {
+  --color-neon: var(--accent);
+  --color-neon-dim: var(--accent-dim);
+  --color-neon-glow: rgba(var(--accent-rgb), 0.15);
+  --color-neon-glow-strong: rgba(var(--accent-rgb), 0.3);
   --color-dark-950: #030303;
   --color-dark-900: #0a0a0a;
   --color-dark-800: #111111;
@@ -18,6 +18,22 @@
   --font-body: 'Inter', sans-serif;
 }
 
+/* ══════ SEMANTIC ACCENT TOKENS ══════ */
+:root {
+  --accent: #CCFF00;
+  --accent-hover: #CCFF00;
+  --accent-dim: #99cc00;
+  --accent-rgb: 204, 255, 0;
+  --accent-gradient-mid: #88ee00;
+}
+
+html.light {
+  --accent: #538944;
+  --accent-hover: #3f6f35;
+  --accent-rgb: 83, 137, 68;
+  --accent-gradient-mid: #538944;
+}
+
 select.custom-select {
   background-image: none !important;
 }
@@ -28,7 +44,7 @@ select.custom-select {
 html {
   scroll-behavior: smooth;
   scrollbar-width: thin;
-  scrollbar-color: rgba(204, 255, 0, 0.3) transparent;
+  scrollbar-color: rgba(var(--accent-rgb), 0.3) transparent;
 }
 
 body {
@@ -95,25 +111,12 @@ html.light .border-white\/5 {
 
 /* Light theme overrides for gradient text */
 html.light .text-gradient-neon {
-  background: linear-gradient(135deg, #3f6f35 0%, #538944 50%, #3f6f35 100%);
+  background: linear-gradient(135deg, var(--accent-hover) 0%, var(--accent) 50%, var(--accent-hover) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-/* Light theme glass card */
-html.light .glass-card {
-  background: rgba(228, 226, 216, 0.5);
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-}
-
-html.light .glass-card:hover {
-  background: rgba(228, 226, 216, 0.8);
-  border-color: rgba(83, 137, 68, 0.25);
-  box-shadow: 0 8px 24px rgba(83, 137, 68, 0.08),
-    0 0 0 1px rgba(83, 137, 68, 0.1);
-}
 
 /* Light theme grid background */
 html.light .grid-bg {
@@ -125,19 +128,19 @@ html.light .grid-bg {
 
 /* Light theme scrollbar */
 html.light {
-  scrollbar-color: rgba(83, 137, 68, 0.3) transparent;
+  scrollbar-color: rgba(var(--accent-rgb), 0.3) transparent;
 }
 
 html.light ::-webkit-scrollbar-thumb {
-  background: rgba(83, 137, 68, 0.2);
+  background: rgba(var(--accent-rgb), 0.2);
 }
 
 html.light ::-webkit-scrollbar-thumb:hover {
-  background: rgba(83, 137, 68, 0.4);
+  background: rgba(var(--accent-rgb), 0.4);
 }
 
 html.light ::selection {
-  background: rgba(83, 137, 68, 0.2);
+  background: rgba(var(--accent-rgb), 0.2);
   color: #1a1a2e;
 }
 
@@ -158,117 +161,117 @@ html.light .bg-gray-200 {
   background-color: #d6d4ca;
 }
 
-/* ========== LIGHT THEME: Emerald palette → #538944 ========== */
+/* ========== LIGHT THEME: Emerald palette → var(--accent) ========== */
 
 /* Backgrounds */
 html.light .bg-emerald-50 {
-  background-color: rgba(83, 137, 68, 0.08);
+  background-color: rgba(var(--accent-rgb), 0.08);
 }
 
 html.light .bg-emerald-100 {
-  background-color: rgba(83, 137, 68, 0.14);
+  background-color: rgba(var(--accent-rgb), 0.14);
 }
 
 html.light .bg-emerald-200 {
-  background-color: rgba(83, 137, 68, 0.22);
+  background-color: rgba(var(--accent-rgb), 0.22);
 }
 
 html.light .bg-emerald-300 {
-  background-color: rgba(83, 137, 68, 0.35);
+  background-color: rgba(var(--accent-rgb), 0.35);
 }
 
 html.light .bg-emerald-400 {
-  background-color: #538944;
+  background-color: var(--accent);
 }
 
 html.light .bg-emerald-500 {
-  background-color: #538944;
+  background-color: var(--accent);
 }
 
 html.light .bg-emerald-600 {
-  background-color: #538944;
+  background-color: var(--accent);
 }
 
 html.light .bg-emerald-700 {
-  background-color: #3f6f35;
+  background-color: var(--accent-hover);
 }
 
 /* Text */
 html.light .text-emerald-400 {
-  color: #538944;
+  color: var(--accent);
 }
 
 html.light .text-emerald-500 {
-  color: #538944;
+  color: var(--accent);
 }
 
 html.light .text-emerald-600 {
-  color: #538944;
+  color: var(--accent);
 }
 
 html.light .text-emerald-700 {
-  color: #3f6f35;
+  color: var(--accent-hover);
 }
 
 /* Borders */
 html.light .border-emerald-100 {
-  border-color: rgba(83, 137, 68, 0.18);
+  border-color: rgba(var(--accent-rgb), 0.18);
 }
 
 html.light .border-emerald-200 {
-  border-color: rgba(83, 137, 68, 0.28);
+  border-color: rgba(var(--accent-rgb), 0.28);
 }
 
 html.light .border-emerald-300 {
-  border-color: rgba(83, 137, 68, 0.40);
+  border-color: rgba(var(--accent-rgb), 0.40);
 }
 
 /* Hover states */
 html.light .hover\:text-emerald-600:hover {
-  color: #538944;
+  color: var(--accent);
 }
 
 html.light .hover\:text-emerald-700:hover {
-  color: #3f6f35;
+  color: var(--accent-hover);
 }
 
 html.light .hover\:bg-emerald-100:hover {
-  background-color: rgba(83, 137, 68, 0.18);
+  background-color: rgba(var(--accent-rgb), 0.18);
 }
 
 html.light .hover\:bg-emerald-700:hover {
-  background-color: #3f6f35;
+  background-color: var(--accent-hover);
 }
 
 html.light .hover\:border-emerald-200:hover {
-  border-color: rgba(83, 137, 68, 0.28);
+  border-color: rgba(var(--accent-rgb), 0.28);
 }
 
 /* Group hover */
 html.light .group-hover\:bg-emerald-100:is(:where(.group):hover *) {
-  background-color: rgba(83, 137, 68, 0.18);
+  background-color: rgba(var(--accent-rgb), 0.18);
 }
 
 /* Shadows */
 html.light .shadow-emerald-600\/20 {
-  --tw-shadow-color: rgba(83, 137, 68, 0.2);
+  --tw-shadow-color: rgba(var(--accent-rgb), 0.2);
 }
 
 html.light .shadow-emerald-600\/30 {
-  --tw-shadow-color: rgba(83, 137, 68, 0.3);
+  --tw-shadow-color: rgba(var(--accent-rgb), 0.3);
 }
 
 html.light .hover\:shadow-emerald-600\/20:hover {
-  --tw-shadow-color: rgba(83, 137, 68, 0.2);
+  --tw-shadow-color: rgba(var(--accent-rgb), 0.2);
 }
 
 html.light .hover\:shadow-emerald-600\/30:hover {
-  --tw-shadow-color: rgba(83, 137, 68, 0.3);
+  --tw-shadow-color: rgba(var(--accent-rgb), 0.3);
 }
 
 /* Fill */
 html.light .fill-emerald-500 {
-  fill: #538944;
+  fill: var(--accent);
 }
 
 /* Light mode section backgrounds — use cream family */
@@ -298,7 +301,7 @@ html.light .bg-white\/95 {
 
 /* Hover bg-emerald-50 */
 html.light .hover\:bg-emerald-50\/30:hover {
-  background-color: rgba(83, 137, 68, 0.06);
+  background-color: rgba(var(--accent-rgb), 0.06);
 }
 
 /* Hardcoded arbitrary background classes → cream palette */
@@ -321,19 +324,23 @@ html.light .bg-white\/80 {
 
 /* Light mode text — darken for better contrast on cream */
 html.light .text-gray-400 {
-  color: #4b5563; /* was #9ca3af → now gray-600 */
+  color: #4b5563;
+  /* was #9ca3af → now gray-600 */
 }
 
 html.light .text-gray-500 {
-  color: #374151; /* was #6b7280 → now gray-700 */
+  color: #374151;
+  /* was #6b7280 → now gray-700 */
 }
 
 html.light .text-gray-600 {
-  color: #1f2937; /* was #4b5563 → now gray-800 */
+  color: #1f2937;
+  /* was #4b5563 → now gray-800 */
 }
 
 html.light .text-gray-700 {
-  color: #111827; /* was #374151 → now gray-900 */
+  color: #111827;
+  /* was #374151 → now gray-900 */
 }
 
 
@@ -371,7 +378,7 @@ html.light .mega-dropdown {
 
 .mega-dropdown-item:hover {
   background: rgba(255, 255, 255, 0.06);
-  color: #CCFF00;
+  color: var(--accent);
 }
 
 html.light .mega-dropdown-item {
@@ -379,8 +386,8 @@ html.light .mega-dropdown-item {
 }
 
 html.light .mega-dropdown-item:hover {
-  background: rgba(83, 137, 68, 0.1);
-  color: #538944;
+  background: rgba(var(--accent-rgb), 0.1);
+  color: var(--accent);
 }
 
 .mega-dropdown-category {
@@ -465,7 +472,7 @@ html.light .status-badge-planned {
 }
 
 html.light .mobile-sub-item:hover {
-  background: rgba(83, 137, 68, 0.1);
+  background: rgba(var(--accent-rgb), 0.1);
 }
 
 /* Custom scrollbar for webkit */
@@ -478,17 +485,17 @@ html.light .mobile-sub-item:hover {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(204, 255, 0, 0.25);
+  background: rgba(var(--accent-rgb), 0.25);
   border-radius: 999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(204, 255, 0, 0.4);
+  background: rgba(var(--accent-rgb), 0.4);
 }
 
 /* Selection color */
 ::selection {
-  background: rgba(204, 255, 0, 0.3);
+  background: rgba(var(--accent-rgb), 0.3);
   color: #ffffff;
 }
 
@@ -504,7 +511,7 @@ html.light .mobile-sub-item:hover {
 
 /* Gradient text utility */
 .text-gradient-neon {
-  background: linear-gradient(135deg, #CCFF00 0%, #88ee00 50%, #CCFF00 100%);
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-gradient-mid) 50%, var(--accent) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent !important;
   background-clip: text;
@@ -513,7 +520,7 @@ html.light .mobile-sub-item:hover {
 
 /* Emerald gradient text (Careers, etc.) */
 .text-gradient-emerald {
-  background: linear-gradient(135deg, #538944 0%, #6fa85d 50%, #538944 100%);
+  background: linear-gradient(135deg, var(--accent) 0%, #6fa85d 50%, var(--accent) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent !important;
   background-clip: text;
@@ -521,7 +528,24 @@ html.light .mobile-sub-item:hover {
 }
 
 html.light .text-gradient-emerald {
-  background: linear-gradient(135deg, #3f6f35 0%, #538944 50%, #3f6f35 100%);
+  background: linear-gradient(135deg, var(--accent-hover) 0%, var(--accent) 50%, var(--accent-hover) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text;
+  color: transparent !important;
+}
+
+/* Unified accent gradient text — works in both themes via tokens */
+.text-gradient-accent {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-gradient-mid) 50%, var(--accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text;
+  color: transparent !important;
+}
+
+html.light .text-gradient-accent {
+  background: linear-gradient(135deg, var(--accent-hover) 0%, var(--accent) 50%, var(--accent-hover) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent !important;
   background-clip: text;
@@ -540,9 +564,9 @@ html.light .text-gradient-emerald {
 
 .glass-card:hover {
   background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(204, 255, 0, 0.2);
-  box-shadow: 0 8px 32px rgba(204, 255, 0, 0.08),
-    0 0 0 1px rgba(204, 255, 0, 0.1);
+  border-color: rgba(var(--accent-rgb), 0.2);
+  box-shadow: 0 8px 32px rgba(var(--accent-rgb), 0.08),
+    0 0 0 1px rgba(var(--accent-rgb), 0.1);
 }
 
 /* Light mode glass-card */
@@ -554,19 +578,19 @@ html.light .glass-card {
 
 html.light .glass-card:hover {
   background: #ffffff;
-  border-color: rgba(83, 137, 68, 0.35);
-  box-shadow: 0 8px 28px rgba(83, 137, 68, 0.10), 0 0 0 1px rgba(83, 137, 68, 0.08);
+  border-color: rgba(var(--accent-rgb), 0.35);
+  box-shadow: 0 8px 28px rgba(var(--accent-rgb), 0.10), 0 0 0 1px rgba(var(--accent-rgb), 0.08);
 }
 
 /* Glow effects */
 .glow-neon {
-  box-shadow: 0 0 20px rgba(204, 255, 0, 0.15),
-    0 0 60px rgba(204, 255, 0, 0.05);
+  box-shadow: 0 0 20px rgba(var(--accent-rgb), 0.15),
+    0 0 60px rgba(var(--accent-rgb), 0.05);
 }
 
 .glow-neon-strong {
-  box-shadow: 0 0 30px rgba(204, 255, 0, 0.25),
-    0 0 80px rgba(204, 255, 0, 0.1);
+  box-shadow: 0 0 30px rgba(var(--accent-rgb), 0.25),
+    0 0 80px rgba(var(--accent-rgb), 0.1);
 }
 
 /* Animated gradient border */
@@ -578,7 +602,7 @@ html.light .glass-card:hover {
   content: '';
   position: absolute;
   inset: -1px;
-  background: linear-gradient(135deg, rgba(204, 255, 0, 0.3), transparent, rgba(204, 255, 0, 0.1));
+  background: linear-gradient(135deg, rgba(var(--accent-rgb), 0.3), transparent, rgba(var(--accent-rgb), 0.1));
   border-radius: inherit;
   z-index: -1;
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -697,7 +721,7 @@ html.light * {
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background: #CCFF00;
+  background: var(--accent);
   margin-top: -4px;
   cursor: pointer;
   border: none;
@@ -719,7 +743,7 @@ html.light * {
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background: #CCFF00;
+  background: var(--accent);
   cursor: pointer;
   border: none;
 }
@@ -729,7 +753,7 @@ html.light .video-volume-slider::-webkit-slider-runnable-track {
 }
 
 html.light .video-volume-slider::-webkit-slider-thumb {
-  background: #538944;
+  background: var(--accent);
 }
 
 html.light .video-volume-slider::-moz-range-track {
@@ -737,7 +761,7 @@ html.light .video-volume-slider::-moz-range-track {
 }
 
 html.light .video-volume-slider::-moz-range-thumb {
-  background: #538944;
+  background: var(--accent);
 }
 
 /* ========== IMAGE LIGHTBOX ========== */

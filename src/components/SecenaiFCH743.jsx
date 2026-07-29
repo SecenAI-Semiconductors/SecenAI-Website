@@ -56,8 +56,8 @@ export default function SecenaiFCH743() {
       {/* Background ambient glow */}
       {isDark && (
         <>
-          <div className="pointer-events-none absolute left-1/4 top-0 h-[500px] w-[600px] rounded-full bg-neon/[0.025] blur-[200px]" />
-          <div className="pointer-events-none absolute right-0 bottom-0 h-[400px] w-[400px] rounded-full bg-[#6366f1]/[0.02] blur-[160px]" />
+          <div className="pointer-events-none absolute left-1/4 top-0 h-125 w-150 rounded-full bg-neon/2.5 blur-[200px]" />
+          <div className="pointer-events-none absolute right-0 bottom-0 h-100 w-100 rounded-full bg-[#6366f1]/2 blur-[160px]" />
         </>
       )}
 
@@ -153,8 +153,8 @@ export default function SecenaiFCH743() {
             {/* Divider */}
             <motion.div
               className={`my-8 h-px w-full ${isDark
-                ? 'bg-gradient-to-r from-neon/15 via-white/5 to-transparent'
-                : 'bg-gradient-to-r from-emerald-300/30 via-gray-200 to-transparent'
+                ? 'bg-linear-to-r from-neon/15 via-white/5 to-transparent'
+                : 'bg-linear-to-r from-emerald-300/30 via-gray-200 to-transparent'
                 }`}
               variants={fadeUp}
             />

@@ -58,8 +58,8 @@ export default function Careers() {
             opacity: 0.15,
             pointerEvents: 'none',
             background: isDark
-              ? 'radial-gradient(circle, rgba(204,255,0,0.5), transparent 60%)'
-              : 'radial-gradient(circle, rgba(83,137,68,0.25), transparent 60%)',
+              ? 'radial-gradient(circle, rgba(var(--accent-rgb),0.5), transparent 60%)'
+              : 'radial-gradient(circle, rgba(var(--accent-rgb),0.25), transparent 60%)',
           }}
         />
         <div
@@ -144,7 +144,7 @@ export default function Careers() {
             <span style={{ color: isDark ? '#ffffff' : '#000000ff' }}>
               Join Our{' '}
             </span>
-            <span className={isDark ? 'text-gradient-neon' : 'text-gradient-emerald'}>
+            <span className="text-gradient-accent">
               Team
             </span>
           </motion.h1>
@@ -178,23 +178,17 @@ export default function Careers() {
                 fontWeight: 600,
                 textDecoration: 'none',
                 color: isDark ? '#030303' : '#ffffff',
-                background: isDark ? '#CCFF00' : '#538944',
+                background: 'var(--accent)',
                 transition: 'all 0.3s ease',
-                boxShadow: isDark
-                  ? '0 8px 30px rgba(204,255,0,0.2)'
-                  : '0 8px 30px rgba(83,137,68,0.2)',
+                boxShadow: '0 8px 30px rgba(var(--accent-rgb),0.2)',
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = 'translateY(-3px)';
-                e.currentTarget.style.boxShadow = isDark
-                  ? '0 14px 40px rgba(204,255,0,0.3)'
-                  : '0 14px 40px rgba(83,137,68,0.3)';
+                e.currentTarget.style.boxShadow = '0 14px 40px rgba(var(--accent-rgb),0.3)';
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = isDark
-                  ? '0 8px 30px rgba(204,255,0,0.2)'
-                  : '0 8px 30px rgba(83,137,68,0.2)';
+                e.currentTarget.style.boxShadow = '0 8px 30px rgba(var(--accent-rgb),0.2)';
               }}
             >
               View Open Positions

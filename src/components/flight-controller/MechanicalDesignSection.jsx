@@ -41,7 +41,7 @@ const featureIcons = {
 function ImagePlaceholder({ label, isDark }) {
   return (
     <div
-      className={`relative flex items-center justify-center rounded-xl border aspect-[4/3] ${isDark
+      className={`relative flex items-center justify-center rounded-xl border aspect-4/3 ${isDark
         ? 'bg-dark-800 border-white/12 shadow-lg'
         : 'bg-white border-gray-300 shadow-md'
         }`}
@@ -66,7 +66,7 @@ function ImagePlaceholder({ label, isDark }) {
 
       <div className="text-center relative z-10">
         <div
-          className={`mx-auto mb-3 h-12 w-12 rounded-xl flex items-center justify-center ${isDark ? 'bg-neon/[0.06] border border-neon/10' : 'bg-emerald-50 border border-emerald-200/30'
+          className={`mx-auto mb-3 h-12 w-12 rounded-xl flex items-center justify-center ${isDark ? 'bg-neon/6 border border-neon/10' : 'bg-emerald-50 border border-emerald-200/30'
             }`}
         >
           <Cpu size={20} className={isDark ? 'text-neon/25' : 'text-emerald-400/35'} strokeWidth={1.5} />
@@ -107,8 +107,8 @@ export default function MechanicalDesignSection() {
       {/* Ambient glow */}
       {isDark && (
         <>
-          <div className="pointer-events-none absolute left-[10%] top-[20%] h-[400px] w-[450px] rounded-full bg-neon/[0.02] blur-[180px]" />
-          <div className="pointer-events-none absolute right-[10%] bottom-[15%] h-[350px] w-[400px] rounded-full bg-[#6366f1]/[0.015] blur-[160px]" />
+          <div className="pointer-events-none absolute left-[10%] top-[20%] h-100 w-112.5 rounded-full bg-neon/2 blur-[180px]" />
+          <div className="pointer-events-none absolute right-[10%] bottom-[15%] h-87.5 w-100 rounded-full bg-[#6366f1]/1.5 blur-[160px]" />
         </>
       )}
 
@@ -138,8 +138,8 @@ export default function MechanicalDesignSection() {
           {/* Divider */}
           <motion.div
             className={`my-8 h-px w-full max-w-2xl ${isDark
-              ? 'bg-gradient-to-r from-neon/15 via-white/5 to-transparent'
-              : 'bg-gradient-to-r from-emerald-300/30 via-gray-200 to-transparent'
+              ? 'bg-linear-to-r from-neon/15 via-white/5 to-transparent'
+              : 'bg-linear-to-r from-emerald-300/30 via-gray-200 to-transparent'
               }`}
             variants={fadeUp}
           />
@@ -178,7 +178,7 @@ export default function MechanicalDesignSection() {
                   return (
                     <div key={feat} className="glass-card rounded-xl px-5 py-4 flex items-start gap-3">
                       <div
-                        className={`mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg ${isDark ? 'bg-neon/[0.08]' : 'bg-emerald-50'
+                        className={`mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg ${isDark ? 'bg-neon/8' : 'bg-emerald-50'
                           }`}
                       >
                         <Icon size={14} className={isDark ? 'text-neon' : 'text-emerald-600'} />
@@ -222,7 +222,7 @@ export default function MechanicalDesignSection() {
                         className={
                           i < arr.length - 1
                             ? isDark
-                              ? 'border-b border-white/[0.06]'
+                              ? 'border-b border-white/6'
                               : 'border-b border-gray-200/80'
                             : ''
                         }
@@ -275,7 +275,7 @@ export default function MechanicalDesignSection() {
               <ArrowDownToLine size={14} />
               {mechanicalData.downloadButton.label}
               <span
-                className={`ml-1 text-[0.625rem] font-bold tracking-[0.1em] uppercase px-2 py-0.5 rounded-full ${isDark ? 'bg-white/10 text-white/30' : 'bg-gray-100 text-gray-500'
+                className={`ml-1 text-[0.625rem] font-bold tracking-widest uppercase px-2 py-0.5 rounded-full ${isDark ? 'bg-white/10 text-white/30' : 'bg-gray-100 text-gray-500'
                   }`}
               >
                 {mechanicalData.downloadButton.disabledLabel}

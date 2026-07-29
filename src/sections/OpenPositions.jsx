@@ -66,9 +66,7 @@ function JobCard({ job, isDark, index }) {
           borderRadius: '20px',
           padding: '2px',
           background: expanded
-            ? isDark
-              ? 'linear-gradient(135deg, rgba(204,255,0,0.4), rgba(204,255,0,0.05))'
-              : 'linear-gradient(135deg, rgba(83,137,68,0.4), rgba(83,137,68,0.05))'
+            ? 'linear-gradient(135deg, rgba(var(--accent-rgb),0.4), rgba(var(--accent-rgb),0.05))'
             : 'transparent',
           transition: 'background 0.4s ease',
         }}
@@ -90,9 +88,7 @@ function JobCard({ job, isDark, index }) {
             backdropFilter: 'blur(20px)',
             transition: 'all 0.4s cubic-bezier(0.4,0,0.2,1)',
             boxShadow: expanded
-              ? isDark
-                ? '0 20px 60px rgba(204,255,0,0.06), 0 0 0 1px rgba(204,255,0,0.08)'
-                : '0 20px 60px rgba(83,137,68,0.08), 0 0 0 1px rgba(83,137,68,0.1)'
+              ? isDark ? '0 20px 60px rgba(var(--accent-rgb),0.06), 0 0 0 1px rgba(var(--accent-rgb),0.08)' : '0 20px 60px rgba(var(--accent-rgb),0.08), 0 0 0 1px rgba(var(--accent-rgb),0.1)'
               : isDark
                 ? '0 4px 20px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.05)'
                 : '0 2px 12px rgba(0,0,0,0.06), 0 0 0 1px rgba(0,0,0,0.03)',
@@ -122,8 +118,8 @@ function JobCard({ job, isDark, index }) {
                   fontSize: '0.85rem',
                   fontWeight: 700,
                   flexShrink: 0,
-                  background: isDark ? 'rgba(204,255,0,0.1)' : 'rgba(83,137,68,0.1)',
-                  color: isDark ? '#CCFF00' : '#538944',
+                  background: 'rgba(var(--accent-rgb),0.1)',
+                  color: 'var(--accent)',
                   transition: 'all 0.3s ease',
                 }}
               >
@@ -229,7 +225,7 @@ function JobCard({ job, isDark, index }) {
                       letterSpacing: '0.08em',
                       textTransform: 'uppercase',
                       marginBottom: '12px',
-                      color: isDark ? '#CCFF00' : '#538944',
+                      color: 'var(--accent)',
                     }}
                   >
                     Requirements
@@ -253,7 +249,7 @@ function JobCard({ job, isDark, index }) {
                             width: '5px',
                             height: '5px',
                             borderRadius: '50%',
-                            background: isDark ? '#CCFF00' : '#538944',
+                            background: 'var(--accent)',
                             marginTop: '8px',
                             flexShrink: 0,
                           }}
@@ -278,23 +274,17 @@ function JobCard({ job, isDark, index }) {
                       fontWeight: 600,
                       textDecoration: 'none',
                       color: isDark ? '#030303' : '#ffffff',
-                      background: isDark ? '#CCFF00' : '#538944',
+                      background: 'var(--accent)',
                       transition: 'all 0.3s ease',
-                      boxShadow: isDark
-                        ? '0 8px 24px rgba(204,255,0,0.2)'
-                        : '0 8px 24px rgba(83,137,68,0.2)',
+                      boxShadow: '0 8px 24px rgba(var(--accent-rgb),0.2)',
                     }}
                     onMouseEnter={(e) => {
                       e.currentTarget.style.transform = 'translateY(-2px)';
-                      e.currentTarget.style.boxShadow = isDark
-                        ? '0 12px 32px rgba(204,255,0,0.3)'
-                        : '0 12px 32px rgba(83,137,68,0.3)';
+                      e.currentTarget.style.boxShadow = '0 12px 32px rgba(var(--accent-rgb),0.3)';
                     }}
                     onMouseLeave={(e) => {
                       e.currentTarget.style.transform = 'translateY(0)';
-                      e.currentTarget.style.boxShadow = isDark
-                        ? '0 8px 24px rgba(204,255,0,0.2)'
-                        : '0 8px 24px rgba(83,137,68,0.2)';
+                      e.currentTarget.style.boxShadow = '0 8px 24px rgba(var(--accent-rgb),0.2)';
                     }}
                   >
                     Apply Now
