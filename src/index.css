@@ -20,11 +20,11 @@
 
 /* ══════ SEMANTIC ACCENT TOKENS ══════ */
 :root {
-  --accent: #CCFF00;
-  --accent-hover: #CCFF00;
-  --accent-dim: #99cc00;
-  --accent-rgb: 204, 255, 0;
-  --accent-gradient-mid: #88ee00;
+  --accent: #25ab00;
+  --accent-hover: #25ab00;
+  --accent-dim: #25ab00;
+  --accent-rgb: 37, 171, 0;
+  --accent-gradient-mid: #25ab00;
 }
 
 html.light {
@@ -450,6 +450,23 @@ html.light .status-badge-planned {
 
 .mega-dropdown-item {
   transition: background 0.2s ease, color 0.2s ease !important;
+}
+
+/* Category Flyout */
+.category-flyout {
+  position: absolute;
+  top: -8px;
+}
+
+.category-flyout--right {
+  left: 100%;
+  margin-left: 8px;
+}
+
+.category-flyout--left {
+  right: 100%;
+  margin-right: 8px;
+  left: auto;
 }
 
 /* Mobile accordion styles */

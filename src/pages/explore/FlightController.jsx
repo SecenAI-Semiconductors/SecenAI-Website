@@ -32,9 +32,10 @@ export default function FlightController() {
         backgroundImage={fcEnclosureBlackImg}
       />
 
-      {/* Product link — SECENAI FC H743 V1 */}
+      {/* Product links */}
       <section className={`pb-24 ${isDark ? 'bg-dark-950' : 'bg-[#f9fafb]'}`}>
         <div className="mx-auto max-w-7xl px-6">
+          {/* SECENAI FC H743 V1 */}
           <Link
             to="/explore/secenai-fc-h743-v1"
             className={`glass-card group flex items-center justify-between rounded-2xl px-8 py-6 transition-all duration-300 ${isDark ? 'hover:border-neon/20' : 'hover:border-emerald-300'
@@ -51,7 +52,30 @@ export default function FlightController() {
                 STM32H743 · Triple IMU · Dual Barometer · ArduPilot & PX4
               </p>
             </div>
-            <ArrowRight className={`h-5 w-5 transition-transform duration-300 group-hover:translate-x-1 ${isDark ? 'text-neon/40 group-hover:text-neon' : 'text-emerald-400 group-hover:text-emerald-600'}`} />
+            <ArrowRight className={`h-5 w-5 shrink-0 transition-transform duration-300 group-hover:translate-x-1 ${isDark ? 'text-neon/40 group-hover:text-neon' : 'text-emerald-400 group-hover:text-emerald-600'}`} />
+          </Link>
+
+          {/* SECENAI EDU */}
+          <Link
+            to="/explore/secenai-edu"
+            className={`glass-card group flex items-center justify-between rounded-2xl px-8 py-6 transition-all duration-300 mt-4 ${isDark ? 'hover:border-neon/20' : 'hover:border-emerald-300'
+              }`}
+          >
+            <div>
+              <span className={`text-xs font-bold tracking-[0.2em] uppercase ${isDark ? 'text-neon/60' : 'text-emerald-600'}`}>
+                Education Flight Controller
+              </span>
+              <h3 className={`mt-1 font-[Outfit] text-xl font-semibold ${isDark ? 'text-white' : 'text-[#1e1b4b]'}`}>
+                SECENAI EDU
+              </h3>
+              <p className={`mt-1 text-sm hidden sm:block ${isDark ? 'text-white/40' : 'text-gray-500'}`}>
+                STM32H743 · Single IMU · Single Barometer · ArduPilot & PX4
+              </p>
+              <p className={`mt-1 text-sm sm:hidden ${isDark ? 'text-white/40' : 'text-gray-500'}`}>
+                STM32H743 · ICM42688P · BMP581 · ArduPilot & PX4
+              </p>
+            </div>
+            <ArrowRight className={`h-5 w-5 shrink-0 transition-transform duration-300 group-hover:translate-x-1 ${isDark ? 'text-neon/40 group-hover:text-neon' : 'text-emerald-400 group-hover:text-emerald-600'}`} />
           </Link>
         </div>
       </section>
