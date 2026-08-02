@@ -16,6 +16,8 @@ import GroundControlSuite from './pages/explore/GroundControlSuite'
 import Dashboard from './pages/explore/Dashboard'
 import Defence from './pages/explore/Defence'
 import SecenaiFCH743Page from './pages/explore/SecenaiFCH743'
+import SecenaiEduPage from './pages/explore/SecenaiEdu'
+import SecenaiDefencePage from './pages/explore/SecenaiDefence'
 
 function App() {
   const { theme } = useTheme()
@@ -77,6 +79,10 @@ function App() {
             {/* Product detail pages */}
             <Route path="/explore/secenai-fc-h743-v1" element={<SecenaiFCH743Page />} />
             <Route path="/products/secenai-fc-h743-v1" element={<Navigate to="/explore/secenai-fc-h743-v1" replace />} />
+            <Route path="/explore/secenai-edu" element={<SecenaiEduPage />} />
+            <Route path="/flight-controller/secenai-edu" element={<Navigate to="/explore/secenai-edu" replace />} />
+            <Route path="/explore/secenai-defence" element={<SecenaiDefencePage />} />
+            <Route path="/flight-controller/secenai-defence" element={<Navigate to="/explore/secenai-defence" replace />} />
           </Routes>
         </main>
 

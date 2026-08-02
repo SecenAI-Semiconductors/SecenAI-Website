@@ -60,28 +60,28 @@ export default function Hero() {
 
       {/* Overlay */}
       <motion.div
-        className={`absolute inset-0 z-[1] ${isDark
-          ? "bg-gradient-to-b from-dark-950/90 via-dark-950/75 to-dark-950"
-          : "bg-gradient-to-b from-white/90 via-white/80 to-white/95"
+        className={`absolute inset-0 z-1 ${isDark
+          ? "bg-linear-to-b from-dark-950/90 via-dark-950/75 to-dark-950"
+          : "bg-linear-to-b from-white/90 via-white/80 to-white/95"
           }`}
         style={{ opacity: overlayOpacity }}
       />
 
       {/* Grid Overlay */}
-      <div className={`absolute inset-0 z-[2] grid-bg ${isDark ? 'opacity-40' : 'opacity-20'}`} />
+      <div className={`absolute inset-0 z-2 grid-bg ${isDark ? 'opacity-40' : 'opacity-20'}`} />
 
       {/* Glow Effects — dark mode only */}
       {isDark && (
         <>
-          <div className="absolute top-1/4 -right-20 z-[3] h-96 w-96 rounded-full bg-neon/10 blur-[120px] animate-float pointer-events-none" />
-          <div className="absolute bottom-1/3 -left-10 z-[3] h-64 w-64 rounded-full bg-neon/5 blur-[100px] animate-float-delayed pointer-events-none" />
+          <div className="absolute top-1/4 -right-20 z-3 h-96 w-96 rounded-full bg-neon/10 blur-[120px] animate-float pointer-events-none" />
+          <div className="absolute bottom-1/3 -left-10 z-3 h-64 w-64 rounded-full bg-neon/5 blur-[100px] animate-float-delayed pointer-events-none" />
         </>
       )}
 
       {/* Light mode subtle accent orb */}
       {!isDark && (
-        <div className="absolute top-1/4 right-10 z-[3] h-96 w-96 rounded-full blur-[140px] pointer-events-none"
-          style={{ background: 'radial-gradient(circle, rgba(83,137,68,0.12), transparent 60%)' }}
+        <div className="absolute top-1/4 right-10 z-3 h-96 w-96 rounded-full blur-[140px] pointer-events-none"
+          style={{ background: `radial-gradient(circle, rgba(var(--accent-rgb),0.12), transparent 60%)` }}
         />
       )}
 
@@ -111,7 +111,7 @@ export default function Hero() {
             <span className={isDark ? "text-white" : "text-[#1e1b4b]"}>
               Edge AI-Powered Drone
             </span>
-            <span className={`block ${isDark ? "text-gradient-neon" : "text-gradient-emerald"}`}>
+            <span className="block text-gradient-accent">
               Intelligence Platform
             </span>
           </motion.h1>

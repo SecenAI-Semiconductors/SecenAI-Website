@@ -50,7 +50,7 @@ function InterfaceCard({ iface, isDark, variants }) {
       <div className="flex items-start gap-3">
         <div
           className={`mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg ${
-            isDark ? 'bg-neon/[0.08]' : 'bg-emerald-50'
+            isDark ? 'bg-neon/8' : 'bg-emerald-50'
           }`}
         >
           <Icon size={15} className={isDark ? 'text-neon' : 'text-emerald-600'} />
@@ -118,7 +118,7 @@ function HotspotDot({ hotspot, isDark, onSelect, isSelected }) {
       >
         {/* Pulse ring */}
         <span
-          className={`absolute inset-[-4px] rounded-full animate-ping ${
+          className={`absolute -inset-1 rounded-full animate-ping ${
             isDark ? 'bg-neon/10' : 'bg-emerald-400/10'
           }`}
           style={{ animationDuration: '3s' }}
@@ -135,14 +135,14 @@ function HotspotDot({ hotspot, isDark, onSelect, isSelected }) {
             transition={{ duration: 0.15 }}
             className={`hidden md:block absolute bottom-full left-1/2 -translate-x-1/2 mb-3 whitespace-nowrap rounded-lg px-4 py-3 text-left pointer-events-none ${
               isDark
-                ? 'bg-dark-800 border border-white/[0.08] shadow-xl shadow-black/30'
+                ? 'bg-dark-800 border border-white/8 shadow-xl shadow-black/30'
                 : 'bg-white border border-gray-200 shadow-xl shadow-black/5'
             }`}
           >
             {/* Arrow */}
             <div
               className={`absolute top-full left-1/2 -translate-x-1/2 w-2 h-2 rotate-45 -mt-1 ${
-                isDark ? 'bg-dark-800 border-r border-b border-white/[0.08]' : 'bg-white border-r border-b border-gray-200'
+                isDark ? 'bg-dark-800 border-r border-b border-white/8' : 'bg-white border-r border-b border-gray-200'
               }`}
             />
             <span className={`block text-xs font-semibold ${isDark ? 'text-white/80' : 'text-[#1e1b4b]'}`}>
@@ -182,7 +182,7 @@ function MobileInfoCard({ hotspot, isDark, onClose }) {
       transition={{ duration: 0.2 }}
       className={`md:hidden rounded-xl border px-5 py-4 mt-4 ${
         isDark
-          ? 'bg-dark-800 border-white/[0.08]'
+          ? 'bg-dark-800 border-white/8'
           : 'bg-white border-gray-200'
       }`}
     >
@@ -236,7 +236,7 @@ function BoardHotspotView({ isDark, prefersReducedMotion }) {
     <div>
       <div
         className={`relative rounded-2xl overflow-hidden aspect-square ${
-          isDark ? 'bg-dark-800 border border-white/[0.06]' : 'bg-white border border-gray-200'
+          isDark ? 'bg-dark-800 border border-white/6' : 'bg-white border border-gray-200'
         }`}
         style={{
           boxShadow: isDark
@@ -280,7 +280,7 @@ function BoardHotspotView({ isDark, prefersReducedMotion }) {
             <div className="text-center">
               <div
                 className={`mx-auto mb-3 h-14 w-14 rounded-xl flex items-center justify-center ${
-                  isDark ? 'bg-neon/[0.06] border border-neon/10' : 'bg-emerald-50 border border-emerald-200/30'
+                  isDark ? 'bg-neon/6 border border-neon/10' : 'bg-emerald-50 border border-emerald-200/30'
                 }`}
               >
                 <Cpu size={24} className={isDark ? 'text-neon/30' : 'text-emerald-400/40'} strokeWidth={1.5} />
@@ -339,8 +339,8 @@ export default function ConnectivitySection() {
       {/* Ambient glow */}
       {isDark && (
         <>
-          <div className="pointer-events-none absolute left-[15%] top-[15%] h-[450px] w-[500px] rounded-full bg-neon/[0.02] blur-[180px]" />
-          <div className="pointer-events-none absolute right-[5%] bottom-[10%] h-[350px] w-[400px] rounded-full bg-[#6366f1]/[0.02] blur-[160px]" />
+          <div className="pointer-events-none absolute left-[15%] top-[15%] h-112.5 w-125 rounded-full bg-neon/2 blur-[180px]" />
+          <div className="pointer-events-none absolute right-[5%] bottom-[10%] h-87.5 w-100 rounded-full bg-[#6366f1]/2 blur-[160px]" />
         </>
       )}
 
@@ -384,8 +384,8 @@ export default function ConnectivitySection() {
           <motion.div
             className={`my-8 h-px w-full max-w-3xl mx-auto ${
               isDark
-                ? 'bg-gradient-to-r from-transparent via-neon/15 to-transparent'
-                : 'bg-gradient-to-r from-transparent via-gray-200 to-transparent'
+                ? 'bg-linear-to-r from-transparent via-neon/15 to-transparent'
+                : 'bg-linear-to-r from-transparent via-gray-200 to-transparent'
             }`}
             variants={fadeUp}
           />
@@ -431,7 +431,7 @@ export default function ConnectivitySection() {
           <motion.div
             className={`mt-8 flex items-center justify-center gap-2.5 rounded-xl border px-5 py-3.5 max-w-md mx-auto ${
               isDark
-                ? 'bg-white/[0.03] border-white/12 shadow-sm'
+                ? 'bg-white/3 border-white/12 shadow-sm'
                 : 'bg-white border-gray-300 shadow-sm'
             }`}
             variants={fadeUp}

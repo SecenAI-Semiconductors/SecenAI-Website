@@ -1,6 +1,6 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Sun, Moon, ChevronDown, ChevronRight, Cpu, Monitor, LayoutDashboard, Shield } from "lucide-react";
+import { Menu, X, Sun, Moon, ChevronDown, ChevronRight, ChevronLeft, Cpu, Monitor, LayoutDashboard, Shield } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useTheme } from "../context/ThemeContext";
 
@@ -27,8 +27,8 @@ const dropdownCategories = [
     href: "/flight-controller",
     items: [
       { label: "SECENAI FC H743 V1", href: "/explore/secenai-fc-h743-v1" },
-      { label: "Edu/Light Version", href: "/flight-controller#edu-light" },
-      { label: "Defence-Grade Version", href: "/flight-controller#defence" },
+      { label: "Edu/Light Version", href: "/explore/secenai-edu" },
+      { label: "Defence-Grade Version", href: "/explore/secenai-defence" },
     ],
   },
   {
@@ -131,83 +131,118 @@ function NavLink({ label, href, isDark, isRoute }) {
    DESKTOP DROPDOWN (vertical, click-to-open)
    ═══════════════════════════════════════════ */
 
-function DropdownCategory({ category, isDark, onNavigate }) {
-  const [expanded, setExpanded] = useState(false);
+function DropdownCategory({ category, isDark, onNavigate, isActiveFlyout, onToggleFlyout }) {
   const CatIcon = category.icon;
   const hasSubItems = category.items.length > 0;
 
-  // No sub-items — render as a direct link
-  if (!hasSubItems && category.href) {
+  // Categories with sub-items use a click-triggered flyout panel on desktop
+  if (hasSubItems) {
     return (
       <button
-        onClick={() => onNavigate(category.href)}
+        onClick={onToggleFlyout}
+        aria-haspopup="menu"
+        aria-expanded={isActiveFlyout}
         className={`mega-dropdown-item w-full text-left ${isDark ? "!text-white/70 hover:!text-neon" : "!text-gray-700 hover:!text-emerald-600"}`}
       >
         <CatIcon className={`h-4 w-4 shrink-0 ${isDark ? "text-neon/60" : "text-emerald-500"}`} />
         <span className="flex-1 font-medium">{category.title}</span>
+        {isActiveFlyout
+          ? <ChevronLeft className="h-3 w-3 shrink-0 opacity-50" />
+          : <ChevronRight className="h-3 w-3 shrink-0 opacity-50" />
+        }
       </button>
     );
   }
 
-  // Has sub-items — render as accordion
+  // Categories without sub-items (like Our Dashboard) render as a direct link
   return (
-    <div>
-      <button
-        onClick={() => setExpanded(!expanded)}
-        className={`mega-dropdown-item w-full text-left ${isDark ? "!text-white/70 hover:!text-neon" : "!text-gray-700 hover:!text-emerald-600"}`}
-      >
-        <CatIcon className={`h-4 w-4 shrink-0 ${isDark ? "text-neon/60" : "text-emerald-500"}`} />
-        <span className="flex-1 font-medium">{category.title}</span>
-        <ChevronDown className={`h-3 w-3 shrink-0 opacity-50 transition-transform duration-200 ${expanded ? "rotate-180" : ""}`} />
-      </button>
+    <button
+      onClick={() => onNavigate(category.href)}
+      className={`mega-dropdown-item w-full text-left ${isDark ? "!text-white/70 hover:!text-neon" : "!text-gray-700 hover:!text-emerald-600"}`}
+    >
+      <CatIcon className={`h-4 w-4 shrink-0 ${isDark ? "text-neon/60" : "text-emerald-500"}`} />
+      <span className="flex-1 font-medium">{category.title}</span>
+    </button>
+  );
+}
 
-      <AnimatePresence>
-        {expanded && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.2, ease: "easeInOut" }}
-            className="overflow-hidden"
+/* ═══════════════════════════════════════════
+   CATEGORY FLYOUT (desktop only)
+   ═══════════════════════════════════════════ */
+
+function CategoryFlyout({ category, isDark, onNavigate, triggerRef }) {
+  const flyoutRef = useRef(null);
+  const [flipLeft, setFlipLeft] = useState(false);
+
+  // Detect viewport overflow and flip to left if needed
+  useEffect(() => {
+    if (!triggerRef?.current || !flyoutRef.current) return;
+    const triggerRect = triggerRef.current.getBoundingClientRect();
+    const flyoutWidth = flyoutRef.current.offsetWidth;
+    const rightSpace = window.innerWidth - triggerRect.right;
+    setFlipLeft(rightSpace < flyoutWidth + 16);
+  }, [triggerRef]);
+
+  return (
+    <motion.div
+      ref={flyoutRef}
+      initial={{ opacity: 0, x: flipLeft ? 4 : -4 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: flipLeft ? 4 : -4 }}
+      transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
+      className={`category-flyout mega-dropdown rounded-xl p-2 min-w-[200px] w-max ${flipLeft ? "category-flyout--left" : "category-flyout--right"}`}
+      role="menu"
+      aria-label={`${category.title} submenu`}
+    >
+      <div className="flex flex-col gap-0.5">
+        {/* Overview link */}
+        {category.href && (
+          <button
+            onClick={() => onNavigate(category.href)}
+            className="mega-dropdown-item w-full text-left text-xs"
+            role="menuitem"
           >
-            <div className={`flex flex-col gap-0.5 ml-5 pl-3 my-1 border-l ${isDark ? "border-white/8" : "border-gray-200"}`}>
-              {/* Parent overview link if available */}
-              {category.href && (
-                <button
-                  onClick={() => onNavigate(category.href)}
-                  className="mega-dropdown-item w-full text-left text-xs"
-                >
-                  <span>Overview</span>
-                </button>
-              )}
-              {category.items.map((item) => (
-                <button
-                  key={item.label}
-                  onClick={() => onNavigate(item.href)}
-                  className="mega-dropdown-item w-full text-left text-xs"
-                >
-                  <span>{item.label}</span>
-                </button>
-              ))}
-            </div>
-          </motion.div>
+            <span>Overview</span>
+          </button>
         )}
-      </AnimatePresence>
-    </div>
+        {category.items.map((item) => (
+          <button
+            key={item.label}
+            onClick={() => onNavigate(item.href)}
+            className="mega-dropdown-item w-full text-left text-xs"
+            role="menuitem"
+          >
+            <span>{item.label}</span>
+          </button>
+        ))}
+      </div>
+    </motion.div>
   );
 }
 
 function ExploreUsDesktop({ isDark }) {
   const [open, setOpen] = useState(false);
+  const [activeFlyoutCategory, setActiveFlyoutCategory] = useState(null);
   const navigate = useNavigate();
   const dropdownRef = useRef(null);
+  const categoryRefs = useRef({});
 
-  const handleNavigate = (href) => {
+  const handleNavigate = useCallback((href) => {
     setOpen(false);
+    setActiveFlyoutCategory(null);
     navigate(href);
-  };
+  }, [navigate]);
 
-  // Close on click outside
+  const handleFlyoutToggle = useCallback((categoryTitle) => {
+    setActiveFlyoutCategory((prev) => (prev === categoryTitle ? null : categoryTitle));
+  }, []);
+
+  // Close flyout when main dropdown closes
+  useEffect(() => {
+    if (!open) setActiveFlyoutCategory(null);
+  }, [open]);
+
+  // Close on click outside & Escape
   useEffect(() => {
     if (!open) return;
     const handleClickOutside = (e) => {
@@ -216,7 +251,15 @@ function ExploreUsDesktop({ isDark }) {
       }
     };
     const handleEscape = (e) => {
-      if (e.key === "Escape") setOpen(false);
+      if (e.key === "Escape") {
+        if (activeFlyoutCategory) {
+          const trigger = categoryRefs.current[activeFlyoutCategory]?.querySelector("button");
+          setActiveFlyoutCategory(null);
+          trigger?.focus();
+        } else {
+          setOpen(false);
+        }
+      }
     };
     document.addEventListener("mousedown", handleClickOutside);
     document.addEventListener("keydown", handleEscape);
@@ -224,7 +267,7 @@ function ExploreUsDesktop({ isDark }) {
       document.removeEventListener("mousedown", handleClickOutside);
       document.removeEventListener("keydown", handleEscape);
     };
-  }, [open]);
+  }, [open, activeFlyoutCategory]);
 
   return (
     <div className="relative" ref={dropdownRef}>
@@ -254,14 +297,33 @@ function ExploreUsDesktop({ isDark }) {
             <div className={`absolute -top-1.5 left-6 w-3 h-3 rotate-45 ${isDark ? "bg-dark-900 border-l border-t border-white/6" : "bg-white border-l border-t border-black/8"}`} />
 
             <div className="flex flex-col gap-0.5">
-              {dropdownCategories.map((cat) => (
-                <DropdownCategory
-                  key={cat.title}
-                  category={cat}
-                  isDark={isDark}
-                  onNavigate={handleNavigate}
-                />
-              ))}
+              {dropdownCategories.map((cat) => {
+                const hasSubItems = cat.items.length > 0;
+                return (
+                  <div key={cat.title} ref={(el) => (categoryRefs.current[cat.title] = el)} className={hasSubItems ? "relative" : undefined}>
+                    <DropdownCategory
+                      category={cat}
+                      isDark={isDark}
+                      onNavigate={handleNavigate}
+                      isActiveFlyout={activeFlyoutCategory === cat.title}
+                      onToggleFlyout={() => handleFlyoutToggle(cat.title)}
+                    />
+                    {/* Category flyout panel */}
+                    {hasSubItems && (
+                      <AnimatePresence>
+                        {activeFlyoutCategory === cat.title && (
+                          <CategoryFlyout
+                            category={cat}
+                            isDark={isDark}
+                            onNavigate={handleNavigate}
+                            triggerRef={{ current: categoryRefs.current[cat.title] }}
+                          />
+                        )}
+                      </AnimatePresence>
+                    )}
+                  </div>
+                );
+              })}
             </div>
           </motion.div>
         )}
