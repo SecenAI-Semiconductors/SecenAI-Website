@@ -77,6 +77,26 @@ export default function FlightController() {
             </div>
             <ArrowRight className={`h-5 w-5 shrink-0 transition-transform duration-300 group-hover:translate-x-1 ${isDark ? 'text-neon/40 group-hover:text-neon' : 'text-emerald-400 group-hover:text-emerald-600'}`} />
           </Link>
+
+          {/* SECENAI DEFENCE */}
+          <Link
+            to="/explore/secenai-defence"
+            className={`glass-card group flex items-center justify-between rounded-2xl px-8 py-6 transition-all duration-300 mt-4 ${isDark ? 'hover:border-neon/20' : 'hover:border-emerald-300'
+              }`}
+          >
+            <div>
+              <span className={`text-xs font-bold tracking-[0.2em] uppercase ${isDark ? 'text-neon/60' : 'text-emerald-600'}`}>
+                MISSION-FOCUSED FLIGHT CONTROLLER
+              </span>
+              <h3 className={`mt-1 font-[Outfit] text-xl font-semibold ${isDark ? 'text-white' : 'text-[#1e1b4b]'}`}>
+                SECENAI DEFENCE
+              </h3>
+              <p className={`mt-1 text-sm ${isDark ? 'text-white/40' : 'text-gray-500'}`}>
+                Resilient Sensing · Fault-Tolerant Control · Protected Power · Mission Integration
+              </p>
+            </div>
+            <ArrowRight className={`h-5 w-5 shrink-0 transition-transform duration-300 group-hover:translate-x-1 ${isDark ? 'text-neon/40 group-hover:text-neon' : 'text-emerald-400 group-hover:text-emerald-600'}`} />
+          </Link>
         </div>
       </section>
     </>
