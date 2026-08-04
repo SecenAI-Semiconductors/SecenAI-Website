@@ -17,8 +17,8 @@ export default function CTABanner() {
     <section
       ref={sectionRef}
       className={`relative overflow-hidden py-16 md:py-20 ${isDark
-          ? 'bg-gradient-to-br from-dark-800 via-dark-900 to-dark-950'
-          : 'bg-gradient-to-br from-[#e4e2d8] via-[#e9e7dd] to-[#e4e2d8]'
+        ? 'bg-gradient-to-br from-dark-800 via-dark-900 to-dark-950'
+        : 'bg-gradient-to-br from-[#e4e2d8] via-[#e9e7dd] to-[#e4e2d8]'
         }`}
     >
       {/* Glow Orb */}
@@ -51,8 +51,8 @@ export default function CTABanner() {
       >
         {/* Badge */}
         <span className={`mb-8 inline-block rounded-full border px-4 py-1.5 text-xs font-medium tracking-[0.2em] ${isDark
-            ? 'border-neon/30 bg-neon/5 text-neon'
-            : 'border-emerald-200 bg-emerald-50 text-emerald-700'
+          ? 'border-neon/30 bg-neon/5 text-neon'
+          : 'border-emerald-200 bg-emerald-50 text-emerald-700'
           }`}>
           EDGE AI-POWERED DRONE INTELLIGENCE
         </span>
@@ -80,8 +80,8 @@ export default function CTABanner() {
           <motion.a
             href="/contact"
             className={`inline-flex cursor-pointer items-center gap-2 rounded-full px-8 py-4 font-semibold transition-all ${isDark
-                ? 'bg-neon text-dark-950 hover:shadow-xl hover:shadow-neon/30'
-                : 'bg-emerald-600 text-white hover:bg-emerald-700 hover:shadow-xl hover:shadow-emerald-600/30'
+              ? 'bg-neon text-dark-950 hover:shadow-xl hover:shadow-neon/30'
+              : 'bg-emerald-600 text-white hover:bg-emerald-700 hover:shadow-xl hover:shadow-emerald-600/30'
               }`}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.97 }}
@@ -91,10 +91,10 @@ export default function CTABanner() {
           </motion.a>
 
           <motion.a
-            href="/about"
+            href="/dashboard"
             className={`inline-flex cursor-pointer items-center gap-2 rounded-full border px-8 py-4 transition-all ${isDark
-                ? 'border-white/20 text-white hover:border-white/40 hover:bg-white/5'
-                : 'border-gray-300 text-gray-700 hover:border-gray-400'
+              ? 'border-white/20 text-white hover:border-white/40 hover:bg-white/5'
+              : 'border-gray-300 text-gray-700 hover:border-gray-400'
               }`}
             style={!isDark ? { backgroundColor: '#ffffff' } : undefined}
             whileHover={{ scale: 1.05 }}
