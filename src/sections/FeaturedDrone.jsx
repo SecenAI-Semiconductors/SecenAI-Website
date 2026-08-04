@@ -1,40 +1,49 @@
 import { useRef, useState, useEffect, useCallback } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
-import { Package, Clock, Navigation, Battery, ArrowRight, Plane } from 'lucide-react';
+import { ArrowRight, Cpu } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
-import quadcopterImg from '../assets/quadcopter-prototype.png';
+import fcEnclosureBlackImg from '../assets/flight-controller/secenai-fc-h743-v1/fc-enclosure-black.webp';
 import { ZoomableImage } from '../components/ImageLightbox';
 
 const SLIDE_INTERVAL = 7000; // 7 seconds per slide
 
 const products = [
   {
-    id: 'quadcopter-q1',
-    name: 'SecenAI Quadcopter',
-    tagline: 'Versatile 4-Rotor Platform',
+    id: 'fc-h743-v1',
+    name: 'SECENAI FC H743 V1',
+    tagline: 'High-Performance Flight Control',
     description:
-      'A highly agile 4-rotor autonomous drone built for precision agriculture, infrastructure inspection, surveillance, and emergency response.',
-    image: quadcopterImg,
-    badge: 'QUADCOPTER',
-    specs: [
-      { label: 'Payload', value: '4.5 kg', icon: Package },
-      { label: 'Endurance', value: '30-35 min', icon: Clock },
-      { label: 'Battery', value: '10,000 mAh', icon: Battery },
-    ],
+      'A high-performance STM32H743 flight controller with triple-IMU sensing, dual barometers, redundant power inputs, and extensive UAV connectivity.',
+    image: fcEnclosureBlackImg,
+    alt: 'SECENAI FC H743 V1 flight controller',
+    badge: 'HIGH-PERFORMANCE FLIGHT CONTROL',
+    route: '/explore/secenai-fc-h743-v1',
+    specs: ['480 MHz', '3× IMUs', 'Dual BMP581'],
   },
   {
-    id: 'hexacopter-h1',
-    name: 'SecenAI Hexacopter',
-    tagline: 'Heavy-Lift 6-Rotor Platform',
+    id: 'edu-light',
+    name: 'SECENAI EDU / Lite',
+    tagline: 'Learning & Prototyping Platform',
     description:
-      'A robust 6-rotor heavy-lift drone engineered for demanding missions requiring superior payload capacity and rock-solid stability.',
+      'A cost-effective STM32H743 flight controller for students, makers, institutions, and research labs, with reliable sensing and open-autopilot compatibility.',
     image: null,
-    badge: 'HEXACOPTER',
-    specs: [
-      { label: 'Payload', value: '12 kg', icon: Package },
-      { label: 'Endurance', value: '20-25 min', icon: Clock },
-      { label: 'Battery', value: '16,000 mAh', icon: Battery },
-    ],
+    alt: 'SECENAI EDU Light flight controller',
+    badge: 'LEARNING & PROTOTYPING PLATFORM',
+    route: '/explore/secenai-edu',
+    specs: ['STM32H743', 'Single IMU', 'ArduPilot + PX4'],
+  },
+  {
+    id: 'defence-grade',
+    name: 'SECENAI Defence-Grade',
+    tagline: 'Mission-Focused Flight Control',
+    description:
+      'A resilient flight-control platform designed for demanding UAV operations, with protected power, fault management, robust sensing, and mission-system integration.',
+    image: null,
+    alt: 'SECENAI Defence-grade flight controller',
+    badge: 'MISSION-FOCUSED FLIGHT CONTROL',
+    route: '/explore/secenai-defence',
+    specs: ['Resilient Sensing', 'Protected Power', 'Fault Management'],
   },
 ];
 
@@ -174,8 +183,8 @@ export default function FeaturedDrone() {
             variants={fadeUp}
             custom={0.2}
           >
-            Three purpose-built flight controllers: a precision Quadcopter
-            for agile operations and a heavy-lift Hexacopter for demanding missions.
+            Three purpose-built flight-control platforms for advanced UAV integration,
+            education and prototyping, and mission-focused operations.
           </motion.p>
         </div>
 
@@ -208,24 +217,14 @@ export default function FeaturedDrone() {
                     {product.image ? (
                       <ZoomableImage
                         src={product.image}
-                        alt={product.name}
-                        className={`w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.5] ${product.id === 'quadcopter-q1' ? 'scale-[1.4]' : ''
-                          }`}
+                        alt={product.alt}
+                        className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-[1.05]"
                       />
                     ) : (
                       <div className={`w-full h-full flex flex-col items-center justify-center ${isDark ? 'bg-dark-800' : 'bg-gray-100'}`}>
-                        <Plane className={`h-16 w-16 mb-3 ${isDark ? 'text-white/15' : 'text-gray-300'}`} />
+                        <Cpu className={`h-16 w-16 mb-3 ${isDark ? 'text-white/15' : 'text-gray-300'}`} />
                         <span className={`text-sm font-medium tracking-wider ${isDark ? 'text-white/20' : 'text-gray-400'}`}>Image Coming Soon</span>
                       </div>
-                    )}
-                    {/* Overlay gradient — skip for quadcopter since it has white bg */}
-                    {product.image && product.id !== 'quadcopter-q1' && (
-                      <div
-                        className={`absolute inset-0 ${isDark
-                          ? 'bg-gradient-to-t from-dark-800 via-dark-800/30 to-transparent'
-                          : 'bg-gradient-to-t from-white via-white/20 to-transparent'
-                          }`}
-                      />
                     )}
 
                     {/* Badge */}
@@ -238,30 +237,21 @@ export default function FeaturedDrone() {
                       {product.badge}
                     </span>
 
-                    {/* Floating Specs */}
+                    {/* Floating Spec Badges */}
                     <div className="absolute bottom-3 left-3 right-3 flex flex-wrap gap-1.5">
-                      {product.specs.map((spec) => {
-                        const Icon = spec.icon;
-                        return (
-                          <div
-                            key={spec.label}
-                            className={`flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 backdrop-blur-md ${isDark
-                              ? 'bg-dark-950/70 border border-white/10'
-                              : 'bg-white/80 border border-gray-200 shadow-sm'
-                              }`}
-                          >
-                            <Icon className={`h-3 w-3 ${isDark ? 'text-neon' : 'text-emerald-600'}`} />
-                            <div>
-                              <p className={`text-[8px] uppercase tracking-wider leading-none ${isDark ? 'text-white/40' : 'text-gray-400'}`}>
-                                {spec.label}
-                              </p>
-                              <p className={`text-[11px] font-semibold leading-tight ${isDark ? 'text-white' : 'text-gray-900'}`}>
-                                {spec.value}
-                              </p>
-                            </div>
-                          </div>
-                        );
-                      })}
+                      {product.specs.map((spec) => (
+                        <div
+                          key={spec}
+                          className={`flex items-center rounded-lg px-2.5 py-1.5 backdrop-blur-md ${isDark
+                            ? 'bg-dark-950/70 border border-white/10'
+                            : 'bg-white/80 border border-gray-200 shadow-sm'
+                            }`}
+                        >
+                          <p className={`text-[11px] font-semibold leading-tight ${isDark ? 'text-white' : 'text-gray-900'}`}>
+                            {spec}
+                          </p>
+                        </div>
+                      ))}
                     </div>
                   </div>
 
@@ -288,8 +278,8 @@ export default function FeaturedDrone() {
                       {product.description}
                     </p>
 
-                    <a
-                      href="/flight-controller"
+                    <Link
+                      to={product.route}
                       className={`inline-flex items-center gap-2 text-sm font-semibold transition-all duration-300 group/link ${isDark
                         ? 'text-neon hover:text-neon-dim'
                         : 'text-emerald-600 hover:text-emerald-700'
@@ -297,7 +287,7 @@ export default function FeaturedDrone() {
                     >
                       View Details
                       <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover/link:translate-x-1" />
-                    </a>
+                    </Link>
                   </div>
                 </motion.div>
               </AnimatePresence>
@@ -354,7 +344,7 @@ export default function FeaturedDrone() {
               : 'bg-emerald-600 text-white hover:bg-emerald-700 hover:shadow-[0_0_30px_rgba(83,137,68,0.3)]'
               }`}
           >
-            Explore Full Product Lineup
+            Explore Full Flight Controller Lineup
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
           </a>
         </motion.div>
