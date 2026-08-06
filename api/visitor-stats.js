@@ -1,123 +1,237 @@
+const COUNT_ENDPOINT =
+  'https://api.vercel.com/v1/query/web-analytics/visits/count';
+
+const AGGREGATE_ENDPOINT =
+  'https://api.vercel.com/v1/query/web-analytics/visits/aggregate';
+
 export default async function handler(req, res) {
-  // Only allow GET requests
   if (req.method !== 'GET') {
     res.setHeader('Allow', 'GET');
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  // Validate required environment variables
   const token = process.env.VERCEL_API_TOKEN;
   const projectId = process.env.VERCEL_PROJECT_ID;
+  const teamId = process.env.VERCEL_TEAM_ID;
 
   if (!token || !projectId) {
-    console.error('Missing required environment variables: VERCEL_API_TOKEN and/or VERCEL_PROJECT_ID');
-    return res.status(500).json({ error: 'Server configuration error' });
+    console.error(
+      'Visitor analytics configuration is missing the token or project ID.',
+    );
+
+    return res.status(500).json({
+      error: 'Server configuration error',
+    });
   }
 
-  const teamId = process.env.VERCEL_TEAM_ID || '';
-  const analyticsSince = process.env.ANALYTICS_SINCE || '';
-
-  // Build date range
   const now = new Date();
   const until = now.toISOString();
+  const since = getReportingStartDate(
+    now,
+    process.env.ANALYTICS_SINCE,
+  );
 
-  let since;
-  if (analyticsSince) {
-    since = new Date(analyticsSince).toISOString();
-  } else {
-    // Default to 90 days ago
-    const daysAgo = new Date(now);
-    daysAgo.setDate(daysAgo.getDate() - 90);
-    since = daysAgo.toISOString();
-  }
-
-  const baseUrl = 'https://api.vercel.com/v1/query/web-analytics/visits/aggregate';
-  const headers = {
-    Authorization: `Bearer ${token}`,
-  };
-
-  // Build query parameters
-  const baseParams = new URLSearchParams({
+  const commonParams = new URLSearchParams({
     projectId,
-    environment: 'production',
     since,
     until,
   });
 
+  // Your project is currently in a personal Hobby workspace,
+  // so this will normally remain unset.
   if (teamId) {
-    baseParams.set('teamId', teamId);
+    commonParams.set('teamId', teamId);
   }
 
-  // Country breakdown params
-  const countryParams = new URLSearchParams(baseParams);
-  countryParams.set('by', 'country');
+  const countryParams = new URLSearchParams(commonParams);
+
+  // The aggregate endpoint requires a grouping dimension.
+  countryParams.append('by', 'country');
+
+  const headers = {
+    Authorization: `Bearer ${token}`,
+    Accept: 'application/json',
+  };
 
   try {
-    // Fetch totals and country breakdown in parallel
-    const [totalsRes, countryRes] = await Promise.all([
-      fetch(`${baseUrl}?${baseParams.toString()}`, { headers }),
-      fetch(`${baseUrl}?${countryParams.toString()}`, { headers }),
+    const [countResponse, countryResponse] = await Promise.all([
+      fetch(`${COUNT_ENDPOINT}?${commonParams.toString()}`, {
+        method: 'GET',
+        headers,
+      }),
+
+      fetch(`${AGGREGATE_ENDPOINT}?${countryParams.toString()}`, {
+        method: 'GET',
+        headers,
+      }),
     ]);
 
-    if (!totalsRes.ok) {
-      const errBody = await totalsRes.text();
-      console.error(`Vercel Analytics API error (totals): ${totalsRes.status}`, errBody);
-      return res.status(502).json({ error: 'Failed to retrieve analytics data' });
+    if (!countResponse.ok) {
+      await logUpstreamError('count', countResponse);
+
+      return res.status(502).json({
+        error: 'Failed to retrieve analytics data',
+      });
     }
 
-    if (!countryRes.ok) {
-      const errBody = await countryRes.text();
-      console.error(`Vercel Analytics API error (countries): ${countryRes.status}`, errBody);
-      return res.status(502).json({ error: 'Failed to retrieve analytics data' });
+    if (!countryResponse.ok) {
+      await logUpstreamError('country aggregate', countryResponse);
+
+      return res.status(502).json({
+        error: 'Failed to retrieve analytics data',
+      });
     }
 
-    const totalsData = await totalsRes.json();
-    const countryData = await countryRes.json();
+    const countPayload = await countResponse.json();
+    const countryPayload = await countryResponse.json();
 
-    // Extract totals — the aggregate endpoint returns pageViews and visitors
-    // The response shape may be { pageViews: number, visitors: number } or similar
-    const pageViews = toSafeNumber(totalsData.pageViews ?? totalsData.data?.[0]?.pageViews ?? 0);
-    const visitors = toSafeNumber(totalsData.visitors ?? totalsData.data?.[0]?.visitors ?? 0);
+    /*
+     * The count response contains the total page views and visitors.
+     * Normally these values are inside `data`, but the fallback also
+     * supports a top-level result.
+     */
+    const totals =
+      countPayload?.data &&
+      typeof countPayload.data === 'object' &&
+      !Array.isArray(countPayload.data)
+        ? countPayload.data
+        : countPayload;
 
-    // Extract country data — grouped response returns an array of { key: "US", pageViews: N, visitors: N }
-    const countryRows = Array.isArray(countryData.data) ? countryData.data : [];
+    const visitors = toSafeNumber(
+      totals?.visitors ??
+        totals?.uniqueVisitors ??
+        totals?.totalVisitors,
+    );
 
-    // Filter out invalid/empty country values and map to normalized format
-    const validCountries = countryRows
-      .filter((row) => {
-        const code = row.key ?? row.country ?? '';
-        return typeof code === 'string' && code.length === 2;
+    const pageViews = toSafeNumber(
+      totals?.pageViews ??
+        totals?.pageviews ??
+        totals?.totalPageViews,
+    );
+
+    const rows = Array.isArray(countryPayload?.data)
+      ? countryPayload.data
+      : [];
+
+    const countries = rows
+      .map((row) => {
+        const rawCode =
+          row?.country ??
+          row?.key ??
+          row?.dimension ??
+          row?.value ??
+          '';
+
+        const code =
+          typeof rawCode === 'string'
+            ? rawCode.trim().toUpperCase()
+            : '';
+
+        return {
+          code,
+          visitors: toSafeNumber(
+            row?.visitors ??
+              row?.uniqueVisitors ??
+              row?.totalVisitors,
+          ),
+        };
       })
-      .map((row) => ({
-        code: (row.key ?? row.country ?? '').toUpperCase(),
-        visitors: toSafeNumber(row.visitors ?? row.pageViews ?? 0),
-      }))
+      .filter(({ code }) => /^[A-Z]{2}$/.test(code))
       .sort((a, b) => b.visitors - a.visitors);
 
-    const countriesReached = validCountries.length;
-    const topCountries = validCountries.slice(0, 5);
-
-    // Set caching headers
-    res.setHeader('Cache-Control', 'public, s-maxage=900, stale-while-revalidate=3600');
+    res.setHeader(
+      'Cache-Control',
+      'public, s-maxage=900, stale-while-revalidate=3600',
+    );
 
     return res.status(200).json({
       visitors,
       pageViews,
-      countriesReached,
-      topCountries,
+      countriesReached: countries.length,
+      topCountries: countries.slice(0, 5),
       updatedAt: new Date().toISOString(),
     });
-  } catch (err) {
-    console.error('Visitor stats API error:', err);
-    return res.status(500).json({ error: 'Internal server error' });
+  } catch (error) {
+    console.error(
+      'Visitor analytics function failed:',
+      error instanceof Error ? error.message : 'Unknown error',
+    );
+
+    return res.status(500).json({
+      error: 'Internal server error',
+    });
   }
 }
 
 /**
- * Safely convert a value to a non-negative integer.
+ * Hobby Web Analytics currently has a one-month reporting window.
+ * Use the configured date only when it is valid and within that window.
  */
-function toSafeNumber(val) {
-  const num = Number(val);
-  if (!Number.isFinite(num) || num < 0) return 0;
-  return Math.round(num);
+function getReportingStartDate(now, configuredDate) {
+  const thirtyDaysAgo = new Date(
+    now.getTime() - 30 * 24 * 60 * 60 * 1000,
+  );
+
+  if (!configuredDate) {
+    return thirtyDaysAgo.toISOString();
+  }
+
+  const configured = new Date(configuredDate);
+
+  if (Number.isNaN(configured.getTime())) {
+    console.warn(
+      'ANALYTICS_SINCE is invalid; using the last 30 days.',
+    );
+
+    return thirtyDaysAgo.toISOString();
+  }
+
+  // Prevent requesting data older than the Hobby reporting window.
+  if (configured < thirtyDaysAgo) {
+    return thirtyDaysAgo.toISOString();
+  }
+
+  if (configured > now) {
+    return thirtyDaysAgo.toISOString();
+  }
+
+  return configured.toISOString();
+}
+
+/**
+ * Log the useful Vercel error without exposing credentials.
+ */
+async function logUpstreamError(endpointName, response) {
+  let message = '';
+
+  try {
+    const body = await response.json();
+
+    message =
+      body?.error?.message ??
+      body?.error?.code ??
+      body?.message ??
+      JSON.stringify(body);
+  } catch {
+    message = await response.text().catch(() => '');
+  }
+
+  console.error(
+    `Vercel Analytics ${endpointName} request failed:`,
+    response.status,
+    message || response.statusText,
+  );
+}
+
+/**
+ * Convert analytics values into safe non-negative integers.
+ */
+function toSafeNumber(value) {
+  const number = Number(value);
+
+  if (!Number.isFinite(number) || number < 0) {
+    return 0;
+  }
+
+  return Math.round(number);
 }
