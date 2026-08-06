@@ -5,6 +5,7 @@ import { ThemeProvider } from './context/ThemeContext'
 import { ImageLightboxProvider } from './components/ImageLightbox'
 import App from './App.jsx'
 import './index.css'
+import { Analytics } from "@vercel/analytics/react";
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -12,6 +13,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <ThemeProvider>
         <ImageLightboxProvider>
           <App />
+          <Analytics />
         </ImageLightboxProvider>
       </ThemeProvider>
     </BrowserRouter>
