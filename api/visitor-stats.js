@@ -85,30 +85,54 @@ export default async function handler(req, res) {
     const countPayload = await countResponse.json();
     const countryPayload = await countryResponse.json();
 
-    /*
-     * The count response contains the total page views and visitors.
-     * Normally these values are inside `data`, but the fallback also
-     * supports a top-level result.
-     */
-    const totals =
+    // Log the count response structure (keys only) for diagnostics.
+    // This never exposes the token or any sensitive values.
+    console.log(
+      'Count payload keys:',
+      Object.keys(countPayload ?? {}),
+    );
+    if (
       countPayload?.data &&
       typeof countPayload.data === 'object' &&
       !Array.isArray(countPayload.data)
-        ? countPayload.data
-        : countPayload;
+    ) {
+      console.log(
+        'Count payload.data keys:',
+        Object.keys(countPayload.data),
+      );
+    }
 
-    const visitors = toSafeNumber(
-      totals?.visitors ??
-        totals?.uniqueVisitors ??
-        totals?.totalVisitors,
-    );
+    /*
+     * Try to extract visitors and pageViews from the count response.
+     * The structure varies: values may sit at the top level, inside
+     * `data`, or the whole `data` may be a plain number (page-view
+     * count).  We probe every reasonable location.
+     */
+    const countVisitors = extractNumeric(countPayload, [
+      'visitors',
+      'uniqueVisitors',
+      'totalVisitors',
+    ]);
 
-    const pageViews = toSafeNumber(
-      totals?.pageViews ??
-        totals?.pageviews ??
-        totals?.totalPageViews,
-    );
+    const countPageViews = extractNumeric(countPayload, [
+      'pageViews',
+      'pageviews',
+      'views',
+      'totalPageViews',
+      'total',
+      'count',
+    ]);
 
+    // If `data` is a bare number, treat it as the page-view total.
+    const dataAsNumber =
+      typeof countPayload?.data === 'number'
+        ? toSafeNumber(countPayload.data)
+        : 0;
+
+    /*
+     * Parse country aggregate rows.  Extract both visitors AND
+     * pageViews from each row so we can sum them as a fallback.
+     */
     const rows = Array.isArray(countryPayload?.data)
       ? countryPayload.data
       : [];
@@ -134,10 +158,44 @@ export default async function handler(req, res) {
               row?.uniqueVisitors ??
               row?.totalVisitors,
           ),
+          pageViews: toSafeNumber(
+            row?.pageViews ??
+              row?.pageviews ??
+              row?.views ??
+              row?.totalPageViews,
+          ),
         };
       })
       .filter(({ code }) => /^[A-Z]{2}$/.test(code))
       .sort((a, b) => b.visitors - a.visitors);
+
+    /*
+     * Determine final totals.
+     *
+     * Priority:
+     *  1. Values extracted from the count endpoint
+     *  2. `data` interpreted as a bare number (page views only)
+     *  3. Sum of the country aggregate rows (guaranteed fallback)
+     */
+    const aggregateVisitors = countries.reduce(
+      (sum, c) => sum + c.visitors,
+      0,
+    );
+    const aggregatePageViews = countries.reduce(
+      (sum, c) => sum + c.pageViews,
+      0,
+    );
+
+    const finalVisitors =
+      countVisitors || aggregateVisitors;
+
+    const finalPageViews =
+      countPageViews || dataAsNumber || aggregatePageViews;
+
+    // Strip per-row pageViews before sending to the frontend.
+    const topCountries = countries
+      .slice(0, 5)
+      .map(({ code, visitors: v }) => ({ code, visitors: v }));
 
     res.setHeader(
       'Cache-Control',
@@ -145,10 +203,10 @@ export default async function handler(req, res) {
     );
 
     return res.status(200).json({
-      visitors,
-      pageViews,
+      visitors: finalVisitors,
+      pageViews: finalPageViews,
       countriesReached: countries.length,
-      topCountries: countries.slice(0, 5),
+      topCountries,
       updatedAt: new Date().toISOString(),
     });
   } catch (error) {
@@ -221,6 +279,35 @@ async function logUpstreamError(endpointName, response) {
     response.status,
     message || response.statusText,
   );
+}
+
+/**
+ * Search a payload for the first numeric value matching one of the
+ * candidate field names.  Checks the top-level object first, then
+ * `payload.data` if it is a plain object.
+ */
+function extractNumeric(payload, fieldNames) {
+  if (!payload || typeof payload !== 'object') return 0;
+
+  // Check top-level fields.
+  for (const name of fieldNames) {
+    const val = Number(payload[name]);
+    if (Number.isFinite(val) && val > 0) return Math.round(val);
+  }
+
+  // Check nested `data` object.
+  if (
+    payload.data &&
+    typeof payload.data === 'object' &&
+    !Array.isArray(payload.data)
+  ) {
+    for (const name of fieldNames) {
+      const val = Number(payload.data[name]);
+      if (Number.isFinite(val) && val > 0) return Math.round(val);
+    }
+  }
+
+  return 0;
 }
 
 /**
