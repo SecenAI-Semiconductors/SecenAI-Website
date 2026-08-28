@@ -17,7 +17,7 @@ export default function SecenaiDefencePage() {
   useEffect(() => {
     document.title = 'SECENAI Defence Flight Controller | SECENAI Flight Systems';
     return () => {
-      document.title = 'AeroVault | Flight Control Systems';
+      document.title = 'SECENAI | Flight Control Systems';
     };
   }, []);
 
