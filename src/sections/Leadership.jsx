@@ -4,7 +4,8 @@ import { useTheme } from '../context/ThemeContext';
 import { Linkedin, ExternalLink } from 'lucide-react';
 
 
-import DakshishImg from '../assets/Dakshish.jpg';
+import RenukaImg from '../assets/Renuka.jpg';
+import TirumalaImg from '../assets/Tirumala.jpeg';
 import KishoreImg from '../assets/Kishore.jpg';
 import JoseImg from '../assets/Jose.jpeg';
 import BhaskarImg from '../assets/Bhaskar.jpeg';
@@ -76,6 +77,15 @@ const leaders = [
     initials: 'VA',
   },
   {
+    name: 'Tirumala Rao Kadiyam',
+    role: 'Board Member',
+    qualifications: 'PhD SRM University AP',
+    linkedin: 'https://www.linkedin.com/in/tirumala-rao-kadiyam-2ba334153/',
+    avatar: TirumalaImg,
+    accent: '#8b5cf6',
+    initials: 'TK',
+  },
+  {
     name: 'K Bhaskar',
     role: 'HR Director',
     qualifications: 'Professor SRM University AP',
@@ -94,13 +104,13 @@ const leaders = [
     initials: 'JPK',
   },
   {
-    name: 'Sabba Dakshish',
-    role: 'Design Lead',
-    qualifications: 'B.Tech in Aerospace Engineering',
-    linkedin: 'https://www.linkedin.com/in/sabba-dakshish-926a1a214',
-    avatar: DakshishImg,
-    accent: '#06b6d4',
-    initials: 'SD',
+    name: 'Dr. Renuka Chowdary Bheemana',
+    role: 'Board Member',
+    qualifications: 'PhD SRM University AP',
+    linkedin: 'https://in.linkedin.com/in/dr-renuka-chowdary-bheemana-6548711ba',
+    avatar: RenukaImg,
+    accent: '#e621ff',
+    initials: 'RB',
   },
   {
     name: 'Gajula Prateek',

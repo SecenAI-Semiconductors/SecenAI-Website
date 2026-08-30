@@ -5,7 +5,7 @@ const ThemeContext = createContext()
 export function ThemeProvider({ children }) {
   const [theme, setTheme] = useState(() => {
     if (typeof window !== 'undefined') {
-      return localStorage.getItem('aerovault-theme') || 'dark'
+      return localStorage.getItem('secenai-theme') || 'dark'
     }
     return 'dark'
   })
@@ -19,7 +19,7 @@ export function ThemeProvider({ children }) {
       root.classList.add('light')
       root.classList.remove('dark')
     }
-    localStorage.setItem('aerovault-theme', theme)
+    localStorage.setItem('secenai-theme', theme)
   }, [theme])
 
   const toggleTheme = () => {
