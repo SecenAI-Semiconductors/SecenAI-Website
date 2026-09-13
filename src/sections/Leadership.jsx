@@ -7,13 +7,13 @@ import { Linkedin, ExternalLink } from 'lucide-react';
 import RenukaImg from '../assets/Renuka.jpg';
 import TirumalaImg from '../assets/Tirumala.jpeg';
 import KishoreImg from '../assets/Kishore.jpg';
-import JoseImg from '../assets/Jose.jpeg';
+// import JoseImg from '../assets/Jose.jpeg';
 import BhaskarImg from '../assets/Bhaskar.jpeg';
-import PrateekImg from '../assets/Prateek.jpg';
-import ShivaImg from '../assets/Shiva.jpg';
-import SumanthImg from '../assets/Sumanth.jpg';
+// import PrateekImg from '../assets/Prateek.jpg';
+// import ShivaImg from '../assets/Shiva.jpg';
+// import SumanthImg from '../assets/Sumanth.jpg';
 import VinodImg from '../assets/Vinod.jpg';
-import Akhil from '../assets/Akhil.jpg';
+// import Akhil from '../assets/Akhil.jpg';
 import RameshImg from '../assets/ramesh.jpg';
 import sivasankarImg from '../assets/sivasankar.jpg';
 /* ═══════════════════════════════════════════
@@ -94,15 +94,15 @@ const leaders = [
     accent: '#c2410c',
     initials: 'KB',
   },
-  {
-    name: 'Jose Pramod Kommini',
-    role: 'Consultant',
-    qualifications: 'M.tech Embedded Systems & IoT Engineer',
-    linkedin: 'https://www.linkedin.com/in/jose-pramod-kommini-24b499157',
-    avatar: JoseImg,
-    accent: '#23ff65',
-    initials: 'JPK',
-  },
+  // {
+  //   name: 'Jose Pramod Kommini',
+  //   role: 'Consultant',
+  //   qualifications: 'M.tech Embedded Systems & IoT Engineer',
+  //   linkedin: 'https://www.linkedin.com/in/jose-pramod-kommini-24b499157',
+  //   avatar: JoseImg,
+  //   accent: '#23ff65',
+  //   initials: 'JPK',
+  // },
   {
     name: 'Dr. Renuka Chowdary Bheemana',
     role: 'Board Member',
@@ -112,42 +112,42 @@ const leaders = [
     accent: '#e621ff',
     initials: 'RB',
   },
-  {
-    name: 'Gajula Prateek',
-    role: 'Product Lead',
-    qualifications: 'B.Tech in  Aerospace Engineering',
-    linkedin: 'http://linkedin.com/in/prateek-gajula-a0339b321',
-    avatar: PrateekImg,
-    accent: '#f59e0b',
-    initials: 'GP',
-  },
-  {
-    name: 'Sai Shivaram Chary Medoju',
-    role: 'Technical Lead',
-    qualifications: 'B.Tech in Aerospace Engineering',
-    linkedin: 'https://www.linkedin.com/in/sai-shivaram-chary-medoju-7a657a275/',
-    avatar: ShivaImg,
-    accent: '#ef4444',
-    initials: 'SM',
-  },
-  {
-    name: 'Borra Sumanth Raj',
-    role: 'Systems Lead',
-    qualifications: 'B.Tech in  Aerospace Engineering',
-    linkedin: 'https://www.linkedin.com/in/borra-sumanth-raj',
-    avatar: SumanthImg,
-    accent: '#ec4899',
-    initials: 'BR',
-  },
-  {
-    name: 'K Akhil Varma',
-    role: 'Development Lead',
-    qualifications: 'B.Tech in Information Technology',
-    linkedin: 'https://www.linkedin.com/in/akhil-varma-56a780292/',
-    avatar: Akhil,
-    accent: '#f59e0b',
-    initials: 'AY',
-  },
+  // {
+  //   name: 'Gajula Prateek',
+  //   role: 'Product Lead',
+  //   qualifications: 'B.Tech in  Aerospace Engineering',
+  //   linkedin: 'http://linkedin.com/in/prateek-gajula-a0339b321',
+  //   avatar: PrateekImg,
+  //   accent: '#f59e0b',
+  //   initials: 'GP',
+  // },
+  // {
+  //   name: 'Sai Shivaram Chary Medoju',
+  //   role: 'Technical Lead',
+  //   qualifications: 'B.Tech in Aerospace Engineering',
+  //   linkedin: 'https://www.linkedin.com/in/sai-shivaram-chary-medoju-7a657a275/',
+  //   avatar: ShivaImg,
+  //   accent: '#ef4444',
+  //   initials: 'SM',
+  // },
+  // {
+  //   name: 'Borra Sumanth Raj',
+  //   role: 'Systems Lead',
+  //   qualifications: 'B.Tech in  Aerospace Engineering',
+  //   linkedin: 'https://www.linkedin.com/in/borra-sumanth-raj',
+  //   avatar: SumanthImg,
+  //   accent: '#ec4899',
+  //   initials: 'BR',
+  // },
+  // {
+  //   name: 'K Akhil Varma',
+  //   role: 'Development Lead',
+  //   qualifications: 'B.Tech in Information Technology',
+  //   linkedin: 'https://www.linkedin.com/in/akhil-varma-56a780292/',
+  //   avatar: Akhil,
+  //   accent: '#f59e0b',
+  //   initials: 'AY',
+  // },
   {
     name: 'N Sai Kishore',
     role: 'Software Lead',
