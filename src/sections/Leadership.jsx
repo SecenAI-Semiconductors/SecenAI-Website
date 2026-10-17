@@ -16,6 +16,7 @@ import VinodImg from '../assets/Vinod.jpg';
 // import Akhil from '../assets/Akhil.jpg';
 import PushpakImg from '../assets/Pushpak.jpg';
 import BhanuImg from '../assets/bhanu.jpg';
+import RishkiranImg from '../assets/Rishikiran.jpg';
 import DeekshithImg from '../assets/deekshith.jpg';
 import RameshImg from '../assets/ramesh.jpg';
 import sivasankarImg from '../assets/sivasankar.jpg';
@@ -186,6 +187,15 @@ const leaders = [
     avatar: DeekshithImg,
     accent: '#ff8500',
     initials: 'DP',
+  },
+  {
+    name: 'Nasimsetty Rishikiran',
+    role: 'Aerospace Intern',
+    qualifications: 'B.Tech in Aerospace Engineering',
+    linkedin: 'https://www.linkedin.com/in/nasimsetty-rishikiran-85ab113b2/',
+    avatar: RishkiranImg,
+    accent: '#ff7f50',
+    initials: 'NR',
   }
 ];
 /* ═══════════════════════════════════════════
