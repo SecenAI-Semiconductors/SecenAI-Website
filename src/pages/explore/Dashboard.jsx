@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import DashboardHero from '../../components/dashboard/DashboardHero';
+import LifeCycleAssure from '../../sections/LifeCycleAssure';
 
 export default function Dashboard() {
   useEffect(() => {
@@ -7,5 +8,10 @@ export default function Dashboard() {
     return () => { document.title = 'SecenAI'; };
   }, []);
 
-  return <DashboardHero />;
+  return (
+    <>
+      <DashboardHero />
+      <LifeCycleAssure />
+    </>
+  );
 }
