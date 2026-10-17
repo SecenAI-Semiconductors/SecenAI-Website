@@ -15,7 +15,7 @@ import BhaskarImg from '../assets/Bhaskar.jpeg';
 import VinodImg from '../assets/Vinod.jpg';
 // import Akhil from '../assets/Akhil.jpg';
 import PushpakImg from '../assets/Pushpak.jpg';
-import BhanuImg from '../assets/bhanu.jpg';
+import BhanuImg from '../assets/Bhanu.jpg';
 import RishkiranImg from '../assets/Rishikiran.jpg';
 import DeekshithImg from '../assets/deekshith.jpg';
 import RameshImg from '../assets/ramesh.jpg';
