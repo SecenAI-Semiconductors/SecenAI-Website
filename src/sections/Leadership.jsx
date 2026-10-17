@@ -196,7 +196,7 @@ const leaders = [
     avatar: RishkiranImg,
     accent: '#ff7f50',
     initials: 'NR',
-  }
+  },
 ];
 /* ═══════════════════════════════════════════
    LEADER CARD COMPONENT
