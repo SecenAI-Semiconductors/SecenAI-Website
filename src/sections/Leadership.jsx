@@ -6,7 +6,7 @@ import { Linkedin, ExternalLink } from 'lucide-react';
 
 import RenukaImg from '../assets/Renuka.jpg';
 import TirumalaImg from '../assets/Tirumala.jpeg';
-import KishoreImg from '../assets/Kishore.jpg';
+import saikishoreImg from '../assets/saikishore.jpg';
 // import JoseImg from '../assets/Jose.jpeg';
 import BhaskarImg from '../assets/Bhaskar.jpeg';
 // import PrateekImg from '../assets/Prateek.jpg';
@@ -14,6 +14,10 @@ import BhaskarImg from '../assets/Bhaskar.jpeg';
 // import SumanthImg from '../assets/Sumanth.jpg';
 import VinodImg from '../assets/Vinod.jpg';
 // import Akhil from '../assets/Akhil.jpg';
+import PushpakImg from '../assets/Pushpak.jpg';
+import BhanuImg from '../assets/Bhanu.jpg';
+import RishkiranImg from '../assets/Rishikiran.jpg';
+import DeekshithImg from '../assets/deekshith.jpg';
 import RameshImg from '../assets/ramesh.jpg';
 import sivasankarImg from '../assets/sivasankar.jpg';
 /* ═══════════════════════════════════════════
@@ -153,9 +157,45 @@ const leaders = [
     role: 'Software Lead',
     qualifications: 'B.Tech in Computer Science and Engineering',
     linkedin: 'https://www.linkedin.com/in/saikishore30',
-    avatar: KishoreImg,
+    avatar: saikishoreImg,
     accent: '#8b5cf6',
     initials: 'SK',
+  },
+  {
+    name: 'Pushpak Srinivas',
+    role: 'Ece Intern',
+    qualifications: 'B.Tech in Electronics and Communication engineering',
+    linkedin: 'https://www.linkedin.com/in/pushpak-srinivas-s-923324282/',
+    avatar: PushpakImg,
+    accent: '#ff8500',
+    initials: 'PS',
+  },
+  {
+    name: 'Bhanu Prasad Kelapu',
+    role: 'Aerospace Intern',
+    qualifications: 'B. Tech in Aerospace Engineering',
+    linkedin: 'https://www.linkedin.com/in/bhanu-prasad-kelapu-a74659360',
+    avatar: BhanuImg,
+    accent: '#ff7f50',
+    initials: 'BP',
+  },
+  {
+    name: 'Deekshith Prudhvi',
+    role: 'Ece Intern',
+    qualifications: 'B.Tech in Electronics and Communication engineering',
+    linkedin: 'https://www.linkedin.com/in/deekshithprudhvi',
+    avatar: DeekshithImg,
+    accent: '#ff8500',
+    initials: 'DP',
+  },
+  {
+    name: 'Nasimsetty Rishikiran',
+    role: 'Aerospace Intern',
+    qualifications: 'B.Tech in Aerospace Engineering',
+    linkedin: 'https://www.linkedin.com/in/nasimsetty-rishikiran-85ab113b2/',
+    avatar: RishkiranImg,
+    accent: '#ff7f50',
+    initials: 'NR',
   },
 ];
 /* ═══════════════════════════════════════════
