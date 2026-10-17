@@ -5,7 +5,6 @@ import {
   Target, Users, Globe, Lightbulb,
   Award, TrendingUp, Leaf, Cpu,
 } from 'lucide-react';
-import LifeCycleAssure from '../sections/LifeCycleAssure';
 import Leadership from '../sections/Leadership';
 import aboutImg from '../assets/about.jpg';
 
@@ -246,7 +245,6 @@ export default function About() {
           </div>
         </div>
       </section>
-      <LifeCycleAssure />
       <Leadership />
     </>
   );
