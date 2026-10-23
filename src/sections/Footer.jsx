@@ -34,7 +34,7 @@ const socialIcons = [
 
 const contactInfo = [
   { Icon: Mail, text: 'info@secenai.com', href: 'https://mail.google.com/mail/?view=cm&to=info@secenai.com&su=General%20Inquiry', external: true },
-  { Icon: Phone, text: '+91 95509 67278', href: 'tel:+919550967278' },
+  { Icon: Phone, text: '+91 95730 91962', href: 'tel:+919573091962' },
   { Icon: MapPin, text: 'Hyderabad, India' },
 ];
 
